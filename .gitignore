@@ -11,3 +11,9 @@
 .idea/
 .idea/*.xml
 .idea/modules.xml
+
+### conflits possibles ###
+*.lock
+composer.json
+.env
+config/bundles.php
