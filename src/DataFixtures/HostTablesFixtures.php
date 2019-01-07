@@ -27,6 +27,7 @@ class HostTablesFixtures extends Fixture
             ->setTel("0629304942");
 
         $manager->persist($table1);
+        $this->addReference('maree', $table1);
 
         $table2 = new HostTables();
         $table2
