@@ -2,10 +2,11 @@
 
 namespace App\DataFixtures;
 
+use App\Entity\Users;
 use Doctrine\Bundle\FixturesBundle\Fixture;
 use Doctrine\Common\Persistence\ObjectManager;
 
-class Users extends Fixture
+class UsersFixtures extends Fixture
 {
     public function load(ObjectManager $manager)
     {
@@ -15,6 +16,7 @@ class Users extends Fixture
           ->setLastName('Durand')
           ->setEmail('j.durand@yahoo.fr')
           ->setPasswordHash('motdepasse')
+          ->setTel('0601010102')
           ->setHealth('gluten')
           ;
 
@@ -24,6 +26,7 @@ class Users extends Fixture
             ->setLastName('Podevin')
             ->setEmail('m.podevin@gmail.fr')
             ->setPasswordHash('motdepasse')
+            ->setTel('0601010102')
             ->setHealth('poisson')
             ;
 
@@ -33,12 +36,20 @@ class Users extends Fixture
             ->setLastName('Martin')
             ->setEmail('jl.martin@yahoo.fr')
             ->setPasswordHash('motdepasse')
+            ->setTel('0601010102')
             ->setHealth('');
             ;
 
           $manager->persist($user1);
           $manager->persist($user2);
+          $manager->persist($user3);
 
-          $manager->flush();
+
+        $manager->flush();
+    }
+
+    public function getDependencies()
+    {
+        return [UsersFixtures::class];
     }
 }
