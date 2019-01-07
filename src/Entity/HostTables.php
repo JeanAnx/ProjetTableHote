@@ -29,7 +29,7 @@ class HostTables
     /**
      * @ORM\Column(type="float")
      */
-    private $ÃmaxPrice;
+    private $maxPrice;
 
     /**
      * @ORM\Column(type="string", length=255, nullable=true)
@@ -115,14 +115,14 @@ class HostTables
         return $this;
     }
 
-    public function getÃmaxPrice(): ?float
+    public function getMaxPrice(): ?float
     {
-        return $this->ÃmaxPrice;
+        return $this->ï¿½maxPrice;
     }
 
-    public function setÃmaxPrice(float $ÃmaxPrice): self
+    public function setMaxPrice(float $maxPrice): self
     {
-        $this->ÃmaxPrice = $ÃmaxPrice;
+        $this->maxPrice = $maxPrice;
 
         return $this;
     }
