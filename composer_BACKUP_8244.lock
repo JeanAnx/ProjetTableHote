@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "3e120769b1a27a30e5ef4171224ed546",
+    "content-hash": "c5f7fa86ada957082d10d9e8bc1b7adc",
     "packages": [
         {
             "name": "doctrine/annotations",
@@ -5026,57 +5026,6 @@
             "time": "2018-11-11T19:52:12+00:00"
         },
         {
-            "name": "twbs/bootstrap",
-            "version": "v4.2.1",
-            "source": {
-                "type": "git",
-                "url": "https://github.com/twbs/bootstrap.git",
-                "reference": "9e4e94747bd698f4f61d48ed54c9c6d4d199bd32"
-            },
-            "dist": {
-                "type": "zip",
-                "url": "https://api.github.com/repos/twbs/bootstrap/zipball/9e4e94747bd698f4f61d48ed54c9c6d4d199bd32",
-                "reference": "9e4e94747bd698f4f61d48ed54c9c6d4d199bd32",
-                "shasum": ""
-            },
-            "replace": {
-                "twitter/bootstrap": "self.version"
-            },
-            "type": "library",
-            "extra": {
-                "branch-alias": {
-                    "dev-master": "3.3.x-dev"
-                }
-            },
-            "notification-url": "https://packagist.org/downloads/",
-            "license": [
-                "MIT"
-            ],
-            "authors": [
-                {
-                    "name": "Jacob Thornton",
-                    "email": "jacobthornton@gmail.com"
-                },
-                {
-                    "name": "Mark Otto",
-                    "email": "markdotto@gmail.com"
-                }
-            ],
-            "description": "The most popular front-end framework for developing responsive, mobile first projects on the web.",
-            "homepage": "https://getbootstrap.com/",
-            "keywords": [
-                "JS",
-                "css",
-                "framework",
-                "front-end",
-                "mobile-first",
-                "responsive",
-                "sass",
-                "web"
-            ],
-            "time": "2018-12-21T18:55:28+00:00"
-        },
-        {
             "name": "twig/twig",
             "version": "v2.6.0",
             "source": {
@@ -6356,6 +6305,7 @@
         },
         {
             "name": "symfony/web-server-bundle",
+<<<<<<< HEAD
             "version": "v4.2.2",
             "source": {
                 "type": "git",
@@ -6366,6 +6316,18 @@
                 "type": "zip",
                 "url": "https://api.github.com/repos/symfony/web-server-bundle/zipball/8d7c77f58cf8f6d018c4c80cea9e067a83921f1c",
                 "reference": "8d7c77f58cf8f6d018c4c80cea9e067a83921f1c",
+=======
+            "version": "v4.2.1",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/symfony/web-server-bundle.git",
+                "reference": "6291444989fc753df2a9c86e5f6d5af4616804f5"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/symfony/web-server-bundle/zipball/6291444989fc753df2a9c86e5f6d5af4616804f5",
+                "reference": "6291444989fc753df2a9c86e5f6d5af4616804f5",
+>>>>>>> 555f25ac9c9f1c1a473b9e8f135dfbf2f97928a0
                 "shasum": ""
             },
             "require": {
@@ -6411,7 +6373,11 @@
             ],
             "description": "Symfony WebServerBundle",
             "homepage": "https://symfony.com",
+<<<<<<< HEAD
             "time": "2019-01-03T09:07:35+00:00"
+=======
+            "time": "2018-11-13T19:11:56+00:00"
+>>>>>>> 555f25ac9c9f1c1a473b9e8f135dfbf2f97928a0
         }
     ],
     "aliases": [],
