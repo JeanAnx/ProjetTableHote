@@ -10,3 +10,4 @@
 *.idea
 .idea/
 .idea/*.xml
+.idea/modules.xml
