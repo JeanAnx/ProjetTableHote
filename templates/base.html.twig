@@ -6,7 +6,21 @@
         {% block stylesheets %}{% endblock %}
     </head>
     <body>
-        {% block body %}{% endblock %}
+        {% block body %}
+            {% block navbar %}
+                <nav id="navbar">
+                    <ul>
+                        <li><a href="#home">La Table du Milieu</a></li>
+                        <li>
+                            <input type="text" class="recherche" placeholder="Recherchez une table d'hôte">
+                        </li>
+                        <li>
+                            <a href="#connect">CONNEXION</a>
+                        </li>
+                    </ul>
+                </nav>
+            {% endblock %}
+        {% endblock %}
         {% block javascripts %}{% endblock %}
     </body>
 </html>

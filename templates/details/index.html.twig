@@ -1,0 +1,215 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}{{ host_table.title }}{% endblock %}
+
+{% block body %}
+
+    <main>
+        <!--PHOTO-->
+        <div class="big_img" id="big_img">
+            <div class="photo"></div>
+
+            <!--MAP-->
+
+        </div>
+        <div class="presentation_reco">
+            <div class="presentation">
+                <div id="content">
+                    <div id="nomTable">
+                        <h1>La Table du Milieu</h1>
+                        <!--ETOILE POUR FAVORIS-->
+                        <fieldset class="rating">
+                            <input type="radio" id="favori" name="rating" value="fav"/>
+                            <label for="favori" title="Favoris"></label>
+                        </fieldset>
+                    </div>
+                    <h3>
+                        <span class="glyphicon glyphicon-map-marker"></span>
+                        Nantes
+                    </h3>
+                    <!--INFOS-->
+                    <h4>Traditionnel | Végé | Meat lovers</h4>
+                    <h4>Capacité : 70 personnes</h4>
+                    <p>Spicy jalapeno bacon ipsum dolor amet andouille pastrami adipisicing, corned beef turkey boudin
+                        ground round proident duis rump elit. Andouille cupidatat sunt, ipsum tenderloin aliquip occaecat
+                        venison turkey esse aliqua reprehenderit est ham corned beef. Hamburger drumstick eu, nostrud elit
+                        mollit shankle pork belly ham pariatur excepteur. Exercitation t-bone ea officia, corned beef
+                        ullamco nisi irure pariatur labore esse. Pariatur occaecat deserunt pork loin. Beef ribs deserunt
+                        sed bresaola pig short loin doner exercitation ad. Ea meatball minim veniam ribeye, ham hock brisket
+                        buffalo jowl quis pork belly capicola.</p>
+
+                    <div class="coord">
+                        <table>
+                            <tr>
+                                <td><span class="glyphicon glyphicon-earphone"></span></td>
+                                <td>02 38 44 45 37</td>
+                            </tr>
+                            <tr>
+                                <td><span class="glyphicon glyphicon-globe"></span></td>
+                                <td>www.latabledumilieu.fr</td>
+                            </tr>
+                            <tr>
+                                <td><span class="glyphicon glyphicon-time"></span>
+                                <td>Ouvert</td>
+                            </tr>
+                        </table>
+                        <table id="horaires">
+                            <tr>
+                                <td>Lundi</td>
+                                <td>12:00 - 14:00 | 19:00 - 23:00</td>
+                            </tr>
+                            <tr>
+                                <td>Mardi</td>
+                                <td>12:00 - 14:00 | 19:00 - 23:00</td>
+                            </tr>
+                            <tr>
+                                <td>Mercredi</td>
+                                <td>12:00 - 14:00 | 19:00 - 23:00</td>
+                            </tr>
+                            <tr>
+                                <td>Jeudi</td>
+                                <td>12:00 - 14:00 | 19:00 - 23:00</td>
+                            </tr>
+                            <tr>
+                                <td>Vendredi</td>
+                                <td>12:00 - 14:00 | 19:00 - 23:00</td>
+                            </tr>
+                            <tr>
+                                <td>Samedi</td>
+                                <td>12:00 - 14:00 | 19:00 - 23:00</td>
+                            </tr>
+                            <tr>
+                                <td>Dimanche</td>
+                                <td>12:00 - 14:00 | 19:00 - 23:00</td>
+                            </tr>
+                        </table>
+                    </div>
+
+                    <div class="affluence">
+                        <!--petit graph des horraires d'affluence comme sur google map-->
+                    </div>
+                    <!--NOTES ET AVIS-->
+                    <div class="avis">
+                        <div class="note_globale">
+                            <h4>Note globale</h4>
+                            <p class="note_finale">4,5</p>
+                            <p>
+                            <fieldset class="rating">
+                                <input type="radio" id="star5" name="rating" value="5"/>
+                                <label class="full" for="star5" title="Parfait - 5 étoiles"></label>
+                                <input type="radio" id="star4" name="rating" value="4"/>
+                                <label class="full" for="star4" title="Très bon - 4 étoiles"></label>
+                                <input type="radio" id="star3" name="rating" value="3"/>
+                                <label class="full" for="star3" title="Bon - 3 étoiles"></label>
+                                <input type="radio" id="star2" name="rating" value="2"/>
+                                <label class="full" for="star2" title="Pas terrible - 2 étoile"></label>
+                                <input type="radio" id="star1" name="rating" value="1"/>
+                                <label class="full" for="star1"
+                                       title="Mauvais - 1 étoile"></label>
+                            </fieldset>
+                            </p>
+                        </div>
+                        <p><strong>Résumé des avis</strong></p>
+                        <p>137 avis</p>
+                        <div id="notes_graph">
+                            <div id="notes">
+                                <fieldset class="etoile">
+                                    <label class="full"></label>5<input type="radio" name="etoile"/>
+                                </fieldset>
+                                <fieldset class="etoile">
+                                    <label class="full"></label>4<input type="radio" name="etoile"/>
+                                </fieldset>
+                                <fieldset class="etoile">
+                                    <label class="full"></label>3<input type="radio" name="etoile"/>
+                                </fieldset>
+                                <fieldset class="etoile">
+                                    <label class="full"></label>2<input type="radio" name="etoile"/>
+                                </fieldset>
+                                <fieldset class="etoile">
+                                    <label class="full"></label>1<input type="radio" name="etoile"/>
+                                </fieldset>
+                            </div>
+                            <div id="graph">
+                                <img src="img/graph_stars.png">
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!--ADISE+MAP-->
+                <div id="aside_map">
+                    <!--ASIDE-->
+                    <aside>
+                        <div id="prix_pers">
+                            <p id="prix">50 €</p>
+                            <p id="personne"> / convives</p>
+                        </div>
+                        <form>
+                            <div id="date_heure">
+                                <div class="date">
+                                    <label for="date">Date</label>
+                                    <input id="date" type="date" name="date">
+                                </div>
+                                <div class="heure">
+                                    <label for="heure">Heure</label>
+                                    <input id="heure" type="time" name="heure">
+                                </div>
+                            </div>
+                            <div class="nb_conv">
+                                <label for="nb_convives">Nombres de convives</label>
+                                <select id="nb_convives" name="convives">
+                                    <option value="1">1 convive</option>
+                                    <option value="2">2 convives</option>
+                                    <option value="3">3 convives</option>
+                                    <option value="4">4 convives</option>
+                                    <option value="5">5 convives</option>
+                                    <option value="6">6 convives</option>
+                                </select>
+                            </div>
+                            <p id="total">Total : 100 €</p>
+                            <button type="submit" id="reserver">Réserver</button>
+                        </form>
+                    </aside>
+
+
+                    <!--MAP-->
+                    <div id="map">
+                        <iframe src="https://www.google.com/maps/embed?pb=!1m16!1m12!1m3!1d10840.61684371198!2d-1.5496263515227333!3d47.21356483313492!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!2m1!1snantes+tables+d&#39;h%C3%B4tes!5e0!3m2!1sfr!2sfr!4v1543842535842"
+                                allowfullscreen>
+                        </iframe>
+                    </div>
+                </div>
+            </div>
+            <!--SUGGESTIONS-->
+            <div id="suggest">
+                <p>Vous pourrez aussi aimer :</p>
+                <li id="suggest_pics">
+                    <ul>
+                        <div class="sugg_img" id="table1">
+                            <div class="text_hover">La Table de Devant</div>
+                        </div>
+                    </ul>
+                    <ul>
+                        <div class="sugg_img" id="table2">
+                            <div class="text_hover">La Table de Gauche</div>
+                        </div>
+                    </ul>
+                    <ul>
+                        <div class="sugg_img" id="table3">
+                            <div class="text_hover">La Table de Droite</div>
+                        </div>
+                    </ul>
+                    <ul>
+                        <div class="sugg_img" id="table4">
+                            <div class="text_hover">La Table de Derrière</div>
+                        </div>
+                    </ul>
+                </li>
+            </div>
+        </div>
+    </main>
+
+    <footer>Aide | à propos | contact | réseaux sociaux | etc</footer>
+
+
+{% endblock %}
