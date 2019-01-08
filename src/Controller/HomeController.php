@@ -2,18 +2,27 @@
 
 namespace App\Controller;
 
+use App\Form\HostTablesSearchType;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
+use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\Routing\Annotation\Route;
+use Symfony\Component\Form\Extension\Core\Type\FormType;
+
 
 class HomeController extends AbstractController
 {
     /**
      * @Route("/home", name="home")
      */
-    public function index()
+    public function homeSearch(Request $request)
     {
+
+       $searchForm = $this->createForm(HostTablesSearchType::class , array());
+
+       $searchForm->handleRequest($request);
+
         return $this->render('home/index.html.twig', [
-            'controller_name' => 'HomeController',
+            'searchForm' => $searchForm->createView(),
         ]);
     }
 }
