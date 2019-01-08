@@ -119,7 +119,9 @@
                     <h2>{{ host_table.name }}&nbsp;&nbsp;&nbsp;<span style="color: #33d9b2;font-size: x-small;">Ouverture dans 2 heures</span></h2>
                     <p>{{ host_table.shortDescription }}</p>
                 </div>
-                <!--<div class="articleImg" style="background-image:url(img/tableDhote1.jpg)"></div>-->
+                {% if host_table.img|length > 0 %}
+                    <div class="articleImg" style="background-image:url(img/{{ host_table.img[0] }})"></div>
+                {% endif %}
             </article>
             {% else %}
                 <p>no records found</p>

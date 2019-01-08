@@ -49,13 +49,16 @@ class HostTablesController extends AbstractController
     }
 
     /**
+     * @param HostTables $hostTable
+     * @return \Symfony\Component\HttpFoundation\Response
      * @Route("/{id}", name="host_tables_show", methods={"GET"})
      */
-    public function show(HostTables $hostTable): Response
+    public function show(HostTables $hostTable)
     {
-        return $this->render('host_tables/show.html.twig', [
-            'host_table' => $hostTable,
-        ]);
+        return $this->render(
+            'host_tables/show.html.twig',
+            ['host_table' => $hostTable]
+        );
     }
 
     /**

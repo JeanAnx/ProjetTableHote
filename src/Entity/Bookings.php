@@ -40,7 +40,7 @@ class Bookings
      * @ORM\ManyToOne(targetEntity="App\Entity\HostTables", inversedBy="bookings")
      * @ORM\JoinColumn(nullable=false)
      */
-    private $table_id;
+    private $hostTable;
 
 
     public function getId(): ?int
@@ -96,14 +96,14 @@ class Bookings
         return $this;
     }
 
-    public function getTableId(): ?HostTables
+    public function getHostTable(): ?HostTables
     {
-        return $this->table_id;
+        return $this->hostTable;
     }
 
-    public function setTableId(?HostTables $table_id): self
+    public function setHostTable(?HostTables $hostTable): self
     {
-        $this->table_id = $table_id;
+        $this->hostTable = $hostTable;
 
         return $this;
     }

@@ -1,78 +1,217 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}HostTables{% endblock %}
+{% block title %}{% endblock %}
+{% block stylesheets %}
+    <link rel="stylesheet" href="{{ asset('/css/Details.css') }}">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap-theme.min.css">
+{% endblock %}
 
 {% block body %}
-    <h1>HostTables</h1>
 
-    <table class="table">
-        <tbody>
-            <tr>
-                <th>Id</th>
-                <td>{{ host_table.id }}</td>
-            </tr>
-            <tr>
-                <th>Name</th>
-                <td>{{ host_table.name }}</td>
-            </tr>
-            <tr>
-                <th>MinPrice</th>
-                <td>{{ host_table.minPrice }}</td>
-            </tr>
-            <tr>
-                <th>MaxPrice</th>
-                <td>{{ host_table.maxPrice }}</td>
-            </tr>
-            <tr>
-                <th>Address</th>
-                <td>{{ host_table.address }}</td>
-            </tr>
-            <tr>
-                <th>City</th>
-                <td>{{ host_table.city }}</td>
-            </tr>
-            <tr>
-                <th>Capacity</th>
-                <td>{{ host_table.capacity }}</td>
-            </tr>
-            <tr>
-                <th>Tel</th>
-                <td>{{ host_table.tel }}</td>
-            </tr>
-            <tr>
-                <th>Website</th>
-                <td>{{ host_table.website }}</td>
-            </tr>
-            <tr>
-                <th>Note</th>
-                <td>{{ host_table.note }}</td>
-            </tr>
-            <tr>
-                <th>LongDescription</th>
-                <td>{{ host_table.longDescription }}</td>
-            </tr>
-            <tr>
-                <th>ShortDescription</th>
-                <td>{{ host_table.shortDescription }}</td>
-            </tr>
-            <tr>
-                <th>Img</th>
-                <td>{{ host_table.img ? host_table.img|join(', ') : '' }}</td>
-            </tr>
-            <tr>
-                <th>ZipCode</th>
-                <td>{{ host_table.zipCode }}</td>
-            </tr>
-            <tr>
-                <th>CookStyle</th>
-                <td>{{ host_table.cookStyle ? host_table.cookStyle|join(', ') : '' }}</td>
-            </tr>
-        </tbody>
-    </table>
+    <main>
+        <!--PHOTO-->
+        <div class="big_img" id="big_img">
+            <div class="photo"></div>
 
-    <a href="{{ path('host_tables_index') }}">back to list</a>
+            <!--MAP-->
 
-    <a href="{{ path('host_tables_edit', {'id': host_table.id}) }}">edit</a>
+        </div>
+        <div class="presentation_reco">
+            <div class="presentation">
+                <div id="content">
+                    <div id="nomTable">
+                        <h1>{{ host_table.name }}</h1>
+                        <!--ETOILE POUR FAVORIS-->
+                        <fieldset class="rating">
+                            <input type="radio" id="favori" name="rating" value="fav"/>
+                            <label for="favori" title="Favoris"></label>
+                        </fieldset>
+                    </div>
+                    <h3>
+                        <span class="glyphicon glyphicon-map-marker"></span>
+                        {{ host_table.city }}
+                    </h3>
+                    <!--INFOS-->
+                    <h4>{% for style in host_table.cookStyle %}
+                    {{ style }}
+                    {% endfor %}</h4>
 
-    {{ include('host_tables/_delete_form.html.twig') }}
+                    <h4>Capacité : {{ host_table.capacity }} personnes</h4>
+                    <p>{{ host_table.longDescription }}</p>
+
+                    <div class="coord">
+                        <table>
+                            <tr>
+                                <td><span class="glyphicon glyphicon-earphone"></span></td>
+                                <td>{{ host_table.tel }}</td>
+                            </tr>
+                            <tr>
+                                <td><span class="glyphicon glyphicon-globe"></span></td>
+                                <td>{{ host_table.website }}</td>
+                            </tr>
+                            <tr>
+                                <td><span class="glyphicon glyphicon-time"></span>
+                                <td>Ouvert</td>
+                            </tr>
+                        </table>
+                        <table id="horaires">
+                            <tr>
+                                <td>Lundi</td>
+                                <td>12:00 - 14:00 | 19:00 - 23:00</td>
+                            </tr>
+                            <tr>
+                                <td>Mardi</td>
+                                <td>12:00 - 14:00 | 19:00 - 23:00</td>
+                            </tr>
+                            <tr>
+                                <td>Mercredi</td>
+                                <td>12:00 - 14:00 | 19:00 - 23:00</td>
+                            </tr>
+                            <tr>
+                                <td>Jeudi</td>
+                                <td>12:00 - 14:00 | 19:00 - 23:00</td>
+                            </tr>
+                            <tr>
+                                <td>Vendredi</td>
+                                <td>12:00 - 14:00 | 19:00 - 23:00</td>
+                            </tr>
+                            <tr>
+                                <td>Samedi</td>
+                                <td>12:00 - 14:00 | 19:00 - 23:00</td>
+                            </tr>
+                            <tr>
+                                <td>Dimanche</td>
+                                <td>12:00 - 14:00 | 19:00 - 23:00</td>
+                            </tr>
+                        </table>
+                    </div>
+
+                    <div class="affluence">
+                        <!--petit graph des horraires d'affluence comme sur google map-->
+                    </div>
+                    <!--NOTES ET AVIS-->
+                    <div class="avis">
+                        <div class="note_globale">
+                            <h4>Note globale</h4>
+                            <p class="note_finale">4,5</p>
+                            <p>
+                            <fieldset class="rating">
+                                <input type="radio" id="star5" name="rating" value="5"/>
+                                <label class="full" for="star5" title="Parfait - 5 étoiles"></label>
+                                <input type="radio" id="star4" name="rating" value="4"/>
+                                <label class="full" for="star4" title="Très bon - 4 étoiles"></label>
+                                <input type="radio" id="star3" name="rating" value="3"/>
+                                <label class="full" for="star3" title="Bon - 3 étoiles"></label>
+                                <input type="radio" id="star2" name="rating" value="2"/>
+                                <label class="full" for="star2" title="Pas terrible - 2 étoile"></label>
+                                <input type="radio" id="star1" name="rating" value="1"/>
+                                <label class="full" for="star1"
+                                       title="Mauvais - 1 étoile"></label>
+                            </fieldset>
+                            </p>
+                        </div>
+                        <p><strong>Résumé des avis</strong></p>
+                        <p>137 avis</p>
+                        <div id="notes_graph">
+                            <div id="notes">
+                                <fieldset class="etoile">
+                                    <label class="full"></label>5<input type="radio" name="etoile"/>
+                                </fieldset>
+                                <fieldset class="etoile">
+                                    <label class="full"></label>4<input type="radio" name="etoile"/>
+                                </fieldset>
+                                <fieldset class="etoile">
+                                    <label class="full"></label>3<input type="radio" name="etoile"/>
+                                </fieldset>
+                                <fieldset class="etoile">
+                                    <label class="full"></label>2<input type="radio" name="etoile"/>
+                                </fieldset>
+                                <fieldset class="etoile">
+                                    <label class="full"></label>1<input type="radio" name="etoile"/>
+                                </fieldset>
+                            </div>
+                            <div id="graph">
+                                <img src="img/graph_stars.png">
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!--ADISE+MAP-->
+                <div id="aside_map">
+                    <!--ASIDE-->
+                    <aside>
+                        <div id="prix_pers">
+                            <p id="prix">50 €</p>
+                            <p id="personne"> / convives</p>
+                        </div>
+                        <form>
+                            <div id="date_heure">
+                                <div class="date">
+                                    <label for="date">Date</label>
+                                    <input id="date" type="date" name="date">
+                                </div>
+                                <div class="heure">
+                                    <label for="heure">Heure</label>
+                                    <input id="heure" type="time" name="heure">
+                                </div>
+                            </div>
+                            <div class="nb_conv">
+                                <label for="nb_convives">Nombres de convives</label>
+                                <select id="nb_convives" name="convives">
+                                    <option value="1">1 convive</option>
+                                    <option value="2">2 convives</option>
+                                    <option value="3">3 convives</option>
+                                    <option value="4">4 convives</option>
+                                    <option value="5">5 convives</option>
+                                    <option value="6">6 convives</option>
+                                </select>
+                            </div>
+                            <p id="total">Total : 100 €</p>
+                            <button type="submit" id="reserver">Réserver</button>
+                        </form>
+                    </aside>
+
+
+                    <!--MAP-->
+                    <div id="map">
+                        <iframe src="https://www.google.com/maps/embed?pb=!1m16!1m12!1m3!1d10840.61684371198!2d-1.5496263515227333!3d47.21356483313492!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!2m1!1snantes+tables+d&#39;h%C3%B4tes!5e0!3m2!1sfr!2sfr!4v1543842535842"
+                                allowfullscreen>
+                        </iframe>
+                    </div>
+                </div>
+            </div>
+            <!--SUGGESTIONS-->
+            <div id="suggest">
+                <p>Vous pourrez aussi aimer :</p>
+                <li id="suggest_pics">
+                    <ul>
+                        <div class="sugg_img" id="table1">
+                            <div class="text_hover">La Table de Devant</div>
+                        </div>
+                    </ul>
+                    <ul>
+                        <div class="sugg_img" id="table2">
+                            <div class="text_hover">La Table de Gauche</div>
+                        </div>
+                    </ul>
+                    <ul>
+                        <div class="sugg_img" id="table3">
+                            <div class="text_hover">La Table de Droite</div>
+                        </div>
+                    </ul>
+                    <ul>
+                        <div class="sugg_img" id="table4">
+                            <div class="text_hover">La Table de Derrière</div>
+                        </div>
+                    </ul>
+                </li>
+            </div>
+        </div>
+    </main>
+
+    <footer>Aide | à propos | contact | réseaux sociaux | etc</footer>
+
+
 {% endblock %}

@@ -15,7 +15,7 @@ class BookingsFixtures extends Fixture implements DependentFixtureInterface
         $book1 = new Bookings();
         $book1
             ->setDate(new \DateTime('2019-02-14 12:00:00'))
-            ->setTableId($this->getReference('table1'))
+            ->setHostTable($this->getReference('table1'))
             ->setSeats('70')
             ->setName('Dupont')
             ->setHealth(['Vegan'])
@@ -26,7 +26,7 @@ class BookingsFixtures extends Fixture implements DependentFixtureInterface
         $book2 = new Bookings();
         $book2
             ->setDate(new \DateTime('2019-02-08 13:00:00'))
-            ->setTableId($this->getReference('table2'))
+            ->setHostTable($this->getReference('table2'))
             ->setSeats('70')
             ->setName('Dupond')
             ->setHealth(['Sans Gluten'])
