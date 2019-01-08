@@ -24,6 +24,7 @@ class HostTablesFixtures extends Fixture
             ->setShortDescription("Magnifique table d'hôte de bord de mer")
             ->setZipCode("44130")
             ->setWebsite("www.maree-envies.com")
+            ->setImg(array("tableDhote1.jpg"))
             ->setTel("0238202020");
 
         $manager->persist($table1);
@@ -42,6 +43,7 @@ class HostTablesFixtures extends Fixture
             ->setShortDescription("Venez découvrir blabla")
             ->setZipCode("44000")
             ->setWebsite("www.toupie-salami.com")
+            ->setImg(array("tableDhote2.jpg"))
             ->setTel("0238202020");
 
         $manager->persist($table2);
@@ -60,6 +62,7 @@ class HostTablesFixtures extends Fixture
             ->setShortDescription("Venez découvrir blabla")
             ->setZipCode("44130")
             ->setWebsite("www.tortilla-maria.com")
+            ->setImg(array("tableDhote3.jpg"))
             ->setTel("0238202020");
 
         $manager->persist($table3);
