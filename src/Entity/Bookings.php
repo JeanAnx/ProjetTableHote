@@ -36,6 +36,13 @@ class Bookings
      */
     private $health = [];
 
+    /**
+     * @ORM\ManyToOne(targetEntity="App\Entity\HostTables", inversedBy="bookings")
+     * @ORM\JoinColumn(nullable=false)
+     */
+    private $table_id;
+
+
     public function getId(): ?int
     {
         return $this->id;
@@ -88,4 +95,18 @@ class Bookings
 
         return $this;
     }
+
+    public function getTableId(): ?HostTables
+    {
+        return $this->table_id;
+    }
+
+    public function setTableId(?HostTables $table_id): self
+    {
+        $this->table_id = $table_id;
+
+        return $this;
+    }
+
+
 }
