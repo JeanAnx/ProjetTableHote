@@ -2,25 +2,23 @@
 <html>
     <head>
         <meta charset="UTF-8">
-        <title>{% block title %}Welcome!{% endblock %}</title>
+        <title>{% block title %}La Table du Milieu{% endblock %}</title>
+        <link href="https://fonts.googleapis.com/css?family=Lato" rel="stylesheet">
         {% block stylesheets %}{% endblock %}
     </head>
     <body>
-        {% block body %}
-            {% block navbar %}
-                <nav id="navbar">
-                    <ul>
-                        <li><a href="#home">La Table du Milieu</a></li>
-                        <li>
-                            <input type="text" class="recherche" placeholder="Recherchez une table d'hôte">
-                        </li>
-                        <li>
-                            <a href="#connect">CONNEXION</a>
-                        </li>
-                    </ul>
-                </nav>
-            {% endblock %}
-        {% endblock %}
+    <nav id="navbar">
+        <ul>
+            <li><a href="#home">La Table du Milieu</a></li>
+            <li>
+                <input type="text" class="recherche" placeholder="Recherchez une table d'hôte">
+            </li>
+            <li>
+                <a href="#connect">CONNEXION</a>
+            </li>
+        </ul>
+    </nav>
+        {% block body %}{% endblock %}
         {% block javascripts %}{% endblock %}
     </body>
 </html>
