@@ -9,7 +9,6 @@
     width: 100%;
 }
 .photo{
-    background-image: url("../img/asparagus.jpg");
     background-size: cover;
     width: 100%;
     height: 40vh;
@@ -173,9 +172,7 @@ h1 { font-size: 1.5em; margin: 10px; }
     background-size: cover;
     height: 13vw;
 }
-/*.sugg_img:hover{*/
-/*opacity: .5;*/
-/*}*/
+
 .text_hover{
     background-color: rgba(0, 0, 0, 0);
     opacity: 0;
@@ -192,18 +189,7 @@ h1 { font-size: 1.5em; margin: 10px; }
     color: white;
     background-color: rgba(0, 0, 0, 0.5);
 }
-#table1{
-    background-image: url("../img/table1.jpg");
-}
-#table2{
-    background-image: url("../img/table2.jpg");
-}
-#table3{
-    background-image: url("../img/table3.jpg");
-}
-#table4{
-    background-image: url("../img/table4.jpg");
-}
+
 /*ASIDE MAP*/
 #aside_map{
     display: flex;
