@@ -117,7 +117,7 @@ class HostTables
 
     public function getMaxPrice(): ?float
     {
-        return $this->�maxPrice;
+        return $this->maxPrice;
     }
 
     public function setMaxPrice(float $maxPrice): self

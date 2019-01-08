@@ -1,0 +1,11 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}New HostTables{% endblock %}
+
+{% block body %}
+    <h1>Create new HostTables</h1>
+
+    {{ include('host_tables/_form.html.twig') }}
+
+    <a href="{{ path('host_tables_index') }}">back to list</a>
+{% endblock %}
