@@ -93,9 +93,15 @@ class HostTables
      */
     private $bookings;
 
+    /**
+     * @ORM\OneToMany(targetEntity="App\Entity\Hours", mappedBy="TableId", orphanRemoval=true)
+     */
+    private $hours;
+
     public function __construct()
     {
         $this->bookings = new ArrayCollection();
+        $this->hours = new ArrayCollection();
     }
 
     public function getId(): ?int
@@ -283,7 +289,7 @@ class HostTables
     {
         if (!$this->bookings->contains($booking)) {
             $this->bookings[] = $booking;
-            $booking->setTableId($this);
+            $booking->setHostTable($this);
         }
 
         return $this;
@@ -294,8 +300,39 @@ class HostTables
         if ($this->bookings->contains($booking)) {
             $this->bookings->removeElement($booking);
             // set the owning side to null (unless already changed)
-            if ($booking->getTableId() === $this) {
-                $booking->setTableId(null);
+            if ($booking->getHostTable() === $this) {
+                $booking->setHostTable(null);
+            }
+        }
+
+        return $this;
+    }
+
+    /**
+     * @return Collection|Hours[]
+     */
+    public function getHours(): Collection
+    {
+        return $this->hours;
+    }
+
+    public function addHour(Hours $hour): self
+    {
+        if (!$this->hours->contains($hour)) {
+            $this->hours[] = $hour;
+            $hour->setHostTable($this);
+        }
+
+        return $this;
+    }
+
+    public function removeHour(Hours $hour): self
+    {
+        if ($this->hours->contains($hour)) {
+            $this->hours->removeElement($hour);
+            // set the owning side to null (unless already changed)
+            if ($hour->getHostTable() === $this) {
+                $hour->setHostTable(null);
             }
         }
 

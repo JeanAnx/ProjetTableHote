@@ -41,6 +41,12 @@ class Hours
      */
     private $eveningEnd;
 
+    /**
+     * @ORM\ManyToOne(targetEntity="App\Entity\HostTables", inversedBy="hours")
+     * @ORM\JoinColumn(nullable=false)
+     */
+    private $hostTable;
+
     public function getId(): ?int
     {
         return $this->id;
@@ -102,6 +108,18 @@ class Hours
     public function setEveningEnd(\DateTimeInterface $eveningEnd): self
     {
         $this->eveningEnd = $eveningEnd;
+
+        return $this;
+    }
+
+    public function getHostTable(): ?HostTables
+    {
+        return $this->hostTable;
+    }
+
+    public function setHostTable(?HostTables $hostTable): self
+    {
+        $this->hostTable = $hostTable;
 
         return $this;
     }

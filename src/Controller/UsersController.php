@@ -20,7 +20,7 @@ class UsersController extends AbstractController
      */
     public function index(UsersRepository $usersRepository): Response
     {
-        return $this->render('users/index.html.twig', [
+        return $this->render('users/show2.html.twig', [
             'users' => $usersRepository->findAll(),
         ]);
     }
@@ -53,7 +53,7 @@ class UsersController extends AbstractController
      */
     public function show(Users $user): Response
     {
-        return $this->render('users/show.html.twig', [
+        return $this->render('users/show2.html.twig', [
             'user' => $user,
         ]);
     }

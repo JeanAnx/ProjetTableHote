@@ -10,87 +10,94 @@ class HoursFixtures extends Fixture
 {
     public function load(ObjectManager $manager)
     {
-        $monday = new Hours();
-        $monday
+        $table1_monday = new Hours();
+        $table1_monday
             ->setDay('monday')
             ->setMorningStart(new \DateTime('12:00:00'))
             ->setMorningEnd(new \DateTime('14:00:00'))
             ->setEveningStart(new \DateTime('19:00:00'))
             ->setEveningEnd(new \DateTime('22:00:00'))
+            ->setHostTable($this->getReference('table1'))
         ;
-        $manager->persist($monday);
-        $this->addReference('hours-monday', $monday);
+        $manager->persist($table1_monday);
+        $this->addReference('table1-monday', $table1_monday);
 
-        $tuesday = new Hours();
-        $tuesday
+        $table1_tuesday = new Hours();
+        $table1_tuesday
             ->setDay('tuesday')
             ->setMorningStart(new \DateTime('12:00:00'))
             ->setMorningEnd(new \DateTime('14:00:00'))
             ->setEveningStart(new \DateTime('19:00:00'))
             ->setEveningEnd(new \DateTime('22:00:00'))
+            ->setHostTable($this->getReference('table1'))
         ;
-        $manager->persist($tuesday);
-        $this->addReference('hours-tuesday', $tuesday);
+        $manager->persist($table1_tuesday);
+        $this->addReference('table1-tuesday', $table1_tuesday);
 
-        $wednesday = new Hours();
-        $wednesday
+        $table1_wednesday = new Hours();
+        $table1_wednesday
             ->setDay('wednesday')
             ->setMorningStart(new \DateTime('12:00:00'))
             ->setMorningEnd(new \DateTime('14:00:00'))
             ->setEveningStart(new \DateTime('19:00:00'))
             ->setEveningEnd(new \DateTime('22:00:00'))
+            ->setHostTable($this->getReference('table1'))
         ;
-        $manager->persist($wednesday);
-        $this->addReference('hours-wednesday', $wednesday);
+        $manager->persist($table1_wednesday);
+        $this->addReference('table1-wednesday', $table1_wednesday);
 
-        $thursday = new Hours();
-        $thursday
+        $table1_thursday = new Hours();
+        $table1_thursday
             ->setDay('thursday')
             ->setMorningStart(new \DateTime('12:00:00'))
             ->setMorningEnd(new \DateTime('14:00:00'))
             ->setEveningStart(new \DateTime('19:00:00'))
             ->setEveningEnd(new \DateTime('22:00:00'))
+            ->setHostTable($this->getReference('table1'))
         ;
-        $manager->persist($thursday);
-        $this->addReference('hours-thursday', $thursday);
+        $manager->persist($table1_thursday);
+        $this->addReference('table1-thursday', $table1_thursday);
 
-        $friday = new Hours();
-        $friday
+        $table1_friday = new Hours();
+        $table1_friday
             ->setDay('friday')
             ->setMorningStart(new \DateTime('12:00:00'))
             ->setMorningEnd(new \DateTime('14:00:00'))
             ->setEveningStart(new \DateTime('19:00:00'))
             ->setEveningEnd(new \DateTime('23:00:00'))
+            ->setHostTable($this->getReference('table1'))
         ;
-        $manager->persist($friday);
-        $this->addReference('hours-friday', $friday);
+        $manager->persist($table1_friday);
+        $this->addReference('table1-friday', $table1_friday);
 
-        $saturday = new Hours();
-        $saturday
+        $table1_saturday = new Hours();
+        $table1_saturday
             ->setDay('saturday')
             ->setMorningStart(new \DateTime('12:00:00'))
             ->setMorningEnd(new \DateTime('15:00:00'))
             ->setEveningStart(new \DateTime('19:00:00'))
             ->setEveningEnd(new \DateTime('23:00:00'))
+            ->setHostTable($this->getReference('table1'))
         ;
-        $manager->persist($saturday);
-        $this->addReference('hours-saturday', $saturday);
+        $manager->persist($table1_saturday);
+        $this->addReference('table1-saturday', $table1_saturday);
 
-        $sunday = new Hours();
-        $sunday
+        $table1_sunday = new Hours();
+        $table1_sunday
             ->setDay('sunday')
             ->setMorningStart(new \DateTime('12:00:00'))
             ->setMorningEnd(new \DateTime('15:00:00'))
             ->setEveningStart(new \DateTime('19:00:00'))
             ->setEveningEnd(new \DateTime('22:00:00'))
+            ->setHostTable($this->getReference('table1'))
         ;
-        $manager->persist($sunday);
-        $this->addReference('hours-sunday', $sunday);
+        $manager->persist($table1_sunday);
+        $this->addReference('table1-sunday', $table1_sunday);
 
 
 
         $manager->flush();
-    }
+   }
 
 
 }
