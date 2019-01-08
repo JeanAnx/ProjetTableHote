@@ -64,7 +64,7 @@ class HostTables
     private $note;
 
     /**
-     * @ORM\Column(type="string", length=255)
+     * @ORM\Column(type="text")
      */
     private $longDescription;
 
@@ -283,7 +283,7 @@ class HostTables
     {
         if (!$this->bookings->contains($booking)) {
             $this->bookings[] = $booking;
-            $booking->setTableId($this);
+            $booking->setHostTable($this);
         }
 
         return $this;
@@ -294,8 +294,8 @@ class HostTables
         if ($this->bookings->contains($booking)) {
             $this->bookings->removeElement($booking);
             // set the owning side to null (unless already changed)
-            if ($booking->getTableId() === $this) {
-                $booking->setTableId(null);
+            if ($booking->getHostTable() === $this) {
+                $booking->setHostTable(null);
             }
         }
 
