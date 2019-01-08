@@ -1,0 +1,13 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Edit HostTables{% endblock %}
+
+{% block body %}
+    <h1>Edit HostTables</h1>
+
+    {{ include('host_tables/_form.html.twig', {'button_label': 'Update'}) }}
+
+    <a href="{{ path('host_tables_index') }}">back to list</a>
+
+    {{ include('host_tables/_delete_form.html.twig') }}
+{% endblock %}

@@ -1,0 +1,78 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}HostTables{% endblock %}
+
+{% block body %}
+    <h1>HostTables</h1>
+
+    <table class="table">
+        <tbody>
+            <tr>
+                <th>Id</th>
+                <td>{{ host_table.id }}</td>
+            </tr>
+            <tr>
+                <th>Name</th>
+                <td>{{ host_table.name }}</td>
+            </tr>
+            <tr>
+                <th>MinPrice</th>
+                <td>{{ host_table.minPrice }}</td>
+            </tr>
+            <tr>
+                <th>MaxPrice</th>
+                <td>{{ host_table.maxPrice }}</td>
+            </tr>
+            <tr>
+                <th>Address</th>
+                <td>{{ host_table.address }}</td>
+            </tr>
+            <tr>
+                <th>City</th>
+                <td>{{ host_table.city }}</td>
+            </tr>
+            <tr>
+                <th>Capacity</th>
+                <td>{{ host_table.capacity }}</td>
+            </tr>
+            <tr>
+                <th>Tel</th>
+                <td>{{ host_table.tel }}</td>
+            </tr>
+            <tr>
+                <th>Website</th>
+                <td>{{ host_table.website }}</td>
+            </tr>
+            <tr>
+                <th>Note</th>
+                <td>{{ host_table.note }}</td>
+            </tr>
+            <tr>
+                <th>LongDescription</th>
+                <td>{{ host_table.longDescription }}</td>
+            </tr>
+            <tr>
+                <th>ShortDescription</th>
+                <td>{{ host_table.shortDescription }}</td>
+            </tr>
+            <tr>
+                <th>Img</th>
+                <td>{{ host_table.img ? host_table.img|join(', ') : '' }}</td>
+            </tr>
+            <tr>
+                <th>ZipCode</th>
+                <td>{{ host_table.zipCode }}</td>
+            </tr>
+            <tr>
+                <th>CookStyle</th>
+                <td>{{ host_table.cookStyle ? host_table.cookStyle|join(', ') : '' }}</td>
+            </tr>
+        </tbody>
+    </table>
+
+    <a href="{{ path('host_tables_index') }}">back to list</a>
+
+    <a href="{{ path('host_tables_edit', {'id': host_table.id}) }}">edit</a>
+
+    {{ include('host_tables/_delete_form.html.twig') }}
+{% endblock %}
