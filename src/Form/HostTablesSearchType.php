@@ -18,31 +18,30 @@ class HostTablesSearchType extends AbstractType
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
         $builder
-            ->add('Where' , TextType::class , array(
-                'label' => 'où ?',
-                'attr' => ['class' => 'form-group col-md-6'],
+            ->add('location' , TextType::class , array(
+                'label' => 'Où ?',
+                'attr' => ['class' => 'form-group col-md-12'],
                 'required' => false,
             ))
-            ->add('When',DateType::class, array(
-                'label' => 'quand ?',
+            ->add('date',DateType::class, array(
+                'label' => 'Quand ?',
                 'widget' => 'choice',
                 'format' => 'dd-MM-yyyy',
                 'required' => false,
 
             ))
-            ->add('Hour', TimeType::class, array(
-                'label' => 'à quelle heure ?',
+            ->add('time', TimeType::class, array(
+                'label' => 'À quelle heure ?',
                 'input' => 'timestamp',
                 'widget' => 'choice',
                 'required' => false,
-
             ))
-            ->add('Seats', IntegerType::class, array(
-                'label' => 'pour combien ?',
+            ->add('seats', IntegerType::class, array(
+                'label' => 'Pour combien ?',
                 'required' => false,
 
             ))
-            ->add('What', ChoiceType::class, array(
+            ->add('style', ChoiceType::class, array(
                 'label' => 'Qu\'est-ce qu\'on mange ?',
                 'choices' => array(
                     'Traditionnel' => 'traditionnel',
@@ -58,17 +57,17 @@ class HostTablesSearchType extends AbstractType
                 'required' => false,
 
             ))
-            ->add('Vegetarien' , CheckboxType::class , array(
+            ->add('vegetarien' , CheckboxType::class , array(
                 'label' => 'Végétarien',
                 'required' => false,
 
             ))
-            ->add('Vegan' , CheckboxType::class , array(
+            ->add('vegan' , CheckboxType::class , array(
                 'label' => 'Vegan',
                 'required' => false,
 
             ))
-            ->add('Sansgluten' , CheckboxType::class , array(
+            ->add('sansgluten' , CheckboxType::class , array(
                 'label' => 'Sans gluten',
                 'required' => false,
 
@@ -85,7 +84,8 @@ class HostTablesSearchType extends AbstractType
 
             ))
             ->add('search' , SubmitType::class, array(
-                'label' => 'recherche'
+                'label' => 'recherche',
+                'attr' => [ 'class' => 'btn'],
             ))
         ;
     }

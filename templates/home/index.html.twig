@@ -1,15 +1,26 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}Home{% endblock %}
+{% block stylesheets %}
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+    <link rel="stylesheet" href="{{ asset('css/home.css') }}">
+    <link rel="stylesheet" href="{{ asset('css/host_tables/index.css') }}">
+
+{% endblock %}
 
 {% block body %}
 
-    <div class="formHome needs-validation col-md-4">
+    <main class="mainHome">
 
-    {{ form_start(searchForm) }}
-    {{ form_widget(searchForm) }}
-    {{ form_end(searchForm) }}
+        <h1>Trouvez une table d'hôte</h1>
 
-    </div>
+        <div class="formHome needs-validation col-md-4">
+
+            {{ form_start(searchForm) }}
+            {{ form_widget(searchForm) }}
+            {{ form_end(searchForm) }}
+
+        </div>
+
+    </main>
 
 {% endblock %}
