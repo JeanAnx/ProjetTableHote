@@ -21,8 +21,17 @@ class HomeController extends AbstractController
 
        $searchForm->handleRequest($request);
 
-        return $this->render('home/index.html.twig', [
-            'searchForm' => $searchForm->createView(),
-        ]);
+        if ($searchForm->isSubmitted() && $searchForm->isValid()) {
+            $data = $searchForm->getData();
+            return $this->redirectToRoute('host_tables_index');
+        } else {
+
+            return $this->render('home/index.html.twig', [
+                'searchForm' => $searchForm->createView(),
+            ]);
+
+
+        }
+
     }
 }
