@@ -1,0 +1,42 @@
+@import url(//netdna.bootstrapcdn.com/font-awesome/3.2.1/css/font-awesome.css);
+* {
+    font-family: 'Lato', sans-serif;
+}
+
+/*NAVBAR*/
+#navbar{
+    width: 100%;
+}
+#navbar ul {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    overflow: hidden;
+    background-color: #33d9b2;
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    font-weight: bold;
+}
+#navbar li a {
+    display: block;
+    color: white;
+    text-align: center;
+    padding: 14px 16px;
+    text-decoration: none;
+}
+/* Change the link color to #111 (black) on hover */
+#navbar li a:hover {
+    background-color: #2dbc9b;
+}
+.recherche{
+    height: 2vw;
+    width: 16vw;
+    font-size: 1vw;
+    border: none;
+    background-color: white;
+    color: black;
+    font-weight: normal;
+    margin: 0.6vw;
+    padding: 1vw;
+}
