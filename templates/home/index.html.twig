@@ -32,23 +32,27 @@
                     {{ form_widget(searchForm.date) }}
                 </div>
 
-                <div class="form-group col-md-5">
+                <div class="form-group col-md-6">
                     {{ form_label(searchForm.time) }}
                     {{ form_widget(searchForm.time) }}
                 </div>
 
             </div>
 
-            <div class="form-group col-md-12">
+            <div class="form-group row col-md-12">
 
-                {{ form_label(searchForm.seats) }}
-                {{ form_widget(searchForm.seats) }}
+                <div class="form-group col-md-5">
 
-            </div>
+                    {{ form_label(searchForm.seats) }}
+                    {{ form_widget(searchForm.seats) }}
 
-            <div class="form-group col-md-12">
-                {{ form_label(searchForm.style) }}
-                {{ form_widget(searchForm.style) }}
+                </div>
+
+                <div class="form-group col-md-12">
+                    {{ form_label(searchForm.cook_style) }}
+                    {{ form_widget(searchForm.cook_style) }}
+                </div>
+
             </div>
 
             <div class="preferences">
@@ -87,4 +91,8 @@
     </main>
 
 {% endblock %}
-{% block footer %}{% endblock %}
+{% block footer %}
+
+    <footer></footer>
+
+{% endblock %}

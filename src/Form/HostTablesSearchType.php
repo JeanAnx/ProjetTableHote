@@ -28,7 +28,6 @@ class HostTablesSearchType extends AbstractType
                 'widget' => 'choice',
                 'format' => 'dd-MM-yyyy',
                 'required' => false,
-
             ))
             ->add('time', TimeType::class, array(
                 'label' => 'À quelle heure ?',
@@ -39,9 +38,8 @@ class HostTablesSearchType extends AbstractType
             ->add('seats', IntegerType::class, array(
                 'label' => 'Pour combien ?',
                 'required' => false,
-
             ))
-            ->add('style', ChoiceType::class, array(
+            ->add('cook_style', ChoiceType::class, array(
                 'label' => 'Qu\'est-ce qu\'on mange ?',
                 'choices' => array(
                     'Traditionnel' => 'traditionnel',
