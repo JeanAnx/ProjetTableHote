@@ -98,6 +98,21 @@ class HostTables
      */
     private $hours;
 
+    /**
+     * @ORM\Column(type="boolean")
+     */
+    private $vege;
+
+    /**
+     * @ORM\Column(type="boolean", nullable=true)
+     */
+    private $vegan;
+
+    /**
+     * @ORM\Column(type="boolean", nullable=true)
+     */
+    private $gluten;
+
     public function __construct()
     {
         $this->bookings = new ArrayCollection();
@@ -335,6 +350,42 @@ class HostTables
                 $hour->setHostTable(null);
             }
         }
+
+        return $this;
+    }
+
+    public function getVege(): ?bool
+    {
+        return $this->vege;
+    }
+
+    public function setVege(bool $vege): self
+    {
+        $this->vege = $vege;
+
+        return $this;
+    }
+
+    public function getVegan(): ?bool
+    {
+        return $this->vegan;
+    }
+
+    public function setVegan(?bool $vegan): self
+    {
+        $this->vegan = $vegan;
+
+        return $this;
+    }
+
+    public function getGluten(): ?bool
+    {
+        return $this->gluten;
+    }
+
+    public function setGluten(?bool $gluten): self
+    {
+        $this->gluten = $gluten;
 
         return $this;
     }
