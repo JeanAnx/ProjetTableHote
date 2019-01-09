@@ -299,3 +299,8 @@ input:checked + label::before {
     background-color: white;
     color: white;
 }
+
+.titreTable{
+    text-decoration: none;
+    color: black;
+}
