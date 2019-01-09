@@ -22,26 +22,26 @@ class HostTablesController extends AbstractController
      */
     public function index(HostTablesRepository $hostTablesRepository, Request $request): Response
     {
-            // Récupération données du formulaire en GET depuis la requête
+// Récupération données du formulaire en GET depuis la requête
 
         $searchData = $request->query->get('data');
 
         dump($searchData);
 
-            // Si une ville a été envoyée via le formulaire, on fait une recherche en base de données
+// Si une ville a été envoyée via le formulaire, on fait une recherche en base de données
 
-        if (!empty($searchData['location'])) {
+        if (!empty($searchData['city'])) {
 
             return $this->render(
                 'host_tables/index.html.twig',
                 [
                     'host_tables' => $hostTablesRepository->findBy( [
-                        'city' => $searchData['location']
+                        'city' => $searchData['city']
                     ])
                 ]);
         }
 
-            // Aucun champ n'a été renseigné, on balance tous les restaurants
+// Si aucun champ n'a été renseigné, on balance tous les restaurants
 
         return $this->render(
             'host_tables/index.html.twig',

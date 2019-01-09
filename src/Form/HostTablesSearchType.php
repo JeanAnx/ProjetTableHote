@@ -18,7 +18,7 @@ class HostTablesSearchType extends AbstractType
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
         $builder
-            ->add('location' , TextType::class , array(
+            ->add('city' , TextType::class , array(
                 'label' => 'Où ?',
                 'attr' => ['class' => 'form-group col-md-12'],
                 'required' => false,
@@ -94,7 +94,7 @@ class HostTablesSearchType extends AbstractType
     public function configureOptions(OptionsResolver $resolver)
     {
         $resolver->setDefaults([
-            'location' => "Où ?",
+            'city' => "Où ?",
 
         ]);
     }

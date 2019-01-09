@@ -27,6 +27,8 @@ class HomeController extends AbstractController
             ]);
 
         } else {
+
+            dump($searchForm->createView());
             return $this->render('home/index.html.twig', [
                 'searchForm' => $searchForm->createView(),
             ]);
