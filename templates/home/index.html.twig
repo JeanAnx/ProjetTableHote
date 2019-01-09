@@ -1,0 +1,30 @@
+{% extends 'base.html.twig' %}
+
+{% block stylesheets %}
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+    <link rel="stylesheet" href="{{ asset('css/home.css') }}">
+    <link rel="stylesheet" href="{{ asset('css/host_tables/index.css') }}">
+
+{% endblock %}
+{% block navbar %}
+{% endblock %}
+{% block body %}
+
+    <main class="mainHome">
+
+        <h1>Trouvez une table d'hôte</h1>
+
+        <div class="formHome needs-validation col-md-4">
+
+            <h3></h3>
+
+            {{ form_start(searchForm) }}
+            {{ form_widget(searchForm) }}
+            {{ form_end(searchForm) }}
+
+        </div>
+
+    </main>
+
+{% endblock %}
+{% block footer %}{% endblock %}

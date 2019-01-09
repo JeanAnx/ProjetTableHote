@@ -1,0 +1,39 @@
+.mainHome {
+    background-color: #33d9b2;
+}
+
+.mainHome h1 {
+    display: block;
+    width: 100%;
+    color: white;
+    margin-top: 1em;
+    text-align: center;
+    font-family: 'Lato', sans-serif;
+    font-weight: bold;
+    text-shadow: 1px 1px 1px cadetblue;
+}
+
+.mainHome .formHome {
+    padding: 1em;
+    margin: 1em auto;
+    background-color: white;
+    border-radius: 0.5em;
+    box-shadow: 2px 2px 4px cadetblue;
+}
+
+.mainHome .form-group {
+    margin: 0.5em auto;
+}
+
+.mainHome button.btn {
+    color: white;
+    display: block;
+    width: 40%;
+    margin: 2em auto 0.5em auto;
+    background-color: #33d9b2;
+}
+
+.mainHome .preferences {
+    text-align: center;
+    margin: 1em;
+}

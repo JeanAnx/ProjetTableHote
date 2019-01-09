@@ -20,12 +20,42 @@ class HostTablesController extends AbstractController
     /**
      * @Route("/", name="host_tables_index", methods={"GET"})
      */
-    public function index(HostTablesRepository $hostTablesRepository): Response
+    public function index(HostTablesRepository $hostTablesRepository, Request $request): Response
     {
-        return $this->render('host_tables/index.html.twig', [
-            'host_tables' => $hostTablesRepository->findAll(),
-        ]);
+        $searchData = $request->query->get('data');
+
+        dump($searchData);
+
+        if (!empty($searchData)) {
+
+            return $this->render(
+                'host_tables/index.html.twig',
+                [
+                    'host_tables' => $hostTablesRepository->findBy('city')
+                ]);
+        }
+
+        return $this->render(
+            'host_tables/index.html.twig',
+            [
+                'host_tables' => $hostTablesRepository->findAll()
+            ]);
     }
+
+
+    /**
+     * @Route("/search", name="host_tables_search", methods={"GET","POST"})
+     */
+
+    public function search(HostTablesRepository $hostTablesRepository , Request $request)
+    {
+        return $this->render(
+            'host_tables/index.html.twig',
+            [
+                'host_tables' => $hostTablesRepository->findAll()
+            ]);
+    }
+
 
     /**
      * @Route("/new", name="host_tables_new", methods={"GET","POST"})

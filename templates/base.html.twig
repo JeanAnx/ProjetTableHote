@@ -2,12 +2,14 @@
 <html>
     <head>
         <meta charset="UTF-8">
+
         <title>{% block title %}La Table du Milieu{% endblock %}</title>
         <link href="https://fonts.googleapis.com/css?family=Lato" rel="stylesheet">
         <link rel="stylesheet" href="{{ asset('/css/navbar.css') }}">
         {% block stylesheets %}{% endblock %}
     </head>
     <body>
+    {% block navbar %}
     <nav id="navbar">
         <ul>
             <li><a href="#home">La Table du Milieu</a></li>
@@ -19,8 +21,10 @@
             </li>
         </ul>
     </nav>
+    {% endblock %}
         {% block body %}{% endblock %}
         {% block javascripts %}{% endblock %}
+    {% block footer %}
         <footer>
             <!-- A compléter si on rajoute un pied de page (Ex: droits d'utilisation) -->
             <h3 style="color: white;margin-top: 1.25em;font-size: 15px">SUIVEZ-NOUS</h3>
@@ -41,5 +45,6 @@
                 'La Table Du Milieu' n'est pas responsable du contenu d'autres sites internet. Les taxes et frais ne sont pas inclus dans les offres.
             </p>
         </footer>
+    {% endblock %}
     </body>
 </html>
