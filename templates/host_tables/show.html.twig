@@ -12,7 +12,7 @@
     <main>
         <!--PHOTO-->
         <div class="big_img" id="big_img">
-            <div class="photo" style="background-image:url({{ asset('/img/asparagus.jpg') }})">
+            <div class="photo" style="background-image:url({{ asset('/img/'~host_table.img | first) }})">
             </div>
 
             <!--MAP-->
