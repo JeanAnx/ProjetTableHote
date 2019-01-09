@@ -33,13 +33,16 @@
                         {{ host_table.city }}
                     </h3>
                     <h4>{{ host_table.address }}</h4>
+
+
                     <!--INFOS-->
-                    <h4>{% for style in host_table.cookStyle %}
+                    <h3>{% for style in host_table.cookStyle %}
                             {{ style }}
-                        {% endfor %}</h4>
+                        {% endfor %}
+                    </h3>
 
 
-                    <h4>Capacité : {{ host_table.capacity }} personnes</h4>
+                    <h3>Capacité : {{ host_table.capacity }} personnes</h3>
                     <p>{{ host_table.longDescription }}</p>
 
                     <div class="coord">
