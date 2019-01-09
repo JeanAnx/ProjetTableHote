@@ -19,24 +19,39 @@ class HostTablesController extends AbstractController
      */
     public function index(HostTablesRepository $hostTablesRepository, Request $request): Response
     {
-        $searchData = $request->query->get('data');
 
-        dump($searchData);
+// Création d'un tableau vide de critères de recherche
 
-        if (!empty($searchData)) {
+        $searchParams = [];
+
+// Récupération données du formulaire en GET depuis la requête
+
+        $formData = $request->query->get('data');
+
+        dump($formData);
+
+// Si une ville a été envoyée via le formulaire, on fait une recherche en base de données avec findBy
+
+        if (!empty($formData['city'])) {
+            $searchParams['city'] = $formData['city'];
+        }
+
+        if (!empty($formData['style'])) {
+            $searchParams['cook_style'] = $formData['style'];
+        }
+
+        if (!empty($formData))
+
+        dump($searchParams);
 
             return $this->render(
                 'host_tables/index.html.twig',
                 [
-                    'host_tables' => $hostTablesRepository->findBy('city')
+                    'host_tables' => $hostTablesRepository->findBy($searchParams)
                 ]);
-        }
 
-        return $this->render(
-            'host_tables/index.html.twig',
-            [
-                'host_tables' => $hostTablesRepository->findAll()
-            ]);
+// Si aucun champ n'a été renseigné, on balance tous les restaurants
+
     }
 
 
@@ -83,19 +98,21 @@ class HostTablesController extends AbstractController
      * @return \Symfony\Component\HttpFoundation\Response
      * @Route("/tables/{id}", name="host_tables_show", methods={"GET"})
      */
-    public function show(HostTables $hostTable, HoursRepository $hoursRepository)
+    public function show(HostTables $hostTable, HoursRepository $hoursRepository, HostTablesRepository $hostTablesRepository)
     {
         $hours = $hoursRepository->findBy(
             ['hostTable' => $hostTable]
         );
 
+        $suggest = $hostTablesRepository->findSuggest($hostTable);
+
         return $this->render(
             'host_tables/show.html.twig',
             [
                 'host_table' => $hostTable,
-                'hours' => $hours
+                'hours' => $hours,
+                'suggests' => $suggest
                 ]
-
         );
     }
 
@@ -134,4 +151,6 @@ class HostTablesController extends AbstractController
 
         return $this->redirectToRoute('host_tables_index');
     }
+
+
 }

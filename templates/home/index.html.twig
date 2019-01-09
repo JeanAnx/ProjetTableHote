@@ -14,17 +14,97 @@
 
         <h1>Trouvez une table d'hôte</h1>
 
-        <div class="formHome needs-validation col-md-4">
-
-            <h3></h3>
+        <div class="formHome needs-validation col-md-3">
 
             {{ form_start(searchForm) }}
-            {{ form_widget(searchForm) }}
-            {{ form_end(searchForm) }}
+
+            <div class="form-group col-md-10">
+
+                {{ form_label(searchForm.city) }}
+                {{ form_widget(searchForm.city) }}
+
+            </div>
+
+            <!--
+
+            <div class="form-group row col-md-12">
+
+                <div class="form-group col-md-6">
+                    {{ form_label(searchForm.date) }}
+                    {{ form_widget(searchForm.date) }}
+                </div>
+
+                <div class="form-group col-md-6">
+                    {{ form_label(searchForm.time) }}
+                    {{ form_widget(searchForm.time) }}
+                </div>
+
+            </div>
+
+            -->
+
+            <div class="form-group row col-md-10">
+
+                <!--
+
+                <div class="form-group col-md-5">
+
+                    {{ form_label(searchForm.seats) }}
+                    {{ form_widget(searchForm.seats) }}
+
+                </div>
+
+                -->
+
+                <div class="form-group col-md-12">
+                    {{ form_label(searchForm.cook_style) }}
+                    {{ form_widget(searchForm.cook_style) }}
+                </div>
+
+            </div>
+
+            <div class="preferences">
+
+                <div class="form-check form-check-inline">
+                    {{ form_label(searchForm.vegetarien) }}
+                    {{ form_widget(searchForm.vegetarien) }}
+                </div>
+                <div class="form-check form-check-inline">
+                    {{ form_label(searchForm.vegan) }}
+                    {{ form_widget(searchForm.vegan) }}
+                </div>
+                <div class="form-check form-check-inline">
+                    {{ form_label(searchForm.sansgluten) }}
+                    {{ form_widget(searchForm.sansgluten) }}
+                </div>
+
+            </div>
+
+            <!--
+
+            <div class="form-group col-md-12">
+
+                {{ form_label(searchForm.price) }}
+                {{ form_widget(searchForm.price) }}
+
+            </div>
+
+            -->
+
+            <div class="form-group col-md-6">
+
+                {{ form_end(searchForm) }}
+
+            </div>
 
         </div>
+
 
     </main>
 
 {% endblock %}
-{% block footer %}{% endblock %}
+{% block footer %}
+
+    <footer></footer>
+
+{% endblock %}

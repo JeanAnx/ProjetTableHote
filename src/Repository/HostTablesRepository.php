@@ -19,6 +19,17 @@ class HostTablesRepository extends ServiceEntityRepository
         parent::__construct($registry, HostTables::class);
     }
 
+    public function findSuggest(HostTables $actualTable)
+    {
+        return $this->createQueryBuilder('hostTable')
+            ->andWhere('hostTable.id != :actualTable')
+            ->setParameter('actualTable', $actualTable->getId())
+            ->setMaxResults(4)
+            ->getQuery()
+            ->getResult()
+            ;
+    }
+
     // /**
     //  * @return HostTables[] Returns an array of HostTables objects
     //  */
