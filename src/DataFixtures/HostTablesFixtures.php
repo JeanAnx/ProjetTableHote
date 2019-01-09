@@ -14,8 +14,8 @@ class HostTablesFixtures extends Fixture
         $table1 = new HostTables();
         $table1
             ->setName("La Marée des Crustacés")
-            ->setMinPrice(20)
-            ->setMaxPrice(35)
+            ->setMinPrice(25)
+            ->setMaxPrice(50)
             ->setCapacity(60)
             ->setAddress("2, place de la Mairie")
             ->setCity("La Baule")
@@ -33,12 +33,12 @@ class HostTablesFixtures extends Fixture
         $table2 = new HostTables();
         $table2
             ->setName("La Toupie du Salami")
-            ->setMinPrice(10)
-            ->setMaxPrice(25)
+            ->setMinPrice(15)
+            ->setMaxPrice(35)
             ->setCapacity(20)
             ->setAddress("2, place de la Mairie")
             ->setCity("Nantes")
-            ->setNote(2.0)
+            ->setNote(3)
             ->setLongDescription("Spicy jalapeno bacon ipsum dolor amet andouille pastrami adipisicing, corned beef turkey boudin ground round proident duis rump elit. Andouille cupidatat sunt, ipsum tenderloin aliquip occaecat venison turkey esse aliqua reprehenderit est ham corned beef. Hamburger drumstick eu, nostrud elit mollit shankle pork belly ham pariatur excepteur. Exercitation t-bone ea officia, corned beef ullamco nisi irure pariatur labore esse. Pariatur occaecat deserunt pork loin. Beef ribs deserunt sed bresaola pig short loin doner exercitation ad. Ea meatball minim veniam ribeye, ham hock brisket buffalo jowl quis pork belly capicola.")
             ->setShortDescription("Venez découvrir blabla")
             ->setZipCode("44000")
@@ -52,15 +52,15 @@ class HostTablesFixtures extends Fixture
         $table3 = new HostTables();
         $table3
             ->setName("La Tortilla de Maria")
-            ->setMinPrice(7)
-            ->setMaxPrice(18.50)
+            ->setMinPrice(15)
+            ->setMaxPrice(30)
             ->setCapacity(80)
-            ->setAddress("2, place de la Mairie")
-            ->setCity("La Baule")
-            ->setNote(4)
+            ->setAddress("3, rue Jeanne d'Arc")
+            ->setCity("Orléans")
+            ->setNote(3.5)
             ->setLongDescription("Spicy jalapeno bacon ipsum dolor amet andouille pastrami adipisicing, corned beef turkey boudin ground round proident duis rump elit. Andouille cupidatat sunt, ipsum tenderloin aliquip occaecat venison turkey esse aliqua reprehenderit est ham corned beef. Hamburger drumstick eu, nostrud elit mollit shankle pork belly ham pariatur excepteur. Exercitation t-bone ea officia, corned beef ullamco nisi irure pariatur labore esse. Pariatur occaecat deserunt pork loin. Beef ribs deserunt sed bresaola pig short loin doner exercitation ad. Ea meatball minim veniam ribeye, ham hock brisket buffalo jowl quis pork belly capicola.")
             ->setShortDescription("Venez découvrir blabla")
-            ->setZipCode("44130")
+            ->setZipCode("45000")
             ->setWebsite("www.tortilla-maria.com")
             ->setImg(array("tableDhote3.jpg"))
             ->setTel("0238202020");

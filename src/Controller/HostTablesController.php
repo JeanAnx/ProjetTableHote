@@ -94,19 +94,21 @@ class HostTablesController extends AbstractController
      * @return \Symfony\Component\HttpFoundation\Response
      * @Route("/{id}", name="host_tables_show", methods={"GET"})
      */
-    public function show(HostTables $hostTable, HoursRepository $hoursRepository)
+    public function show(HostTables $hostTable, HoursRepository $hoursRepository, HostTablesRepository $hostTablesRepository)
     {
         $hours = $hoursRepository->findBy(
             ['hostTable' => $hostTable]
         );
 
+        $suggest = $hostTablesRepository->findSuggest($hostTable);
+
         return $this->render(
             'host_tables/show.html.twig',
             [
                 'host_table' => $hostTable,
-                'hours' => $hours
+                'hours' => $hours,
+                'suggests' => $suggest
                 ]
-
         );
     }
 
@@ -145,4 +147,6 @@ class HostTablesController extends AbstractController
 
         return $this->redirectToRoute('host_tables_index');
     }
+
+
 }
