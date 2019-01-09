@@ -12,7 +12,7 @@ class HoursFixtures extends Fixture
     {
         $table1_monday = new Hours();
         $table1_monday
-            ->setDay('monday')
+            ->setDay('Lundi')
             ->setMorningStart(new \DateTime('12:00:00'))
             ->setMorningEnd(new \DateTime('14:00:00'))
             ->setEveningStart(new \DateTime('19:00:00'))
@@ -24,7 +24,7 @@ class HoursFixtures extends Fixture
 
         $table1_tuesday = new Hours();
         $table1_tuesday
-            ->setDay('tuesday')
+            ->setDay('Mardi')
             ->setMorningStart(new \DateTime('12:00:00'))
             ->setMorningEnd(new \DateTime('14:00:00'))
             ->setEveningStart(new \DateTime('19:00:00'))
@@ -36,7 +36,7 @@ class HoursFixtures extends Fixture
 
         $table1_wednesday = new Hours();
         $table1_wednesday
-            ->setDay('wednesday')
+            ->setDay('Mercredi')
             ->setMorningStart(new \DateTime('12:00:00'))
             ->setMorningEnd(new \DateTime('14:00:00'))
             ->setEveningStart(new \DateTime('19:00:00'))
@@ -48,7 +48,7 @@ class HoursFixtures extends Fixture
 
         $table1_thursday = new Hours();
         $table1_thursday
-            ->setDay('thursday')
+            ->setDay('Jeudi')
             ->setMorningStart(new \DateTime('12:00:00'))
             ->setMorningEnd(new \DateTime('14:00:00'))
             ->setEveningStart(new \DateTime('19:00:00'))
@@ -60,7 +60,7 @@ class HoursFixtures extends Fixture
 
         $table1_friday = new Hours();
         $table1_friday
-            ->setDay('friday')
+            ->setDay('Vendredi')
             ->setMorningStart(new \DateTime('12:00:00'))
             ->setMorningEnd(new \DateTime('14:00:00'))
             ->setEveningStart(new \DateTime('19:00:00'))
@@ -72,7 +72,7 @@ class HoursFixtures extends Fixture
 
         $table1_saturday = new Hours();
         $table1_saturday
-            ->setDay('saturday')
+            ->setDay('Samedi')
             ->setMorningStart(new \DateTime('12:00:00'))
             ->setMorningEnd(new \DateTime('15:00:00'))
             ->setEveningStart(new \DateTime('19:00:00'))
@@ -84,7 +84,7 @@ class HoursFixtures extends Fixture
 
         $table1_sunday = new Hours();
         $table1_sunday
-            ->setDay('sunday')
+            ->setDay('Dimanche')
             ->setMorningStart(new \DateTime('12:00:00'))
             ->setMorningEnd(new \DateTime('15:00:00'))
             ->setEveningStart(new \DateTime('19:00:00'))
