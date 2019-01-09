@@ -14,8 +14,8 @@ class HostTablesFixtures extends Fixture
         $table1 = new HostTables();
         $table1
             ->setName("La Marée des Crustacés")
-            ->setMinPrice(20)
-            ->setMaxPrice(35)
+            ->setMinPrice(25)
+            ->setMaxPrice(50)
             ->setCapacity(60)
             ->setAddress("2, place de la Mairie")
             ->setCity("La Baule")
@@ -33,8 +33,8 @@ class HostTablesFixtures extends Fixture
         $table2 = new HostTables();
         $table2
             ->setName("La Toupie du Salami")
-            ->setMinPrice(10)
-            ->setMaxPrice(25)
+            ->setMinPrice(15)
+            ->setMaxPrice(35)
             ->setCapacity(20)
             ->setAddress("2, place de la Mairie")
             ->setCity("Nantes")
@@ -52,8 +52,8 @@ class HostTablesFixtures extends Fixture
         $table3 = new HostTables();
         $table3
             ->setName("La Tortilla de Maria")
-            ->setMinPrice(7)
-            ->setMaxPrice(18.50)
+            ->setMinPrice(15)
+            ->setMaxPrice(30)
             ->setCapacity(80)
             ->setAddress("3, rue Jeanne d'Arc")
             ->setCity("Orléans")
