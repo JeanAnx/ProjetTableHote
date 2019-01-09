@@ -30,7 +30,8 @@ class BookingsFormType extends AbstractType
             ->add('nb_convives', ChoiceType::class, array(
                 'label' => 'Nombres de convives',
                 'required' => true,
-                'attr' => [ 'id' => 'nb_convives'],
+                'attr' => [ 'id' => 'nb_convives',
+                            'onchange' => 'calculTotal()'],
                 'choices' => array(
                     '1 convive' => '1',
                     '2 convives' => '2',

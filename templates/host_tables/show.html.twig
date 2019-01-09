@@ -123,7 +123,7 @@
                     <!--ASIDE-->
                     <aside>
                         <div id="prix_pers">
-                            <p id="prix">{{ host_table.minPrice }} €</p>
+                            <p id="prix"><span id="javaPrice">{{ host_table.minPrice }}</span> €</p>
                             <p id="personne"> / convives</p>
                         </div>
 
@@ -131,7 +131,7 @@
                         <div id="date_heure">
                             <div class="date">
                                 {{ form_label(bookingForm.date) }}
-                               {{ form_widget(bookingForm.date) }}
+                                {{ form_widget(bookingForm.date) }}
                             </div>
                             <div class="heure">
                                 {{ form_label(bookingForm.heure) }}
@@ -142,7 +142,7 @@
                             {{ form_label(bookingForm.nb_convives) }}
                             {{ form_widget(bookingForm.nb_convives) }}
                         </div>
-                        <p id="total">Total : KILIAN VA TROUVER €</p>
+                        <p id="total">Total : <span id="javaTotal">{{ host_table.minPrice }}</span> €</p>
 
                         {{ form_widget(bookingForm.reserver) }}
 
@@ -205,7 +205,13 @@
         </div>
     </main>
 
-    <footer>Aide | à propos | contact | réseaux sociaux | etc</footer>
-
-
+{% endblock %}
+{% block javascripts %}
+    <script>
+        function calculTotal() {
+            price = document.getElementById("javaPrice").innerHTML;
+            nbConvives = document.getElementById("bookings_form_nb_convives").value;
+            document.getElementById("javaTotal").innerHTML = price * nbConvives;
+        }
+    </script>
 {% endblock %}
