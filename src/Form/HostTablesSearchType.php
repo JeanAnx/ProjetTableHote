@@ -87,6 +87,7 @@ class HostTablesSearchType extends AbstractType
                 'label' => 'recherche',
                 'attr' => [ 'class' => 'btn'],
             ))
+
         ;
     }
 
