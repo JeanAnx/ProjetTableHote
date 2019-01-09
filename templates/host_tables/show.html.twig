@@ -165,26 +165,15 @@
             <div id="suggest">
                 <p>Vous pourrez aussi aimer :</p>
                 <li id="suggest_pics">
+                    {% for suggest in suggests %}
                     <ul>
-                        <div class="sugg_img" style="background-image:url({{ asset('/img/table1.jpg') }})">
-                            <div class="text_hover">La Table de Devant</div>
+                        <div class="sugg_img" style="background-image:url({{ asset('/img/'~suggest.img | first) }})">
+                            <div class="text_hover">
+                                {{ suggest.name }}
+                            </div>
                         </div>
                     </ul>
-                    <ul>
-                        <div class="sugg_img" style="background-image:url({{ asset('/img/table2.jpg') }})">
-                            <div class="text_hover">La Table de Gauche</div>
-                        </div>
-                    </ul>
-                    <ul>
-                        <div class="sugg_img" style="background-image:url({{ asset('/img/table3.jpg') }})">
-                            <div class="text_hover">La Table de Droite</div>
-                        </div>
-                    </ul>
-                    <ul>
-                        <div class="sugg_img" style="background-image:url({{ asset('/img/table4.jpg') }})">
-                            <div class="text_hover">La Table de Derrière</div>
-                        </div>
-                    </ul>
+                    {% endfor %}
                 </li>
             </div>
         </div>
