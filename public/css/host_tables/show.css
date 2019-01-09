@@ -244,12 +244,12 @@ aside form input{
 .heure{
     display: flex;
     flex-direction: column;
-    margin-left: 2vw;
+    margin-left: 4vw;
 }
 #date_heure{
     display: flex;
 }
-#nb_convives{
+#bookings_form_nb_convives{
     border: none;
     padding: 0.3vw;
     background-color: white;
@@ -265,7 +265,7 @@ aside form input{
     border-top: 1px white solid;
     margin-top: 1vw;
 }
-#reserver{
+#bookings_form_reserver{
     border: none;
     background-color: white;
     color: #33d9b2;

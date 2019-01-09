@@ -4,7 +4,6 @@
 {% block stylesheets %}
     <link rel="stylesheet" href="{{ asset('/css/host_tables/show.css') }}">
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap-theme.min.css">
 {% endblock %}
 
 {% block body %}
@@ -33,10 +32,12 @@
                         <span class="glyphicon glyphicon-map-marker"></span>
                         {{ host_table.city }}
                     </h3>
+                    <h4>{{ host_table.address }}</h4>
                     <!--INFOS-->
                     <h4>{% for style in host_table.cookStyle %}
                             {{ style }}
                         {% endfor %}</h4>
+
 
                     <h4>Capacité : {{ host_table.capacity }} personnes</h4>
                     <p>{{ host_table.longDescription }}</p>
@@ -125,31 +126,54 @@
                             <p id="prix">{{ host_table.minPrice }} €</p>
                             <p id="personne"> / convives</p>
                         </div>
-                        <form>
-                            <div id="date_heure">
-                                <div class="date">
-                                    <label for="date">Date</label>
-                                    <input id="date" type="date" name="date">
-                                </div>
-                                <div class="heure">
-                                    <label for="heure">Heure</label>
-                                    <input id="heure" type="time" name="heure">
-                                </div>
+
+                        {{ form_start(bookingForm) }}
+                        <div id="date_heure">
+                            <div class="date">
+                                {{ form_label(bookingForm.date) }}
+                               {{ form_widget(bookingForm.date) }}
                             </div>
-                            <div class="nb_conv">
-                                <label for="nb_convives">Nombres de convives</label>
-                                <select id="nb_convives" name="convives">
-                                    <option value="1">1 convive</option>
-                                    <option value="2">2 convives</option>
-                                    <option value="3">3 convives</option>
-                                    <option value="4">4 convives</option>
-                                    <option value="5">5 convives</option>
-                                    <option value="6">6 convives</option>
-                                </select>
+                            <div class="heure">
+                                {{ form_label(bookingForm.heure) }}
+                                {{ form_widget(bookingForm.heure) }}
                             </div>
-                            <p id="total">Total : 100 €</p>
-                            <button type="submit" id="reserver">Réserver</button>
-                        </form>
+                        </div>
+                        <div class="nb_conv">
+                            {{ form_label(bookingForm.nb_convives) }}
+                            {{ form_widget(bookingForm.nb_convives) }}
+                        </div>
+                        <p id="total">Total : KILIAN VA TROUVER €</p>
+
+                        {{ form_widget(bookingForm.reserver) }}
+
+                        {{ form_end(bookingForm) }}
+
+
+                        {#<form>#}
+                            {#<div id="date_heure">#}
+                                {#<div class="date">#}
+                                    {#<label for="date">Date</label>#}
+                                    {#<input id="date" type="date" name="date">#}
+                                {#</div>#}
+                                {#<div class="heure">#}
+                                    {#<label for="heure">Heure</label>#}
+                                    {#<input id="heure" type="time" name="heure">#}
+                                {#</div>#}
+                            {#</div>#}
+                            {#<div class="nb_conv">#}
+                                {#<label for="nb_convives">Nombres de convives</label>#}
+                                {#<select id="nb_convives" name="convives">#}
+                                    {#<option value="1">1 convive</option>#}
+                                    {#<option value="2">2 convives</option>#}
+                                    {#<option value="3">3 convives</option>#}
+                                    {#<option value="4">4 convives</option>#}
+                                    {#<option value="5">5 convives</option>#}
+                                    {#<option value="6">6 convives</option>#}
+                                {#</select>#}
+                            {#</div>#}
+                            {#<p id="total">Total : {{ host_table.minPrice* }} €</p>#}
+                            {#<button type="submit" id="reserver">Réserver</button>#}
+                        {#</form>#}
                     </aside>
 
 
@@ -167,11 +191,13 @@
                 <li id="suggest_pics">
                     {% for suggest in suggests %}
                     <ul>
-                        <div class="sugg_img" style="background-image:url({{ asset('/img/'~suggest.img | first) }})">
-                            <div class="text_hover">
-                                {{ suggest.name }}
+                        <a href="{{ suggest.id }}">
+                            <div class="sugg_img" style="background-image:url({{ asset('/img/'~suggest.img | first) }})">
+                                <div class="text_hover">
+                                    {{ suggest.name }}
+                                </div>
                             </div>
-                        </div>
+                        </a>
                     </ul>
                     {% endfor %}
                 </li>
