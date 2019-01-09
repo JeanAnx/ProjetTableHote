@@ -4,6 +4,8 @@ namespace App\Controller;
 
 use App\Entity\HostTables;
 use App\Entity\Hours;
+use App\Form\BookingsFormType;
+use App\Form\HostTablesSearchType;
 use App\Form\HostTablesType;
 use App\Repository\HostTablesRepository;
 use App\Repository\HoursRepository;
@@ -116,14 +118,43 @@ class HostTablesController extends AbstractController
     /**
      * @param HostTables $hostTable
      * @param HoursRepository $hoursRepository
+     * @param HostTablesRepository $hostTablesRepository
+     * @param Request $request
      * @return \Symfony\Component\HttpFoundation\Response
      * @Route("/{id}", name="host_tables_show", methods={"GET"})
      */
-    public function show(HostTables $hostTable, HoursRepository $hoursRepository, HostTablesRepository $hostTablesRepository)
+    public function show(HostTables $hostTable, HoursRepository $hoursRepository, HostTablesRepository $hostTablesRepository, Request $request)
     {
         $hours = $hoursRepository->findBy(
             ['hostTable' => $hostTable]
         );
+
+
+        $bookingForm = $this->createForm(BookingsFormType::class);
+        $bookingForm->handleRequest($request);
+
+        $nbConvives = 1;
+
+        if ($bookingForm->isSubmitted() && $bookingForm->isValid()) {
+            $nbConvives = $bookingForm->getData();
+
+            return $this->redirectToRoute('host_tables_show' , [
+                'nb_convives' => $nbConvives,
+            ]);
+
+        } else {
+
+            dump($bookingForm->createView());
+
+        }
+
+        $total = $hostTable->getMinPrice()*$nbConvives;
+
+        // Récupération données du formulaire en GET depuis la requête
+
+        $formData = $request->query->get('nb_convives');
+        dump($formData);
+
 
         $suggest = $hostTablesRepository->findSuggest($hostTable);
 
@@ -132,7 +163,9 @@ class HostTablesController extends AbstractController
             [
                 'host_table' => $hostTable,
                 'hours' => $hours,
-                'suggests' => $suggest
+                'suggests' => $suggest,
+                'bookingForm' => $bookingForm->createView(),
+                'total' => $total
                 ]
         );
     }
