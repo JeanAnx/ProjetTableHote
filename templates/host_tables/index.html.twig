@@ -109,7 +109,7 @@
             <!-- Liste des articles dans la partie gauche (ou centrale si la carte est désactivé -->
             {% for host_table in host_tables %}
 
-                {% if cookStyle in host_table.cookstyle %}
+            {% if cookStyle is empty or cookStyle in host_table.cookstyle %}
 
             <article>
                 <div class="articleGauche">
@@ -121,7 +121,8 @@
                 {% else %}
                     Pas d'image
                 {% endif %}
-            </article>
+                </article>
+
             {% endif %}
             {% else %}
                 <p>Pas de table</p>
@@ -145,4 +146,3 @@
 
     <a href="{{ path('host_tables_new') }}">Create new</a>
 {% endblock %}
-
