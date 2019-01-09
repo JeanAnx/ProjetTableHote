@@ -3,8 +3,10 @@
 namespace App\Controller;
 
 use App\Entity\HostTables;
+use App\Entity\Hours;
 use App\Form\HostTablesType;
 use App\Repository\HostTablesRepository;
+use App\Repository\HoursRepository;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
@@ -80,14 +82,23 @@ class HostTablesController extends AbstractController
 
     /**
      * @param HostTables $hostTable
+     * @param HoursRepository $hoursRepository
      * @return \Symfony\Component\HttpFoundation\Response
      * @Route("/{id}", name="host_tables_show", methods={"GET"})
      */
-    public function show(HostTables $hostTable)
+    public function show(HostTables $hostTable, HoursRepository $hoursRepository)
     {
+        $hours = $hoursRepository->findBy(
+            ['hostTable' => $hostTable]
+        );
+
         return $this->render(
             'host_tables/show.html.twig',
-            ['host_table' => $hostTable]
+            [
+                'host_table' => $hostTable,
+                'hours' => $hours
+                ]
+
         );
     }
 

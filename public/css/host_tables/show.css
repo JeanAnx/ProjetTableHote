@@ -3,52 +3,12 @@
     font-family: 'Lato', sans-serif;
 }
 
-/*NAVBAR*/
-#navbar{
-    width: 100%;
-}
-#navbar ul {
-    list-style: none;
-    margin: 0;
-    padding: 0;
-    overflow: hidden;
-    background-color: #33d9b2;
-    display: flex;
-    justify-content: space-around;
-    align-items: center;
-    font-weight: bold;
-}
-#navbar li a {
-    display: block;
-    color: white;
-    text-align: center;
-    padding: 14px 16px;
-    text-decoration: none;
-}
-/* Change the link color to #111 (black) on hover */
-#navbar li a:hover {
-    background-color: #2dbc9b;
-}
-.recherche{
-    height: 2vw;
-    width: 16vw;
-    font-size: 1vw;
-    border: none;
-    background-color: white;
-    color: black;
-    font-weight: normal;
-    margin: 0.6vw;
-    padding: 1vw;
-}
-
-
 /*PHOTO + MAP*/
 .big_img{
     display: flex;
     width: 100%;
 }
 .photo{
-    background-image: url("../img/asparagus.jpg");
     background-size: cover;
     width: 100%;
     height: 40vh;
@@ -212,9 +172,7 @@ h1 { font-size: 1.5em; margin: 10px; }
     background-size: cover;
     height: 13vw;
 }
-/*.sugg_img:hover{*/
-/*opacity: .5;*/
-/*}*/
+
 .text_hover{
     background-color: rgba(0, 0, 0, 0);
     opacity: 0;
@@ -231,18 +189,7 @@ h1 { font-size: 1.5em; margin: 10px; }
     color: white;
     background-color: rgba(0, 0, 0, 0.5);
 }
-#table1{
-    background-image: url("../img/table1.jpg");
-}
-#table2{
-    background-image: url("../img/table2.jpg");
-}
-#table3{
-    background-image: url("../img/table3.jpg");
-}
-#table4{
-    background-image: url("../img/table4.jpg");
-}
+
 /*ASIDE MAP*/
 #aside_map{
     display: flex;

@@ -2,7 +2,7 @@
 
 {% block title %}{% endblock %}
 {% block stylesheets %}
-    <link rel="stylesheet" href="{{ asset('/css/Details.css') }}">
+    <link rel="stylesheet" href="{{ asset('/css/host_tables/show.css') }}">
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap-theme.min.css">
 {% endblock %}
@@ -12,7 +12,8 @@
     <main>
         <!--PHOTO-->
         <div class="big_img" id="big_img">
-            <div class="photo"></div>
+            <div class="photo" style="background-image:url({{ asset('/img/asparagus.jpg') }})">
+            </div>
 
             <!--MAP-->
 
@@ -34,8 +35,8 @@
                     </h3>
                     <!--INFOS-->
                     <h4>{% for style in host_table.cookStyle %}
-                    {{ style }}
-                    {% endfor %}</h4>
+                            {{ style }}
+                        {% endfor %}</h4>
 
                     <h4>Capacité : {{ host_table.capacity }} personnes</h4>
                     <p>{{ host_table.longDescription }}</p>
@@ -56,34 +57,14 @@
                             </tr>
                         </table>
                         <table id="horaires">
+                            {% for day in hours %}
+
                             <tr>
-                                <td>Lundi</td>
-                                <td>12:00 - 14:00 | 19:00 - 23:00</td>
+                                <td>{{ day.day }}</td>
+                                <td>{{ day.morningStart | date('H:i') }} - {{ day.morningEnd | date('H:i') }} | {{ day.eveningStart | date('H:i') }} - {{ day.eveningEnd | date('H:i') }}</td>
                             </tr>
-                            <tr>
-                                <td>Mardi</td>
-                                <td>12:00 - 14:00 | 19:00 - 23:00</td>
-                            </tr>
-                            <tr>
-                                <td>Mercredi</td>
-                                <td>12:00 - 14:00 | 19:00 - 23:00</td>
-                            </tr>
-                            <tr>
-                                <td>Jeudi</td>
-                                <td>12:00 - 14:00 | 19:00 - 23:00</td>
-                            </tr>
-                            <tr>
-                                <td>Vendredi</td>
-                                <td>12:00 - 14:00 | 19:00 - 23:00</td>
-                            </tr>
-                            <tr>
-                                <td>Samedi</td>
-                                <td>12:00 - 14:00 | 19:00 - 23:00</td>
-                            </tr>
-                            <tr>
-                                <td>Dimanche</td>
-                                <td>12:00 - 14:00 | 19:00 - 23:00</td>
-                            </tr>
+
+                            {% endfor %}
                         </table>
                     </div>
 
@@ -187,22 +168,22 @@
                 <p>Vous pourrez aussi aimer :</p>
                 <li id="suggest_pics">
                     <ul>
-                        <div class="sugg_img" id="table1">
+                        <div class="sugg_img" style="background-image:url({{ asset('/img/table1.jpg') }})">
                             <div class="text_hover">La Table de Devant</div>
                         </div>
                     </ul>
                     <ul>
-                        <div class="sugg_img" id="table2">
+                        <div class="sugg_img" style="background-image:url({{ asset('/img/table2.jpg') }})">
                             <div class="text_hover">La Table de Gauche</div>
                         </div>
                     </ul>
                     <ul>
-                        <div class="sugg_img" id="table3">
+                        <div class="sugg_img" style="background-image:url({{ asset('/img/table3.jpg') }})">
                             <div class="text_hover">La Table de Droite</div>
                         </div>
                     </ul>
                     <ul>
-                        <div class="sugg_img" id="table4">
+                        <div class="sugg_img" style="background-image:url({{ asset('/img/table4.jpg') }})">
                             <div class="text_hover">La Table de Derrière</div>
                         </div>
                     </ul>

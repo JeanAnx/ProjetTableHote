@@ -13,7 +13,7 @@ class HostTablesFixtures extends Fixture
 
         $table1 = new HostTables();
         $table1
-            ->setName("La Marée des Envies")
+            ->setName("La Marée des Crustacés")
             ->setMinPrice(20)
             ->setMaxPrice(35)
             ->setCapacity(60)
@@ -23,7 +23,7 @@ class HostTablesFixtures extends Fixture
             ->setLongDescription("Spicy jalapeno bacon ipsum dolor amet andouille pastrami adipisicing, corned beef turkey boudin ground round proident duis rump elit. Andouille cupidatat sunt, ipsum tenderloin aliquip occaecat venison turkey esse aliqua reprehenderit est ham corned beef. Hamburger drumstick eu, nostrud elit mollit shankle pork belly ham pariatur excepteur. Exercitation t-bone ea officia, corned beef ullamco nisi irure pariatur labore esse. Pariatur occaecat deserunt pork loin. Beef ribs deserunt sed bresaola pig short loin doner exercitation ad. Ea meatball minim veniam ribeye, ham hock brisket buffalo jowl quis pork belly capicola.")
             ->setShortDescription("Magnifique table d'hôte de bord de mer")
             ->setZipCode("44130")
-            ->setWebsite("www.maree-envies.com")
+            ->setWebsite("www.maree-crustacés.com")
             ->setImg(array("tableDhote1.jpg"))
             ->setTel("0238202020");
 
