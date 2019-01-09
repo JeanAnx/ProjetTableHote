@@ -35,27 +35,45 @@ class HostTablesController extends AbstractController
 
         dump($formData);
 
-// Si une ville a été envoyée via le formulaire, on fait une recherche en base de données avec findBy
+// Si une ville a été envoyée via le formulaire, on fait une recherche en base de données avec findBy en lui passant un tableau de paramètres de recherche
 
         if (!empty($formData['city'])) {
             $searchParams['city'] = $formData['city'];
         }
 
-        if (!empty($formData['style'])) {
-            $searchParams['cook_style'] = $formData['style'];
+// À chaque fois qu'un champ est renseigné, on alimente le tableau des paramètres
+
+// J'isole le "CookStyle" pour pouvoir l'envoyer eu template et faire un tri dans le twig directement
+
+        $cookStyle = null;
+
+        if (!empty($formData['cook_style'])) {
+            $cookStyle = $formData['cook_style'];
         }
 
-        if (!empty($formData))
+        if (!empty($formData['vege']) && $formData['vege'] == true) {
+            $searchParams['vege'] = true;
+        }
+
+        if (!empty($formData['vegan']) && $formData['vegan'] == true) {
+            $searchParams['vegan'] = true;
+        }
+
+        if (!empty($formData['sansgluten']) && $formData['sansgluten'] == true) {
+            $searchParams['gluten'] = true;
+        }
 
         dump($searchParams);
 
-            return $this->render(
+// Si aucun champ n'a été renseigné, les params sont vides, et on balance tous les restaurants
+
+        return $this->render(
                 'host_tables/index.html.twig',
                 [
-                    'host_tables' => $hostTablesRepository->findBy($searchParams)
+                    'host_tables' => $hostTablesRepository->findBy($searchParams),
+                    'cookStyle' => $cookStyle
                 ]);
 
-// Si aucun champ n'a été renseigné, on balance tous les restaurants
 
     }
 
