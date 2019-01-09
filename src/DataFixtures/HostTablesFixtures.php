@@ -29,7 +29,7 @@ class HostTablesFixtures extends Fixture
             ->setVege(true)
             ->setVegan(true)
             ->setGluten(true)
-            ->setCookStyle(['traditionnel']);
+            ->setCookStyle(['Traditionnel']);
 
 
         $manager->persist($table1);
@@ -53,7 +53,7 @@ class HostTablesFixtures extends Fixture
             ->setVege(false)
             ->setVegan(false)
             ->setGluten(true)
-            ->setCookStyle(['bistrot']);
+            ->setCookStyle(['Bistrot']);
 
         $manager->persist($table2);
         $this->addReference('table2', $table2);
@@ -76,7 +76,7 @@ class HostTablesFixtures extends Fixture
             ->setVege(false)
             ->setVegan(true)
             ->setGluten(false)
-            ->setCookStyle(['mexicain']);
+            ->setCookStyle(['Mexicain']);
 
         $manager->persist($table3);
         $this->addReference('table3', $table3);
@@ -100,7 +100,7 @@ class HostTablesFixtures extends Fixture
             ->setVege(true)
             ->setVegan(false)
             ->setGluten(true)
-            ->setCookStyle(['gastronomique']);
+            ->setCookStyle(['Gastronomique']);
 
 
         $manager->persist($table4);
@@ -125,7 +125,7 @@ class HostTablesFixtures extends Fixture
             ->setVege(true)
             ->setVegan(true)
             ->setGluten(true)
-            ->setCookStyle(['bistrot']);
+            ->setCookStyle(['Bistrot']);
 
 
         $manager->persist($table5);
