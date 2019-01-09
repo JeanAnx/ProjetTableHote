@@ -12,13 +12,10 @@ use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
 
-/**
- * @Route("/tables")
- */
 class HostTablesController extends AbstractController
 {
     /**
-     * @Route("/", name="host_tables_index", methods={"GET"})
+     * @Route("/tables", name="host_tables_index", methods={"GET"})
      */
     public function index(HostTablesRepository $hostTablesRepository, Request $request): Response
     {
@@ -44,7 +41,7 @@ class HostTablesController extends AbstractController
 
 
     /**
-     * @Route("/search", name="host_tables_search", methods={"GET","POST"})
+     * @Route("/tables/search", name="host_tables_search", methods={"GET","POST"})
      */
 
     public function search(HostTablesRepository $hostTablesRepository , Request $request)
@@ -58,7 +55,7 @@ class HostTablesController extends AbstractController
 
 
     /**
-     * @Route("/new", name="host_tables_new", methods={"GET","POST"})
+     * @Route("admin/tables/new", name="host_tables_new", methods={"GET","POST"})
      */
     public function new(Request $request): Response
     {
@@ -84,7 +81,7 @@ class HostTablesController extends AbstractController
      * @param HostTables $hostTable
      * @param HoursRepository $hoursRepository
      * @return \Symfony\Component\HttpFoundation\Response
-     * @Route("/{id}", name="host_tables_show", methods={"GET"})
+     * @Route("/tables/{id}", name="host_tables_show", methods={"GET"})
      */
     public function show(HostTables $hostTable, HoursRepository $hoursRepository)
     {
@@ -103,7 +100,7 @@ class HostTablesController extends AbstractController
     }
 
     /**
-     * @Route("/{id}/edit", name="host_tables_edit", methods={"GET","POST"})
+     * @Route("admin/tables/{id}/edit", name="host_tables_edit", methods={"GET","POST"})
      */
     public function edit(Request $request, HostTables $hostTable): Response
     {
@@ -125,7 +122,7 @@ class HostTablesController extends AbstractController
     }
 
     /**
-     * @Route("/{id}", name="host_tables_delete", methods={"DELETE"})
+     * @Route("admin/tables/{id}", name="host_tables_delete", methods={"DELETE"})
      */
     public function delete(Request $request, HostTables $hostTable): Response
     {
