@@ -43,6 +43,8 @@ class HostTablesController extends AbstractController
             $searchParams['cook_style'] = $formData['style'];
         }
 
+        if (!empty($formData))
+
         dump($searchParams);
 
             return $this->render(
