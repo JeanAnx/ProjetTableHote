@@ -109,6 +109,7 @@
             <!-- Liste des articles dans la partie gauche (ou centrale si la carte est désactivé -->
             {% for host_table in host_tables %}
 
+                {% if cookStyle in host_table.cookstyle %}
 
             <article>
                 <div class="articleGauche">
