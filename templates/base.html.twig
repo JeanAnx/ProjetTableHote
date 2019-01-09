@@ -17,7 +17,8 @@
                 <input type="text" class="recherche" placeholder="Recherchez une table d'hôte">
             </li>
             <li>
-                <a href="{{ path('app_login') }}">CONNEXION</a>
+                    {% if is_granted('ROLE_USER') %}<a href="{{ path('logout') }}">DECONNEXION</a>
+                    {% else %}<a href="{{ path('app_login') }}">CONNEXION</a>{% endif %}
             </li>
         </ul>
     </nav>
