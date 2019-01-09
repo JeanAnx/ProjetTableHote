@@ -25,7 +25,12 @@ class HostTablesFixtures extends Fixture
             ->setZipCode("44130")
             ->setWebsite("www.maree-crustacés.com")
             ->setImg(array("table1.jpg"))
-            ->setTel("0238202020");
+            ->setTel("0238202020")
+            ->setVege(true)
+            ->setVegan(true)
+            ->setGluten(true)
+            ->setCookStyle(['traditionnel']);
+
 
         $manager->persist($table1);
         $this->addReference('table1', $table1);
@@ -44,7 +49,11 @@ class HostTablesFixtures extends Fixture
             ->setZipCode("44000")
             ->setWebsite("www.toupie-salami.com")
             ->setImg(array("table2.jpg"))
-            ->setTel("0238202020");
+            ->setTel("0238202020")
+            ->setVege(false)
+            ->setVegan(false)
+            ->setGluten(true)
+            ->setCookStyle(['bistrot']);
 
         $manager->persist($table2);
         $this->addReference('table2', $table2);
@@ -63,7 +72,11 @@ class HostTablesFixtures extends Fixture
             ->setZipCode("45000")
             ->setWebsite("www.tortilla-maria.com")
             ->setImg(array("table3.jpg"))
-            ->setTel("0238202020");
+            ->setTel("0238202020")
+            ->setVege(false)
+            ->setVegan(true)
+            ->setGluten(false)
+            ->setCookStyle(['mexicain']);
 
         $manager->persist($table3);
         $this->addReference('table3', $table3);
@@ -83,7 +96,12 @@ class HostTablesFixtures extends Fixture
             ->setZipCode("49000")
             ->setWebsite("www.envers-bacon.com")
             ->setImg(array("table4.jpg"))
-            ->setTel("0238202020");
+            ->setTel("0238202020")
+            ->setVege(true)
+            ->setVegan(false)
+            ->setGluten(true)
+            ->setCookStyle(['gastronomique']);
+
 
         $manager->persist($table4);
         $this->addReference('table4', $table4);
@@ -103,7 +121,12 @@ class HostTablesFixtures extends Fixture
             ->setZipCode("35000")
             ->setWebsite("www.grainespourtous.com")
             ->setImg(array("table5.jpg"))
-            ->setTel("0238202020");
+            ->setTel("0238202020")
+            ->setVege(true)
+            ->setVegan(true)
+            ->setGluten(true)
+            ->setCookStyle(['bistrot']);
+
 
         $manager->persist($table5);
         $this->addReference('table5', $table5);

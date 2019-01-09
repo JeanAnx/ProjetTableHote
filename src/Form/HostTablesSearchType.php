@@ -55,7 +55,7 @@ class HostTablesSearchType extends AbstractType
                 'required' => false,
 
             ))
-            ->add('vegetarien' , CheckboxType::class , array(
+            ->add('vege' , CheckboxType::class , array(
                 'label' => 'Végétarien',
                 'required' => false,
 

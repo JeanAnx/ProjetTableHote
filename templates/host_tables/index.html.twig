@@ -109,18 +109,22 @@
             <!-- Liste des articles dans la partie gauche (ou centrale si la carte est désactivé -->
             {% for host_table in host_tables %}
 
+                {% if cookStyle in host_table.cookstyle %}
 
-            <article>
-                <div class="articleGauche">
-                    <h2><a href="{{ asset('tables/' ~ host_table.id) }}">{{ host_table.name }}</a><span style="color: #33d9b2;font-size: x-small;">Ouverture dans 2 heures</span></h2>
-                    <p>{{ host_table.shortDescription }}</p>
-                </div>
+                <article>
+                    <div class="articleGauche">
+                        <h2><a href="{{ asset('tables/' ~ host_table.id) }}">{{ host_table.name }}</a><span style="color: #33d9b2;font-size: x-small;">Ouverture dans 2 heures</span></h2>
+                        <p>{{ host_table.shortDescription }}</p>
+                    </div>
+
                 {% if host_table.img|length > 0 %}
                     <div class="articleImg" style="background-image:url({{ asset('/img/' ~ host_table.img | first) }})"></div>
                 {% else %}
                     Pas d'image
                 {% endif %}
-            </article>
+                </article>
+
+                {% endif %}
             {% else %}
                 <p>Pas de table</p>
             {% endfor %}
