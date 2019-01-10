@@ -10,6 +10,7 @@
             <input type="password" name="newPassword" id="newPassword" placeholder="Mot de passe">
             <label for="confPassword">Confirmation du nouveau mot de passe</label>
             <input type="password" name="confPassword" id="confPassword" placeholder="Mot de passe">
+            <button><a href="{{ path("user_delete"), {id: user.id} }}">Suppression du compte</a></button>
         </div>
         <div id="myBookings">
             <table>
@@ -26,7 +27,7 @@
                     <td>{{ book.date }}</td>
                     <td>{{ book.name }}</td>
                     <td>{{ book.seats }}</td>
-                    <td><a href="{{ path("user_delete"), {id: book.id} }}">Supprimer</a></td>
+                    <td><a href="{{ path("bookings_delete"), {id: book.id} }}">Supprimer</a></td>
                 </tr>
                 {% endfor %}
             </table>
@@ -39,7 +40,7 @@
                     <td>Date de la réservation</td>
                     <td>Nom de la table</td>
                     <td>Nombre de personnes</td>
-                    <td>Action</td>
+                    <td colspan="2">Actions</td>
                 </tr>
                 </thead>
                 {% for hostTable in hostTables %}
@@ -47,8 +48,8 @@
                         <td>{{ hostTable.name }}</td>
                         <td>{{ hostTable.min_price }}</td>
                         <td>{{ hostTable.note }}</td>
-                        <td><a href="{{ path("user_delete"), {id: book.id} }}">Modifier</a></td>
-                        <td><a href="{{ path("user_delete"), {id: book.id} }}">Supprimer</a></td>
+                        <td><a href="{{ path("host_tables_edit"), {id: hostTable.id} }}">Modifier</a></td>
+                        <td><a href="{{ path("host_tables_delete"), {id: hostTable.id} }}">Supprimer</a></td>
                     </tr>
                 {% endfor %}
             </table>
