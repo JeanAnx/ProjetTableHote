@@ -42,6 +42,11 @@ class Bookings
      */
     private $hostTable;
 
+    /**
+     * @ORM\ManyToOne(targetEntity="App\Entity\User", inversedBy="bookings")
+     */
+    private $client;
+
 
     public function getId(): ?int
     {
@@ -104,6 +109,18 @@ class Bookings
     public function setHostTable(?HostTables $hostTable): self
     {
         $this->hostTable = $hostTable;
+
+        return $this;
+    }
+
+    public function getClient(): ?User
+    {
+        return $this->client;
+    }
+
+    public function setClient(?User $client): self
+    {
+        $this->client = $client;
 
         return $this;
     }
