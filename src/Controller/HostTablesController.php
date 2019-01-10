@@ -125,7 +125,7 @@ class HostTablesController extends AbstractController
      * @return \Symfony\Component\HttpFoundation\Response
      * @Route("/tables/{id}", name="host_tables_show", methods={"GET","POST"})
      */
-    public function show(HostTables $hostTable, HoursRepository $hoursRepository, HostTablesRepository $hostTablesRepository, Request $request , UserInterface $user , EntityManagerInterface $entityManager)
+    public function show(HostTables $hostTable, HoursRepository $hoursRepository, HostTablesRepository $hostTablesRepository, Request $request, EntityManagerInterface $entityManager)
     {
         $hours = $hoursRepository->findBy(
             ['hostTable' => $hostTable]
@@ -166,7 +166,7 @@ class HostTablesController extends AbstractController
             $entityManager->persist($newBooking);
             $entityManager->flush();
 
-            $this->addFlash('success','Votre commande a bien été enregistrée');
+            $this->addFlash('success',' Votre commande a bien été enregistrée' );
 
             return $this->redirectToRoute('host_tables_show' , [
                 'id' => $hostTable->getId(),
