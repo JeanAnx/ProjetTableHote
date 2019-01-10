@@ -1,3 +1,7 @@
+body{
+    background-color: #33d9b2;
+}
+
 .mainHome {
     background-color: #33d9b2;
 }
@@ -15,9 +19,9 @@
 
 .mainHome .formHome {
     text-align: center;
-    height: 350px;
+    height: 22em;
     padding: 1em;
-    margin: 1em auto;
+    margin: 4em auto;
     background-color: white;
     border-radius: 0.5em;
     box-shadow: 2px 2px 4px cadetblue;

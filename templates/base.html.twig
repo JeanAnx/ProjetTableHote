@@ -5,6 +5,7 @@
 
         <title>{% block title %}La Table du Milieu{% endblock %}</title>
         <link href="https://fonts.googleapis.com/css?family=Lato" rel="stylesheet">
+        <link rel="stylesheet" href="{{ asset('/css/base.css') }}">
         <link rel="stylesheet" href="{{ asset('/css/navbar.css') }}">
         {% block stylesheets %}{% endblock %}
     </head>
@@ -27,25 +28,21 @@
     {% block footer %}
         <footer>
             <!-- A compléter si on rajoute un pied de page (Ex: droits d'utilisation) -->
-            <h3 style="color: white;margin-top: 1.25em;font-size: 15px">SUIVEZ-NOUS</h3>
-            <img src="{{ asset("/img/facebook-logo.svg") }}" alt="Facebook" style="height: 1.5em; width:1.5em;margin: 1em .5em 0 .5em">
-            <img src="{{ asset("/img/linkedin-sign.svg") }}" alt="Linkedin" style="height: 1.5em; width:1.5em;margin: 1em .5em 0 .5em">
-            <img src="{{ asset("/img/twitter-logo.svg") }}" alt="Twitter" style="height: 1.5em; width:1.5em;margin: 1em .5em 0 .5em">
-            <img src="{{ asset("/img/instagram-logo.svg") }}" alt="Instagram" style="height: 1.5em; width:1.5em;margin: 1em .5em 0 .5em">
-            <img src="{{ asset("/img/snapchat.svg") }}" alt="SnapChat" style="height: 1.5em; width:1.5em;margin: 1em .5em 0 .5em">
-            <img src="{{ asset("/img/youtube.svg") }}" alt="Youtube" style="height: 1.5em; width:1.5em;margin: 1em .5em 0 .5em">
+            <p class="follow">SUIVEZ-NOUS</p>
+            <div class="social_img">
+                <img src="{{ asset("/img/facebook-logo.svg") }}" alt="Facebook" style="height: 1.5em; width:1.5em;">
+                <img src="{{ asset("/img/linkedin-sign.svg") }}" alt="Linkedin" style="height: 1.5em; width:1.5em;">
+                <img src="{{ asset("/img/twitter-logo.svg") }}" alt="Twitter" style="height: 1.5em; width:1.5em;">
+                <img src="{{ asset("/img/instagram-logo.svg") }}" alt="Instagram" style="height: 1.5em; width:1.5em;">
+                <img src="{{ asset("/img/snapchat.svg") }}" alt="SnapChat" style="height: 1.5em; width:1.5em;">
+                <img src="{{ asset("/img/youtube.svg") }}" alt="Youtube" style="height: 1.5em; width:1.5em;">
+            </div>
             <p style="font-size: x-small;color: white;margin-left: 2em;margin-right: 2em;">
                 © 2018 'La Table Du Milieu' Tous droits réservés. <a>Conditions d'utilisation</a> | <a>Politique de confidentialité</a> | <a>Politique d'utilisation des cookies</a> | <a>Accord d'utilisation des cookies</a> | <a>Plan du site</a>
-                'La Table Du Milieu' ne facture aucuns frais de service aux utilisateurs de son site. Nos partenaires (tables d'hôtes) qui publient des offres de tables et des formules de repas sur 'La Table Du Milieu' ont l'obligation d'inclure tous les tarifs et suppléments dans leurs prix. Par exemple, les frais de luxure et les taxes, ou tous autres frais de gestion ou suppléments divers. Lorsque vous réservez auprès de nos partenaires, consultez leur site pour connaître tous les frais applicables. Les tarifs sont généralement indiqués par personne et en euros (EUR), sauf indication contraire.
-                <br>
-                'La Table Du Milieu' ne garantit aucun prix ou tarif spécifique pour chaque formule ou offre publiée. En outre, les prix sont mis à jour à chaque nouvelle annonce et affichés dans la devise de votre choix à l'aide des taux de conversion en vigueur. Ces conversions de prix sont des estimations. Il est recommandé de vérifier sur le site officiel le montant exact demandé ainsi que la devise.
-                <br>
-                Enfin, 'La Table Du Milieu' ne garantit par la disponibilité des prix affichés sur son site. Des conditions et restrictions telles que des dates de fermeture peuvent s'appliquer.
-                <br>
-                'La Table Du Milieu' n'est pas responsable du contenu d'autres sites internet. Les taxes et frais ne sont pas inclus dans les offres.
             </p>
         </footer>
     {% endblock %}
     {% block javascripts %}{% endblock %}
     </body>
+
 </html>
