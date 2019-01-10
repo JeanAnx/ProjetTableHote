@@ -16,7 +16,7 @@ header{
     height: 7vh;
 }
 main{
-    display: flex;
+    display: flex !important;
     justify-content: space-around;
     height: 80vh;
 }
