@@ -2,6 +2,7 @@
 
 namespace App\Controller;
 
+use App\Entity\Bookings;
 use App\Entity\HostTables;
 use App\Entity\Hours;
 use App\Form\BookingsFormType;
@@ -10,9 +11,11 @@ use App\Form\HostTablesType;
 use App\Repository\HostTablesRepository;
 use App\Repository\HoursRepository;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
+use Symfony\Component\Form\Extension\Core\Type\DateType;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
+use Symfony\Component\Validator\Constraints\DateTime;
 
 class HostTablesController extends AbstractController
 {
@@ -118,7 +121,7 @@ class HostTablesController extends AbstractController
      * @param HostTablesRepository $hostTablesRepository
      * @param Request $request
      * @return \Symfony\Component\HttpFoundation\Response
-     * @Route("/tables/{id}", name="host_tables_show", methods={"GET"})
+     * @Route("/tables/{id}", name="host_tables_show", methods={"GET","POST"})
      */
     public function show(HostTables $hostTable, HoursRepository $hoursRepository, HostTablesRepository $hostTablesRepository, Request $request)
     {
@@ -133,9 +136,38 @@ class HostTablesController extends AbstractController
         $nbConvives = 1;
 
         if ($bookingForm->isSubmitted() && $bookingForm->isValid()) {
+
             $nbConvives = $bookingForm->getData();
+            dump($nbConvives);
+            // J'envoie les données envoyés par le form dans une variable bookingData ( + lisible ?)
+
+            $bookingData = $bookingForm->getData();
+
+            // Je tente de construite un objet DateTime avec la date et l'heure envoyés (C'est pas gagné)
+
+            /** @var \DateTime $dateBooking */
+            $dateBooking = $bookingData['date'];
+            $dateBooking->setTime( $bookingData['heure']->format('H') , $bookingData['heure']->format('i') );
+            dump($dateBooking);
+
+
+/*
+            $newBooking = new Bookings();
+            $newBooking
+                ->setClient()
+                ->setDate($dateBooking)
+                ->set
+                ->setHostTable($hostTable->getId())
+                ->setName($hostTable->getName())
+                ->setSeats($bookingForm->getData('nb_convives'))
+                ->setHealth('');
+*/
+            dump($nbConvives);
+
+            $this->addFlash('success','Votre commande a bien été enregistrée');
 
             return $this->redirectToRoute('host_tables_show' , [
+                'id' => $hostTable->getId(),
                 'nb_convives' => $nbConvives,
             ]);
 

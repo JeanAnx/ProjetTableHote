@@ -17,6 +17,17 @@
             <!--MAP-->
 
         </div>
+
+        {% for message in app.flashes('success') %}
+
+            <h2 class="success" style="text-align: center; color: #33d9b2 ">
+                <i class="fas fa-check"></i>
+            {{ message }}
+
+            </h2>
+
+        {% endfor %}
+
         <div class="presentation_reco">
             <div class="presentation">
                 <div id="content">

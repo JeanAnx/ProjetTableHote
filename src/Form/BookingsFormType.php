@@ -19,7 +19,7 @@ class BookingsFormType extends AbstractType
                 'label' => 'Date',
                 'required' => true,
                 'attr' => [ 'id' => 'date'],
-                'widget' => 'single_text'
+                'widget' => 'single_text',
             ))
             ->add('heure', TimeType::class, array(
                 'label' => 'Heure',
@@ -28,7 +28,7 @@ class BookingsFormType extends AbstractType
                 'widget' => 'single_text'
             ))
             ->add('nb_convives', ChoiceType::class, array(
-                'label' => 'Nombres de convives',
+                'label' => 'Nombre de convives',
                 'required' => true,
                 'attr' => [ 'id' => 'nb_convives',
                             'onchange' => 'calculTotal()'],
@@ -51,7 +51,7 @@ class BookingsFormType extends AbstractType
     public function configureOptions(OptionsResolver $resolver)
     {
         $resolver->setDefaults([
-            'nb_convives' => '1 convive'
+            'nb_convives' => '1 convive',
         ]);
     }
 }
