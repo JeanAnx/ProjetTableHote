@@ -1,34 +1,67 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}User{% endblock %}
-
+{% block title %}Mon Compte{% endblock %}
+{% block stylesheets %}
+    <link rel="stylesheet" href="{{ asset('/css/user/show.css') }}">
+{% endblock %}
 {% block body %}
-    <h1>User</h1>
-
-    <table class="table">
-        <tbody>
-            <tr>
-                <th>Id</th>
-                <td>{{ user.id }}</td>
-            </tr>
-            <tr>
-                <th>Email</th>
-                <td>{{ user.email }}</td>
-            </tr>
-            <tr>
-                <th>Roles</th>
-                <td>{{ user.roles ? user.roles|json_encode : '' }}</td>
-            </tr>
-            <tr>
-                <th>Password</th>
-                <td>{{ user.password }}</td>
-            </tr>
-        </tbody>
-    </table>
-
-    <a href="{{ path('user_index') }}">back to list</a>
-
-    <a href="{{ path('user_edit', {'id': user.id}) }}">edit</a>
-
-    {{ include('user/_delete_form.html.twig') }}
+    <div id="blocGeneral">
+        <div id="myAccount">
+            <h2>Mon compte</h2>
+            <p>Adresse email : {{ user.email }}</p>
+            <label for="newPassword">Nouveau mot de passe</label>
+            <input type="password" name="newPassword" id="newPassword" placeholder="Mot de passe">
+            <label for="confPassword">Confirmation du nouveau mot de passe</label>
+            <input type="password" name="confPassword" id="confPassword" placeholder="Mot de passe">
+            <button><a href="{{ path("user_delete", {id: user.id}) }}">Suppression du compte</a></button>
+        </div>
+        <div id="myBookings">
+            <h2>Mes réservations</h2>
+            <table>
+                <thead>
+                    <tr>
+                        <td>Date de la réservation</td>
+                        <td>Nom de la table</td>
+                        <td>Nombre de personnes</td>
+                        <td>Action</td>
+                    </tr>
+                </thead>
+                <tbody>
+                    {% for book in bookings %}
+                    <tr>
+                        <td>{{ book.date }}</td>
+                        <td>{{ book.name }}</td>
+                        <td>{{ book.seats }}</td>
+                        <td><a href="{{ path("bookings_delete", {id: book.id}) }}">Supprimer</a></td>
+                    </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
+        </div>
+        <div id="myTables">
+            <h2>Mes tables</h2>
+            <button>Nouvelle table</button>
+            <table>
+                <thead>
+                    <tr>
+                        <td>Date de la réservation</td>
+                        <td>Nom de la table</td>
+                        <td>Nombre de personnes</td>
+                        <td colspan="2">Actions</td>
+                    </tr>
+                </thead>
+                <tbody>
+                    {% for hostTable in hostTables %}
+                        <tr>
+                            <td>{{ hostTable.name }}</td>
+                            <td>{{ hostTable.min_price }}</td>
+                            <td>{{ hostTable.note }}</td>
+                            <td><a href="{{ path("host_tables_edit", {id: hostTable.id}) }}">Modifier</a></td>
+                            <td><a href="{{ path("host_tables_delete", {id: hostTable.id}) }}">Supprimer</a></td>
+                        </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
+        </div>
+    </div>
 {% endblock %}
