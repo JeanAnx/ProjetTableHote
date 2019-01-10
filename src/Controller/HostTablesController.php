@@ -90,7 +90,7 @@ class HostTablesController extends AbstractController
 
 
     /**
-     * @Route("admin/tables/new", name="host_tables_new", methods={"GET","POST"})
+     * @Route("account/tables/new", name="host_tables_new", methods={"GET","POST"})
      */
     public function new(Request $request): Response
     {
@@ -168,7 +168,7 @@ class HostTablesController extends AbstractController
     }
 
     /**
-     * @Route("admin/tables/{id}/edit", name="host_tables_edit", methods={"GET","POST"})
+     * @Route("account/tables/{id}/edit", name="host_tables_edit", methods={"GET","POST"})
      */
     public function edit(Request $request, HostTables $hostTable): Response
     {
@@ -190,7 +190,7 @@ class HostTablesController extends AbstractController
     }
 
     /**
-     * @Route("admin/tables/{id}", name="host_tables_delete", methods={"DELETE"})
+     * @Route("account/tables/{id}", name="host_tables_delete", methods={"DELETE"})
      */
     public function delete(Request $request, HostTables $hostTable): Response
     {

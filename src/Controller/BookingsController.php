@@ -10,13 +10,11 @@ use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
 
-/**
- * @Route("/bookings")
- */
+
 class BookingsController extends AbstractController
 {
     /**
-     * @Route("/", name="bookings_index", methods={"GET"})
+     * @Route("/admin/bookings", name="bookings_index", methods={"GET"})
      */
     public function index(BookingsRepository $bookingsRepository): Response
     {
@@ -26,7 +24,7 @@ class BookingsController extends AbstractController
     }
 
     /**
-     * @Route("/new", name="bookings_new", methods={"GET","POST"})
+     * @Route("/admin/bookings/new", name="bookings_new", methods={"GET","POST"})
      */
     public function new(Request $request): Response
     {
@@ -49,7 +47,7 @@ class BookingsController extends AbstractController
     }
 
     /**
-     * @Route("/{id}", name="bookings_show", methods={"GET"})
+     * @Route("/account/bookings/{id}", name="bookings_show", methods={"GET"})
      */
     public function show(Bookings $booking): Response
     {
@@ -59,7 +57,7 @@ class BookingsController extends AbstractController
     }
 
     /**
-     * @Route("/{id}/edit", name="bookings_edit", methods={"GET","POST"})
+     * @Route("/account/bookings/{id}/edit", name="bookings_edit", methods={"GET","POST"})
      */
     public function edit(Request $request, Bookings $booking): Response
     {
@@ -81,7 +79,7 @@ class BookingsController extends AbstractController
     }
 
     /**
-     * @Route("/{id}", name="bookings_delete", methods={"DELETE"})
+     * @Route("/account/bookings/{id}", name="bookings_delete", methods={"DELETE"})
      */
     public function delete(Request $request, Bookings $booking): Response
     {
