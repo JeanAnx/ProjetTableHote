@@ -123,11 +123,19 @@ class UserController extends AbstractController
      * @param User $user
      * @return Response
      */
-    public function delete(Request $request, User $user): Response
+    public function delete(Request $request, User $user, HostTablesRepository $hostTablesRepository, BookingsRepository $bookingsRepository): Response
     {
         if ($this->isCsrfTokenValid('delete'.$user->getId(), $request->request->get('_token'))) {
-            $this->get('security.token_storage')->setToken(null);
+            $reservations = $bookingsRepository->findBy([
+                "client" => $user
+            ]);
+            $tables = $hostTablesRepository->findBy([
+                "creator" => $user
+            ]);
             $entityManager = $this->getDoctrine()->getManager();
+            $entityManager->remove($reservations);
+            $entityManager->remove($tables);
+            $this->get('security.token_storage')->setToken(null);
             $entityManager->remove($user);
             $entityManager->flush();
         }
