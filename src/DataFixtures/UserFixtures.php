@@ -39,6 +39,7 @@ class UserFixtures extends Fixture
             ->setPassword($this->encrypt->encodePassword($kilian,"dawan"))
             ->setRoles(['ROLE_ADMIN']);
         $manager->persist($kilian);
+        $this->addReference('kilian', $kilian);
 
         $manager->flush();
     }

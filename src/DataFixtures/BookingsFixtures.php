@@ -19,6 +19,7 @@ class BookingsFixtures extends Fixture implements DependentFixtureInterface
             ->setSeats('70')
             ->setName('Dupont')
             ->setHealth(['Vegan'])
+            ->setClient($this->getReference("kilian"))
         ;
         $manager->persist($book1);
         $this->addReference('book1', $book1);
@@ -30,6 +31,7 @@ class BookingsFixtures extends Fixture implements DependentFixtureInterface
             ->setSeats('70')
             ->setName('Dupond')
             ->setHealth(['Sans Gluten'])
+            ->setClient($this->getReference("kilian"))
         ;
         $manager->persist($book2);
         $this->addReference('book2', $book2);
@@ -45,6 +47,6 @@ class BookingsFixtures extends Fixture implements DependentFixtureInterface
      */
     public function getDependencies()
     {
-        return array(HostTablesFixtures::class);
+        return array(UserFixtures::class, HostTablesFixtures::class);
     }
 }

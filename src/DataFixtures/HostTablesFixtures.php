@@ -4,9 +4,10 @@ namespace App\DataFixtures;
 
 use App\Entity\HostTables;
 use Doctrine\Bundle\FixturesBundle\Fixture;
+use Doctrine\Common\DataFixtures\DependentFixtureInterface;
 use Doctrine\Common\Persistence\ObjectManager;
 
-class HostTablesFixtures extends Fixture
+class HostTablesFixtures extends Fixture implements DependentFixtureInterface
 {
     public function load(ObjectManager $manager)
     {
@@ -29,7 +30,8 @@ class HostTablesFixtures extends Fixture
             ->setVege(true)
             ->setVegan(true)
             ->setGluten(true)
-            ->setCookStyle(['Traditionnel']);
+            ->setCookStyle(['Traditionnel'])
+            ->setCreator($this->getReference("kilian"));
 
 
         $manager->persist($table1);
@@ -53,6 +55,7 @@ class HostTablesFixtures extends Fixture
             ->setVege(false)
             ->setVegan(false)
             ->setGluten(true)
+            ->setCreator($this->getReference("kilian"))
             ->setCookStyle(['Bistrot']);
 
         $manager->persist($table2);
@@ -76,6 +79,7 @@ class HostTablesFixtures extends Fixture
             ->setVege(false)
             ->setVegan(true)
             ->setGluten(false)
+            ->setCreator($this->getReference("kilian"))
             ->setCookStyle(['Mexicain']);
 
         $manager->persist($table3);
@@ -100,6 +104,7 @@ class HostTablesFixtures extends Fixture
             ->setVege(true)
             ->setVegan(false)
             ->setGluten(true)
+            ->setCreator($this->getReference("kilian"))
             ->setCookStyle(['Gastronomique']);
 
 
@@ -125,6 +130,7 @@ class HostTablesFixtures extends Fixture
             ->setVege(true)
             ->setVegan(true)
             ->setGluten(true)
+            ->setCreator($this->getReference("kilian"))
             ->setCookStyle(['Bistrot']);
 
 
@@ -133,5 +139,15 @@ class HostTablesFixtures extends Fixture
 
 
         $manager->flush();
+    }
+    /**
+     * This method must return an array of fixtures classes
+     * on which the implementing class depends on
+     *
+     * @return array
+     */
+    public function getDependencies()
+    {
+        return array(UserFixtures::class);
     }
 }
