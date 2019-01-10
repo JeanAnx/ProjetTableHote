@@ -1,32 +1,37 @@
 @import url(//netdna.bootstrapcdn.com/font-awesome/3.2.1/css/font-awesome.css);
 
-*{
+* {
     font-family: 'Lato', sans-serif;
 }
-html,body{
+
+html, body {
     height: 100%;
 }
-body{
+
+body {
     margin: 0;
     background-color: ghostwhite;
 }
-header{
+
+header {
     top: 0;
     height: auto;
 }
-main{
+
+main {
     display: flex !important;
     justify-content: space-around;
     height: 73%;
     margin: 2%;
 }
-p{
+
+p {
     margin: 0 0 10px;
 }
 
 /* Division de l'écran en 2 */
 /* Partie gauche */
-#listeResultat{
+#listeResultat {
     display: flex;
     flex-wrap: wrap;
     width: 45%;
@@ -39,23 +44,27 @@ p{
     margin: 1%;
     box-shadow: 1px 1px 1px 1px lightgray;
 }
+
 /* Partie droite */
-#map{
+#map {
     width: 45%;
     height: 98%;
     margin: 1%;
 }
-article{
+
+article {
     display: flex;
     flex-wrap: wrap;
     justify-content: space-between;
     border-bottom: 1px solid lightgray;
     width: 100%;
 }
-article:last-child{
+
+article:last-child {
     border-bottom: 0;
 }
-.articleImg{
+
+.articleImg {
     background-size: cover;
     background-position: center;
     width: 30%;
@@ -63,10 +72,12 @@ article:last-child{
     margin: 0.3em 0 0.3em 0;
     text-align: center;
 }
-.articleGauche{
+
+.articleGauche {
     width: 70%;
 }
-iframe{
+
+iframe {
     width: 100%;
     height: 100%;
     box-shadow: 1px 1px 1px 1px lightgray;
@@ -74,64 +85,73 @@ iframe{
 }
 
 /* Bandeau de filtre */
-#menu{
+#menu {
     display: flex;
     justify-content: center;
 }
-#menu ul{
-    margin:0;
+
+#menu ul {
+    margin: 0;
     padding: 0;
-    list-style-type:none;
-    text-align:center;
+    list-style-type: none;
+    text-align: center;
     background-color: #33d9b2;
 }
-#menu li{
+
+#menu li {
     float: left;
     margin: auto;
 }
-#menu li:first-child{
+
+#menu li:first-child {
     border-left: none;
 }
-#menu li a{
-    display:block;
-    width:20em;
-    color:#fff;
-    text-decoration:none;
-    padding:5px;
+
+#menu li a {
+    display: block;
+    width: 20em;
+    color: white;
+    text-decoration: none;
+    padding: 5px;
     font-size: 1vw;
 }
+
 #menu li #cpVille {
     padding: 5px 0 5px 0;
-    display:block;
-    width:300px;
-    color:#33d9b2;
-    text-decoration:none;
+    display: block;
+    width: 300px;
+    color: #33d9b2;
+    text-decoration: none;
     font-size: 1vw;
 }
-#menu ul li ul{
-    display:none;
+
+#menu ul li ul {
+    display: none;
 }
-#menu li a:hover{
-    background-color: #33d9b2;
+
+#menu li a:hover {
+    background-color: #2dc19e;
+    color: white;
     font-weight: bold;
 }
-#menu li ul li a:hover{
+#menu li ul li a {
     background-color: #33d9b2;
 }
-#menu ul li:hover ul{
-    display:block;
+#menu li ul li a:hover {
+    background-color: #2dc19e;
 }
-#menu li:hover ul li{
+#menu ul li:hover ul {
+    display: block;
+}
+#menu li:hover ul li {
     margin-left: -2px;
-    float:none;
+    float: none;
 }
-#menu li ul{
-    position:absolute;
+
+#menu li ul {
+    position: absolute;
 }
-#menu li ul li a, #menu li ul li #cpVille{
-    color:#33d9b2;
-}
-#cpVille{
+#cpVille {
     border: 0;
     margin: 0 5px 5px 5px;
 }
@@ -145,7 +165,6 @@ ul li ul li label {
     display: block;
     position: relative;
     margin: 0;
-    padding: 0.3vw;
     color: white;
     background-color: #33d9b2;
     white-space: nowrap;
@@ -154,29 +173,23 @@ ul li ul li label {
 }
 
 ul li ul li label::before {
-    content: 'x';
     display: block;
     position: absolute;
     top: 1vw;
     bottom: 1vw;
     left: 1vw;
-    width: 28px;
     background-color: #33d9b2;
     color: #fff;
 }
-
 input:checked + label {
     color: white;
     background-color: #33d9b2;
     font-weight: normal !important;
 }
-
 input:checked + label::before {
-    color: white;
-
+    color: #33d9b2 ;
 }
-
-.titreTable{
+.titreTable {
     text-decoration: none;
     color: black;
 }
