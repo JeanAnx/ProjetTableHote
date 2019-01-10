@@ -17,17 +17,11 @@ header{
 }
 main{
     display: flex;
-    flex-wrap: wrap;
     justify-content: space-around;
     height: 80vh;
 }
-footer{
-    background-color: #33D9B4;
-    display: flex;
-    flex-wrap: wrap;
-    justify-content: center;
-    bottom: 0;
-    height: 13vh;
+p{
+    margin: 0 0 10px;
 }
 
 /* Début du bouton switch */
