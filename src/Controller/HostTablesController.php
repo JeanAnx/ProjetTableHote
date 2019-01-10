@@ -10,11 +10,13 @@ use App\Form\HostTablesSearchType;
 use App\Form\HostTablesType;
 use App\Repository\HostTablesRepository;
 use App\Repository\HoursRepository;
+use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\Form\Extension\Core\Type\DateType;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
+use Symfony\Component\Security\Core\User\UserInterface;
 use Symfony\Component\Validator\Constraints\DateTime;
 
 class HostTablesController extends AbstractController
@@ -123,7 +125,7 @@ class HostTablesController extends AbstractController
      * @return \Symfony\Component\HttpFoundation\Response
      * @Route("/tables/{id}", name="host_tables_show", methods={"GET","POST"})
      */
-    public function show(HostTables $hostTable, HoursRepository $hoursRepository, HostTablesRepository $hostTablesRepository, Request $request)
+    public function show(HostTables $hostTable, HoursRepository $hoursRepository, HostTablesRepository $hostTablesRepository, Request $request , UserInterface $user , EntityManagerInterface $entityManager)
     {
         $hours = $hoursRepository->findBy(
             ['hostTable' => $hostTable]
@@ -150,19 +152,19 @@ class HostTablesController extends AbstractController
             $dateBooking->setTime( $bookingData['heure']->format('H') , $bookingData['heure']->format('i') );
             dump($dateBooking);
 
-
-/*
             $newBooking = new Bookings();
             $newBooking
-                ->setClient()
+                ->setClient($this->getUser())
                 ->setDate($dateBooking)
-                ->set
-                ->setHostTable($hostTable->getId())
+                ->setHostTable($hostTable)
                 ->setName($hostTable->getName())
-                ->setSeats($bookingForm->getData('nb_convives'))
-                ->setHealth('');
-*/
-            dump($nbConvives);
+                ->setSeats($bookingData['nb_convives'])
+                ->setHealth([]);
+
+            dump($newBooking);
+
+            $entityManager->persist($newBooking);
+            $entityManager->flush();
 
             $this->addFlash('success','Votre commande a bien été enregistrée');
 
@@ -183,7 +185,6 @@ class HostTablesController extends AbstractController
 
         $formData = $request->query->get('nb_convives');
         dump($formData);
-
 
         $suggest = $hostTablesRepository->findSuggest($hostTable);
 
