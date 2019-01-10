@@ -60,11 +60,11 @@ class UserController extends AbstractController
     public function show(User $user, BookingsRepository $bookingsRepository, HostTablesRepository $hostTablesRepository): Response
     {
         $tables = $hostTablesRepository->findBy([
-            "user" => $user
+            "creator" => $user
         ]);
 
         $resa = $bookingsRepository->findBy([
-            "user" => $user
+            "client" => $user
         ]);
 
         return $this->render('user/show.html.twig', [
