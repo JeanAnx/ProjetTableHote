@@ -29,7 +29,7 @@
                 <tbody>
                     {% for book in bookings %}
                     <tr>
-                        <td>{{ book.date }}</td>
+                        <td>{{ book.date | date("d-m-y") }}</td>
                         <td>{{ book.name }}</td>
                         <td>{{ book.seats }}</td>
                         <td><a href="{{ path("bookings_delete", {id: book.id}) }}">Supprimer</a></td>
@@ -54,7 +54,7 @@
                     {% for hostTable in hostTables %}
                         <tr>
                             <td>{{ hostTable.name }}</td>
-                            <td>{{ hostTable.min_price }}</td>
+                            <td>{{ hostTable.minPrice }}</td>
                             <td>{{ hostTable.note }}</td>
                             <td><a href="{{ path("host_tables_edit", {id: hostTable.id}) }}">Modifier</a></td>
                             <td><a href="{{ path("host_tables_delete", {id: hostTable.id}) }}">Supprimer</a></td>
