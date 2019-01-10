@@ -23,13 +23,9 @@
             <input type="submit" value="Confirmer">
             {{ form_end(passForm) }}
 
+            {{ include('user/_delete_form.html.twig') }}
 
-            {#<label for="newPassword">Nouveau mot de passe</label>#}
-            {#<input type="password" name="newPassword" id="newPassword" placeholder="Mot de passe">#}
-            {#<label for="confPassword">Confirmation du nouveau mot de passe</label>#}
-            {#<input type="password" name="confPassword" id="confPassword" placeholder="Mot de passe">#}
-            {#<button>Confirmer</button>#}
-            <a href="{{ path("user_delete", {id: user.id}) }}"><button>Suppression du compte</button></a>
+
         </div>
         <div id="myBookings">
             <h2>Mes réservations</h2>

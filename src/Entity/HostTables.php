@@ -114,8 +114,8 @@ class HostTables
     private $gluten;
 
     /**
-     * @ORM\ManyToOne(targetEntity="App\Entity\User", inversedBy="hostTables")
-     * @ORM\JoinColumn(nullable=false)
+     * @ORM\ManyToOne(targetEntity="App\Entity\User")
+     * @ORM\JoinColumn(nullable=false, onDelete="CASCADE")
      */
     private $creator;
 
