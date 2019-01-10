@@ -1,0 +1,30 @@
+form h3 {
+    color: #33d9b2;
+    text-align: center;
+    margin-bottom: 1em;
+}
+
+.loginForm {
+    margin: 10%;
+    width: 20em;
+    margin-left: auto;
+    margin-right: auto;
+    border: 1px solid #33d9b2;
+    border-radius: .5em;
+    padding: 1em;
+}
+.form-control{
+    width: 95% !important;
+}
+
+button.btn {
+    color: white;
+    display: block;
+    width: 45%;
+    margin: 2em auto 1em auto;
+    background-color: #33d9b2;
+}
+
+form input {
+    margin : 0.5em;
+}

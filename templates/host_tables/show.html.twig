@@ -40,6 +40,16 @@
                     <h3>{% for style in host_table.cookStyle %}
                             {{ style }}
                         {% endfor %}
+
+                        {% if host_table.vege %}
+                            | Végétarien
+                        {% endif %}
+                        {% if host_table.vegan %}
+                            | Végan
+                        {% endif %}
+                        {% if host_table.gluten %}
+                            | Sans Gluten
+                        {% endif %}
                     </h3>
 
 
