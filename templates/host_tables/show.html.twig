@@ -241,11 +241,17 @@
         }
 
         if (document.getElementById('successMessage') != null) {
+            $message = document.getElementById('successMessage');
+            $message.style.transition = "all 0.5s ease";
             setTimeout(function () {
-                $message = document.getElementById('successMessage');
-                $message.style.transition = "all 0.5s ease";
                 $message.style.opacity = "0";
             } , 3000)
+
+            setTimeout(function () {
+                $message = document.getElementById('successMessage');
+                $message.style.transform = "scale(0)";
+                $message.style.margin = "0";
+            } , 3500)
         }
 
 
