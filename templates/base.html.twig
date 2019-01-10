@@ -19,7 +19,7 @@
                 <input type="text" class="recherche" placeholder="Recherchez une table d'hôte">
             </li>
             <li>
-                    {% if is_granted('ROLE_USER') %}<a href="{{ path('logout') }}">DECONNEXION</a>
+                    {% if is_granted('ROLE_USER') %}<a href="{{ path('app_logout') }}">DECONNEXION</a>
                     {% else %}<a href="{{ path('app_login') }}">CONNEXION</a>{% endif %}
             </li>
         </ul>

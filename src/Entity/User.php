@@ -2,8 +2,6 @@
 
 namespace App\Entity;
 
-use Doctrine\Common\Collections\ArrayCollection;
-use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
 use Symfony\Component\Security\Core\User\UserInterface;
 
@@ -35,27 +33,6 @@ class User implements UserInterface
      */
     private $password;
 
-    /**
-     * @ORM\OneToMany(targetEntity="App\Entity\Bookings", mappedBy="client")
-     */
-    private $bookings;
-
-    /**
-     * @ORM\OneToMany(targetEntity="App\Entity\Bookings", mappedBy="creator", orphanRemoval=true)
-     */
-    private $booking;
-
-    /**
-     * @ORM\OneToMany(targetEntity="App\Entity\HostTables", mappedBy="creator", orphanRemoval=true)
-     */
-    private $hostTables;
-
-    public function __construct()
-    {
-        $this->bookings = new ArrayCollection();
-        $this->booking = new ArrayCollection();
-        $this->hostTables = new ArrayCollection();
-    }
 
     public function getId(): ?int
     {
@@ -135,73 +112,4 @@ class User implements UserInterface
         // $this->plainPassword = null;
     }
 
-    /**
-     * @return Collection|Bookings[]
-     */
-    public function getBookings(): Collection
-    {
-        return $this->bookings;
-    }
-
-    public function addBooking(Bookings $booking): self
-    {
-        if (!$this->bookings->contains($booking)) {
-            $this->bookings[] = $booking;
-            $booking->setClient($this);
-        }
-
-        return $this;
-    }
-
-    public function removeBooking(Bookings $booking): self
-    {
-        if ($this->bookings->contains($booking)) {
-            $this->bookings->removeElement($booking);
-            // set the owning side to null (unless already changed)
-            if ($booking->getClient() === $this) {
-                $booking->setClient(null);
-            }
-        }
-
-        return $this;
-    }
-
-    /**
-     * @return Collection|Bookings[]
-     */
-    public function getBooking(): Collection
-    {
-        return $this->booking;
-    }
-
-    /**
-     * @return Collection|HostTables[]
-     */
-    public function getHostTables(): Collection
-    {
-        return $this->hostTables;
-    }
-
-    public function addHostTable(HostTables $hostTable): self
-    {
-        if (!$this->hostTables->contains($hostTable)) {
-            $this->hostTables[] = $hostTable;
-            $hostTable->setCreator($this);
-        }
-
-        return $this;
-    }
-
-    public function removeHostTable(HostTables $hostTable): self
-    {
-        if ($this->hostTables->contains($hostTable)) {
-            $this->hostTables->removeElement($hostTable);
-            // set the owning side to null (unless already changed)
-            if ($hostTable->getCreator() === $this) {
-                $hostTable->setCreator(null);
-            }
-        }
-
-        return $this;
-    }
 }

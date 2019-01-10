@@ -3,6 +3,8 @@
 namespace App\Controller;
 
 use App\Entity\User;
+use App\Form\BookingsFormType;
+use App\Form\NewPassType;
 use App\Form\UserType;
 use App\Repository\BookingsRepository;
 use App\Repository\HostTablesRepository;
@@ -11,12 +13,19 @@ use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
+use Symfony\Component\Security\Core\Encoder\UserPasswordEncoderInterface;
 
 /**
  * @Route("/user")
  */
 class UserController extends AbstractController
 {
+    private $encrypt;
+    public function __construct(UserPasswordEncoderInterface $encoder)
+    {
+        $this->encrypt = $encoder;
+    }
+
     /**
      * @Route("/", name="user_index", methods={"GET"})
      */
@@ -51,13 +60,13 @@ class UserController extends AbstractController
     }
 
     /**
-     * @Route("/{id}", name="user_show", methods={"GET"})
+     * @Route("/{id}", name="user_show", methods={"GET","POST"})
      * @param User $user
      * @param BookingsRepository $bookingsRepository
      * @param HostTablesRepository $hostTablesRepository
      * @return Response
      */
-    public function show(User $user, BookingsRepository $bookingsRepository, HostTablesRepository $hostTablesRepository): Response
+    public function show(User $user, BookingsRepository $bookingsRepository, HostTablesRepository $hostTablesRepository, Request $request): Response
     {
         $tables = $hostTablesRepository->findBy([
             "creator" => $user
@@ -67,10 +76,25 @@ class UserController extends AbstractController
             "client" => $user
         ]);
 
+        $passForm = $this->createForm(NewPassType::class);
+        $passForm->handleRequest($request);
+
+        if ($passForm->isSubmitted() && $passForm->isValid()) {
+            $newPass = $passForm->getData();
+            $user->setPassword($this->encrypt->encodePassword($user,$newPass["password"]));
+            $this->getDoctrine()->getManager()->flush();
+
+            return $this->redirectToRoute('user_show' , [
+                'id' => $user->getId()
+            ]);
+
+        }
+
         return $this->render('user/show.html.twig', [
             'user' => $user,
             'hostTables' => $tables,
-            'bookings' => $resa
+            'bookings' => $resa,
+            'passForm' => $passForm->createView()
         ]);
     }
 
@@ -98,10 +122,14 @@ class UserController extends AbstractController
 
     /**
      * @Route("/{id}", name="user_delete", methods={"DELETE"})
+     * @param Request $request
+     * @param User $user
+     * @return Response
      */
     public function delete(Request $request, User $user): Response
     {
         if ($this->isCsrfTokenValid('delete'.$user->getId(), $request->request->get('_token'))) {
+            $this->get('security.token_storage')->setToken(null);
             $entityManager = $this->getDoctrine()->getManager();
             $entityManager->remove($user);
             $entityManager->flush();

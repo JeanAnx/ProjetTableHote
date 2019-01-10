@@ -23,7 +23,8 @@ security:
                     - App\Security\AppUserAuthenticator
 
             logout:
-                path: logout
+                path: app_logout
+                target: host_tables_index
             # activate different ways to authenticate
 
             # http_basic: true
