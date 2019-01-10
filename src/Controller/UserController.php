@@ -4,6 +4,8 @@ namespace App\Controller;
 
 use App\Entity\User;
 use App\Form\UserType;
+use App\Repository\BookingsRepository;
+use App\Repository\HostTablesRepository;
 use App\Repository\UserRepository;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
@@ -50,11 +52,25 @@ class UserController extends AbstractController
 
     /**
      * @Route("/{id}", name="user_show", methods={"GET"})
+     * @param User $user
+     * @param BookingsRepository $bookingsRepository
+     * @param HostTablesRepository $hostTablesRepository
+     * @return Response
      */
-    public function show(User $user): Response
+    public function show(User $user, BookingsRepository $bookingsRepository, HostTablesRepository $hostTablesRepository): Response
     {
+        $tables = $hostTablesRepository->findBy([
+            "user" => $user
+        ]);
+
+        $resa = $bookingsRepository->findBy([
+            "user" => $user
+        ]);
+
         return $this->render('user/show.html.twig', [
             'user' => $user,
+            'hostTables' => $tables,
+            'bookings' => $resa
         ]);
     }
 
