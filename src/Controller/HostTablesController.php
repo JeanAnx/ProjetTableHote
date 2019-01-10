@@ -152,26 +152,39 @@ class HostTablesController extends AbstractController
             $dateBooking->setTime( $bookingData['heure']->format('H') , $bookingData['heure']->format('i') );
             dump($dateBooking);
 
-            $newBooking = new Bookings();
-            $newBooking
-                ->setClient($this->getUser())
-                ->setDate($dateBooking)
-                ->setHostTable($hostTable)
-                ->setName($hostTable->getName())
-                ->setSeats($bookingData['nb_convives'])
-                ->setHealth([]);
 
-            dump($newBooking);
+            // Tentative de redirection vers page login si utilisateur pas connecté
 
-            $entityManager->persist($newBooking);
-            $entityManager->flush();
+            if ($this->getUser()) {
 
-            $this->addFlash('success',' Votre commande a bien été enregistrée' );
+                $newBooking = new Bookings();
+                $newBooking
+                    ->setClient($this->getUser())
+                    ->setDate($dateBooking)
+                    ->setHostTable($hostTable)
+                    ->setName($hostTable->getName())
+                    ->setSeats($bookingData['nb_convives'])
+                    ->setHealth([]);
 
-            return $this->redirectToRoute('host_tables_show' , [
-                'id' => $hostTable->getId(),
-                'nb_convives' => $nbConvives,
-            ]);
+                dump($newBooking);
+
+                $entityManager->persist($newBooking);
+                $entityManager->flush();
+
+                $this->addFlash('success', ' Votre commande a bien été enregistrée');
+
+                return $this->redirectToRoute('host_tables_show', [
+                    'id' => $hostTable->getId(),
+                    'nb_convives' => $nbConvives,
+                ]);
+
+            } else {
+
+                // Si pas d'utilisateur connecté > redirection vers la page login
+
+                return $this->redirectToRoute('app_login');
+
+            }
 
         } else {
 
@@ -198,7 +211,9 @@ class HostTablesController extends AbstractController
                 'total' => $total
                 ]
         );
-    }
+
+        }
+
 
     /**
      * @Route("admin/tables/{id}/edit", name="host_tables_edit", methods={"GET","POST"})
