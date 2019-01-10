@@ -2,6 +2,7 @@
 
 namespace App\Controller;
 
+use App\Entity\Bookings;
 use App\Entity\HostTables;
 use App\Entity\Hours;
 use App\Form\BookingsFormType;
@@ -9,10 +10,14 @@ use App\Form\HostTablesSearchType;
 use App\Form\HostTablesType;
 use App\Repository\HostTablesRepository;
 use App\Repository\HoursRepository;
+use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
+use Symfony\Component\Form\Extension\Core\Type\DateType;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
+use Symfony\Component\Security\Core\User\UserInterface;
+use Symfony\Component\Validator\Constraints\DateTime;
 
 class HostTablesController extends AbstractController
 {
@@ -118,9 +123,9 @@ class HostTablesController extends AbstractController
      * @param HostTablesRepository $hostTablesRepository
      * @param Request $request
      * @return \Symfony\Component\HttpFoundation\Response
-     * @Route("/tables/{id}", name="host_tables_show", methods={"GET"})
+     * @Route("/tables/{id}", name="host_tables_show", methods={"GET","POST"})
      */
-    public function show(HostTables $hostTable, HoursRepository $hoursRepository, HostTablesRepository $hostTablesRepository, Request $request)
+    public function show(HostTables $hostTable, HoursRepository $hoursRepository, HostTablesRepository $hostTablesRepository, Request $request, EntityManagerInterface $entityManager)
     {
         $hours = $hoursRepository->findBy(
             ['hostTable' => $hostTable]
@@ -133,11 +138,54 @@ class HostTablesController extends AbstractController
         $nbConvives = 1;
 
         if ($bookingForm->isSubmitted() && $bookingForm->isValid()) {
-            $nbConvives = $bookingForm->getData();
 
-            return $this->redirectToRoute('host_tables_show' , [
-                'nb_convives' => $nbConvives,
-            ]);
+            $nbConvives = $bookingForm->getData();
+            dump($nbConvives);
+            // J'envoie les données envoyés par le form dans une variable bookingData ( + lisible ?)
+
+            $bookingData = $bookingForm->getData();
+
+            // Je tente de construite un objet DateTime avec la date et l'heure envoyés (C'est pas gagné)
+
+            /** @var \DateTime $dateBooking */
+            $dateBooking = $bookingData['date'];
+            $dateBooking->setTime( $bookingData['heure']->format('H') , $bookingData['heure']->format('i') );
+            dump($dateBooking);
+
+
+            // Tentative de redirection vers page login si utilisateur pas connecté
+
+            if ($this->getUser()) {
+
+                $newBooking = new Bookings();
+                $newBooking
+                    ->setClient($this->getUser())
+                    ->setDate($dateBooking)
+                    ->setHostTable($hostTable)
+                    ->setName($hostTable->getName())
+                    ->setSeats($bookingData['nb_convives'])
+                    ->setHealth([]);
+
+                dump($newBooking);
+
+                $entityManager->persist($newBooking);
+                $entityManager->flush();
+
+                $this->addFlash('success', ' Votre commande a bien été enregistrée');
+
+                return $this->redirectToRoute('host_tables_show', [
+                    'id' => $hostTable->getId(),
+                    'nb_convives' => $nbConvives,
+                ]);
+
+            } else {
+
+                // Si pas d'utilisateur connecté > redirection vers la page login
+
+                $this->addFlash('notice' , 'Pour réserver, veuillez vous connecter');
+                return $this->redirectToRoute('app_login');
+
+            }
 
         } else {
 
@@ -152,7 +200,6 @@ class HostTablesController extends AbstractController
         $formData = $request->query->get('nb_convives');
         dump($formData);
 
-
         $suggest = $hostTablesRepository->findSuggest($hostTable);
 
         return $this->render(
@@ -165,7 +212,9 @@ class HostTablesController extends AbstractController
                 'total' => $total
                 ]
         );
-    }
+
+        }
+
 
     /**
      * @Route("admin/tables/{id}/edit", name="host_tables_edit", methods={"GET","POST"})
