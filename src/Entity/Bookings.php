@@ -47,6 +47,12 @@ class Bookings
      */
     private $client;
 
+    /**
+     * @ORM\ManyToOne(targetEntity="App\Entity\User", inversedBy="booking")
+     * @ORM\JoinColumn(nullable=false)
+     */
+    private $creator;
+
 
     public function getId(): ?int
     {
@@ -121,6 +127,18 @@ class Bookings
     public function setClient(?User $client): self
     {
         $this->client = $client;
+
+        return $this;
+    }
+
+    public function getCreator(): ?User
+    {
+        return $this->creator;
+    }
+
+    public function setCreator(?User $creator): self
+    {
+        $this->creator = $creator;
 
         return $this;
     }

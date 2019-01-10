@@ -113,6 +113,12 @@ class HostTables
      */
     private $gluten;
 
+    /**
+     * @ORM\ManyToOne(targetEntity="App\Entity\User", inversedBy="hostTables")
+     * @ORM\JoinColumn(nullable=false)
+     */
+    private $creator;
+
     public function __construct()
     {
         $this->bookings = new ArrayCollection();
@@ -386,6 +392,18 @@ class HostTables
     public function setGluten(?bool $gluten): self
     {
         $this->gluten = $gluten;
+
+        return $this;
+    }
+
+    public function getCreator(): ?User
+    {
+        return $this->creator;
+    }
+
+    public function setCreator(?User $creator): self
+    {
+        $this->creator = $creator;
 
         return $this;
     }
