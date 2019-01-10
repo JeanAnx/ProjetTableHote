@@ -240,6 +240,8 @@
             document.getElementById("javaTotal").innerHTML = price * nbConvives;
         }
 
+        {# Script pour faire disparaître le message de confirmation de commande #}
+
         if (document.getElementById('successMessage') != null) {
             $message = document.getElementById('successMessage');
             $message.style.transition = "all 0.5s ease";
@@ -253,6 +255,9 @@
                 $message.style.margin = "0";
             } , 3500)
         }
+
+
+
 
 
 

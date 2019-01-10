@@ -182,6 +182,7 @@ class HostTablesController extends AbstractController
 
                 // Si pas d'utilisateur connecté > redirection vers la page login
 
+                $this->addFlash('notice' , 'Pour réserver, veuillez vous connecter');
                 return $this->redirectToRoute('app_login');
 
             }
