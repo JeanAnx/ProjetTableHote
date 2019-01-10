@@ -9,11 +9,26 @@
         <div id="myAccount">
             <h2>Mon compte</h2>
             <p>Adresse email : {{ user.email }}</p>
-            <label for="newPassword">Nouveau mot de passe</label>
-            <input type="password" name="newPassword" id="newPassword" placeholder="Mot de passe">
-            <label for="confPassword">Confirmation du nouveau mot de passe</label>
-            <input type="password" name="confPassword" id="confPassword" placeholder="Mot de passe">
-            <button><a href="{{ path("user_delete", {id: user.id}) }}">Suppression du compte</a></button>
+            {{ form_start(passForm) }}
+
+
+            {{ form_errors(passForm.password.first) }}
+
+            {{ form_label(passForm.password.first) }}
+            {{ form_widget(passForm.password.first, {'attr': {'placeholder': 'Mot de passe'}}) }}
+            {{ form_label(passForm.password.second) }}
+            {{ form_widget(passForm.password.second, {'attr': {'placeholder': 'Mot de passe'}}) }}
+
+            <input type="submit" value="Confirmer">
+            {{ form_end(passForm) }}
+
+
+            {#<label for="newPassword">Nouveau mot de passe</label>#}
+            {#<input type="password" name="newPassword" id="newPassword" placeholder="Mot de passe">#}
+            {#<label for="confPassword">Confirmation du nouveau mot de passe</label>#}
+            {#<input type="password" name="confPassword" id="confPassword" placeholder="Mot de passe">#}
+            {#<button>Confirmer</button>#}
+            <a href="{{ path("user_delete", {id: user.id}) }}"><button>Suppression du compte</button></a>
         </div>
         <div id="myBookings">
             <h2>Mes réservations</h2>
