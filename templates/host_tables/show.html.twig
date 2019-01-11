@@ -238,26 +238,25 @@
 
     <script>
 
-
-
         function calculTotal() {
             price = document.getElementById("javaPrice").innerHTML;
             nbConvives = document.getElementById("bookings_form_nb_convives").value;
             document.getElementById("javaTotal").innerHTML = price * nbConvives;
         }
 
-
-
-
         function alimenterSelect() {
             /* Reinitialiser le select */
-            document.getElementById("bookings_form_heure").options.length = 0;
+            document.getElementById("bookings_form_heure").innerHTML = "";
             /* Récupération de la liste des horaires sous forme de tableau [0 => [12:00,14:00], 1 => [12:00, ... */
             hourList = JSON.parse(document.getElementById("hourData").value);
             /* Détection du jour sélectionné (de 0 à 6) */
             KelJour = new Date(document.getElementById("bookings_form_date").value);
             /* Select à alimenter */
             zone = document.getElementById("bookings_form_heure");
+            /* Création du groupe midi */
+            groupe = document.createElement('optgroup');
+            groupe.label = "MIDI";
+            zone.appendChild(groupe);
             /* Compteur de sécurité, si la boucle déconne, ce ne sera pas une boucle infini */
             ii = 0;
             /* Début du parcours en partant de l'heure de début du midi */
@@ -272,7 +271,7 @@
                 /* Création de l'option */
                 option = document.createElement("option");
                 option.text = heureEnCours;
-                zone.add(option);
+                groupe.appendChild(option);
 
                 /* Incrémentation de l'heure, on avance le temps d'une demie-heure */
                 if(AnaMin == "30"){
@@ -287,6 +286,10 @@
                 /* Sortie de secours au cas où le compteur de sécurité explose */
                 if(ii == 50) return;
             }
+            /* Création du groupe soir */
+            groupe = document.createElement('optgroup');
+            groupe.label = "SOIR";
+            zone.appendChild(groupe);
             /* Début du parcours en partant de l'heure de début du soir */
             heureEnCours = hourList[KelJour.getDay()][2];
             /* On continue tant que l'heure analysée est différente de l'heure de fin */
@@ -299,7 +302,7 @@
                 /* Création de l'option */
                 option = document.createElement("option");
                 option.text = heureEnCours;
-                zone.add(option);
+                groupe.appendChild(option);
 
                 /* Incrémentation de l'heure, on avance le temps d'une demie-heure */
                 if(AnaMin == "30"){
