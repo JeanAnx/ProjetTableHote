@@ -40,7 +40,6 @@ class HostTablesRepository extends ServiceEntityRepository
             ->getResult()
             ;
     }
- /*%" + :request + "%*/
     // /**
     //  * @return HostTables[] Returns an array of HostTables objects
     //  */

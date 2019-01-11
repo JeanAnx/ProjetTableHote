@@ -74,6 +74,7 @@ class HostTablesController extends AbstractController
                 'host_tables/index.html.twig',
                 [
                     'host_tables' => $hostTablesRepository->findBy($searchParams),
+                    'all_tables' => $hostTablesRepository->findAll(),
                     'cookStyle' => $cookStyle
                 ]);
 
@@ -94,7 +95,8 @@ class HostTablesController extends AbstractController
         return $this->render(
             'host_tables/search.html.twig',
             [
-                'host_tables' => $hostTablesRepository->searchbar($searchString)
+                'host_tables' => $hostTablesRepository->searchbar($searchString),
+                'all_tables' => $hostTablesRepository->findAll()
             ]);
     }
 
