@@ -126,27 +126,35 @@ class UserController extends AbstractController
     public function delete(Request $request, User $user, HoursRepository $hoursRepository, HostTablesRepository $hostTablesRepository, BookingsRepository $bookingsRepository): Response
     {
         if ($this->isCsrfTokenValid('delete'.$user->getId(), $request->request->get('_token'))) {
+            /* Recherches des réservations liées */
             $reservations = $bookingsRepository->findBy([
                 "client" => $user
             ]);
+            /* Recherche des tables liés */
             $tables = $hostTablesRepository->findBy([
                 "creator" => $user
             ]);
             $entityManager = $this->getDoctrine()->getManager();
+            /* Suppression des réservations trouvées */
             foreach($reservations as $oneReserv){
                 $entityManager->remove($oneReserv);
             }
+            /* Suppression des tables trouvées */
             foreach($tables as $oneTable){
                 $hours = $hoursRepository->findBy([
                     "hostTable" => $oneTable
                 ]);
+                /* Suppression de tous les horaires trouvés pour la table courante */
                 foreach ($hours as $hour){
                     $entityManager->remove($hour);
                 }
                 $entityManager->remove($oneTable);
             }
+            /* Deconnexion */
             $this->get('security.token_storage')->setToken(null);
+            /* Suppression de l'utilisateur */
             $entityManager->remove($user);
+            /* Mise à jour de la BDD */
             $entityManager->flush();
         }
 
