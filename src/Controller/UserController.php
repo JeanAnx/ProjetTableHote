@@ -8,6 +8,7 @@ use App\Form\NewPassType;
 use App\Form\UserType;
 use App\Repository\BookingsRepository;
 use App\Repository\HostTablesRepository;
+use App\Repository\HoursRepository;
 use App\Repository\UserRepository;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
@@ -15,9 +16,6 @@ use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
 use Symfony\Component\Security\Core\Encoder\UserPasswordEncoderInterface;
 
-/**
- * @Route("/user")
- */
 class UserController extends AbstractController
 {
     private $encrypt;
@@ -27,7 +25,7 @@ class UserController extends AbstractController
     }
 
     /**
-     * @Route("/", name="user_index", methods={"GET"})
+     * @Route("/admin/user", name="user_index", methods={"GET"})
      */
     public function index(UserRepository $userRepository): Response
     {
@@ -37,7 +35,7 @@ class UserController extends AbstractController
     }
 
     /**
-     * @Route("/new", name="user_new", methods={"GET","POST"})
+     * @Route("/signup", name="sign_up", methods={"GET","POST"})
      */
     public function new(Request $request): Response
     {
@@ -60,14 +58,16 @@ class UserController extends AbstractController
     }
 
     /**
-     * @Route("/{id}", name="user_show", methods={"GET","POST"})
-     * @param User $user
+     * @Route("/account", name="user_show", methods={"GET","POST"})
      * @param BookingsRepository $bookingsRepository
      * @param HostTablesRepository $hostTablesRepository
+     * @param Request $request
      * @return Response
      */
-    public function show(User $user, BookingsRepository $bookingsRepository, HostTablesRepository $hostTablesRepository, Request $request): Response
+    public function show(BookingsRepository $bookingsRepository, HostTablesRepository $hostTablesRepository, Request $request): Response
     {
+        $user = $this->getUser();
+
         $tables = $hostTablesRepository->findBy([
             "creator" => $user
         ]);
@@ -84,10 +84,7 @@ class UserController extends AbstractController
             $user->setPassword($this->encrypt->encodePassword($user,$newPass["password"]));
             $this->getDoctrine()->getManager()->flush();
 
-            return $this->redirectToRoute('user_show' , [
-                'id' => $user->getId()
-            ]);
-
+            return $this->redirectToRoute('user_show');
         }
 
         return $this->render('user/show.html.twig', [
@@ -99,7 +96,7 @@ class UserController extends AbstractController
     }
 
     /**
-     * @Route("/{id}/edit", name="user_edit", methods={"GET","POST"})
+     * @Route("/admin/user/{id}/edit", name="user_edit", methods={"GET","POST"})
      */
     public function edit(Request $request, User $user): Response
     {
@@ -121,17 +118,43 @@ class UserController extends AbstractController
     }
 
     /**
-     * @Route("/{id}", name="user_delete", methods={"DELETE"})
+     * @Route("/account/{id}", name="user_delete", methods={"DELETE"})
      * @param Request $request
      * @param User $user
      * @return Response
      */
-    public function delete(Request $request, User $user): Response
+    public function delete(Request $request, User $user, HoursRepository $hoursRepository, HostTablesRepository $hostTablesRepository, BookingsRepository $bookingsRepository): Response
     {
         if ($this->isCsrfTokenValid('delete'.$user->getId(), $request->request->get('_token'))) {
-            $this->get('security.token_storage')->setToken(null);
+            /* Recherches des réservations liées */
+            $reservations = $bookingsRepository->findBy([
+                "client" => $user
+            ]);
+            /* Recherche des tables liés */
+            $tables = $hostTablesRepository->findBy([
+                "creator" => $user
+            ]);
             $entityManager = $this->getDoctrine()->getManager();
+            /* Suppression des réservations trouvées */
+            foreach($reservations as $oneReserv){
+                $entityManager->remove($oneReserv);
+            }
+            /* Suppression des tables trouvées */
+            foreach($tables as $oneTable){
+                $hours = $hoursRepository->findBy([
+                    "hostTable" => $oneTable
+                ]);
+                /* Suppression de tous les horaires trouvés pour la table courante */
+                foreach ($hours as $hour){
+                    $entityManager->remove($hour);
+                }
+                $entityManager->remove($oneTable);
+            }
+            /* Deconnexion */
+            $this->get('security.token_storage')->setToken(null);
+            /* Suppression de l'utilisateur */
             $entityManager->remove($user);
+            /* Mise à jour de la BDD */
             $entityManager->flush();
         }
 

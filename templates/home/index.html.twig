@@ -5,11 +5,23 @@
     <link rel="stylesheet" href="{{ asset('css/home.css') }}">
 
 {% endblock %}
-{% block navbar %}
-{% endblock %}
 
 {% form_theme searchForm 'bootstrap_4_layout.html.twig' %}
-
+{% block navbar %}
+    <nav id="navbar">
+        <ul>
+            <li><a href="{{ path('home') }}">La Table du Milieu</a></li>
+            <li>
+                {% if is_granted('ROLE_USER') %}
+                    <div id="RightNavBar">
+                        <a href="{{ path('user_show') }}"><img id="imgAccount" src="{{ asset('/img/Unknown.png') }}"></a>
+                        <a href="{{ path('app_logout') }}">DECONNEXION</a>
+                    </div>
+                {% else %}<a href="{{ path('app_login') }}">CONNEXION</a>{% endif %}
+            </li>
+        </ul>
+    </nav>
+{% endblock %}
 {% block body %}
 
     <main class="mainHome">

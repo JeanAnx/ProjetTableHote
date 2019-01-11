@@ -89,16 +89,6 @@ class HostTables
     private $cookStyle = [];
 
     /**
-     * @ORM\OneToMany(targetEntity="App\Entity\Bookings", mappedBy="table_id", orphanRemoval=true)
-     */
-    private $bookings;
-
-    /**
-     * @ORM\OneToMany(targetEntity="App\Entity\Hours", mappedBy="TableId", orphanRemoval=true)
-     */
-    private $hours;
-
-    /**
      * @ORM\Column(type="boolean")
      */
     private $vege;
@@ -118,12 +108,6 @@ class HostTables
      * @ORM\JoinColumn(nullable=false, onDelete="CASCADE")
      */
     private $creator;
-
-    public function __construct()
-    {
-        $this->bookings = new ArrayCollection();
-        $this->hours = new ArrayCollection();
-    }
 
     public function getId(): ?int
     {
@@ -298,67 +282,9 @@ class HostTables
         return $this;
     }
 
-    /**
-     * @return Collection|Bookings[]
-     */
-    public function getBookings(): Collection
-    {
-        return $this->bookings;
-    }
 
-    public function addBooking(Bookings $booking): self
-    {
-        if (!$this->bookings->contains($booking)) {
-            $this->bookings[] = $booking;
-            $booking->setHostTable($this);
-        }
 
-        return $this;
-    }
 
-    public function removeBooking(Bookings $booking): self
-    {
-        if ($this->bookings->contains($booking)) {
-            $this->bookings->removeElement($booking);
-            // set the owning side to null (unless already changed)
-            if ($booking->getHostTable() === $this) {
-                $booking->setHostTable(null);
-            }
-        }
-
-        return $this;
-    }
-
-    /**
-     * @return Collection|Hours[]
-     */
-    public function getHours(): Collection
-    {
-        return $this->hours;
-    }
-
-    public function addHour(Hours $hour): self
-    {
-        if (!$this->hours->contains($hour)) {
-            $this->hours[] = $hour;
-            $hour->setHostTable($this);
-        }
-
-        return $this;
-    }
-
-    public function removeHour(Hours $hour): self
-    {
-        if ($this->hours->contains($hour)) {
-            $this->hours->removeElement($hour);
-            // set the owning side to null (unless already changed)
-            if ($hour->getHostTable() === $this) {
-                $hour->setHostTable(null);
-            }
-        }
-
-        return $this;
-    }
 
     public function getVege(): ?bool
     {

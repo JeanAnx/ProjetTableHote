@@ -10,7 +10,6 @@
         <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.6.3/css/all.css" integrity="sha384-UHRtZLI+pbxtHCWp1t77Bi1L4ZtiqrqD80Kn4Z8NTSRyMA2Fd33n5dQ8lWUE00s/" crossorigin="anonymous">
         {% block stylesheets %}{% endblock %}
     </head>
-    <body>
     {% block navbar %}
     <nav id="navbar">
         <ul>
@@ -43,8 +42,12 @@
                 </form>
             </li>
             <li>
-                    {% if is_granted('ROLE_USER') %}<a href="{{ path('app_logout') }}">DECONNEXION</a>
-                    {% else %}<a href="{{ path('app_login') }}">CONNEXION</a>{% endif %}
+                {% if is_granted('ROLE_USER') %}
+                    <div id="RightNavBar">
+                        <a href="{{ path('user_show') }}"><img id="imgAccount" src="{{ asset('/img/Unknown.png') }}"></a>
+                        <a href="{{ path('app_logout') }}">DECONNEXION</a>
+                    </div>
+                {% else %}<a href="{{ path('app_login') }}">CONNEXION</a>{% endif %}
             </li>
         </ul>
     </nav>

@@ -1,0 +1,23 @@
+main{
+    padding: 2% 5%;
+    text-align: center;
+}
+
+#host_tables{
+    display: flex;
+    flex-flow: column;
+    padding: 2%;
+}
+#host_tables div{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-flow: column;
+    width: 100%;
+}
+#host_tables label{
+    margin: .3em 0 0 0;
+}
+button{
+    margin: 1em;
+}
