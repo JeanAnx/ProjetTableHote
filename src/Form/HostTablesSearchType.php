@@ -84,9 +84,7 @@ class HostTablesSearchType extends AbstractType
             ->add('search' , SubmitType::class, array(
                 'label' => 'recherche',
                 'attr' => [ 'class' => 'btn'],
-            ))
-
-        ;
+            ));
     }
 
     public function configureOptions(OptionsResolver $resolver)

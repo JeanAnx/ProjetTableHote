@@ -22,33 +22,25 @@
 
                     <datalist id="tables">
 
-                        <!--  -->
-
                         {% if all_tables is defined %}
 
-                                {% for table in all_tables %}
+                        {% for table in all_tables %}
 
-                                    {% if loop.index < 6 %}
+                            <option value="{{ table.name }}"></option>
 
-                                        <option value="{{ table.name }}"></option>
-
-                                    {% endif %}
-
-                                {% endfor %}
+                        {% endfor %}
 
                         {% endif %}
 
+
                     </datalist>
+
 
                 </form>
             </li>
             <li>
-                {% if is_granted('ROLE_USER') %}
-                    <div id="RightNavBar">
-                        <a href="{{ path('user_show') }}"><img id="imgAccount" src="{{ asset('/img/Unknown.png') }}"></a>
-                        <a href="{{ path('app_logout') }}">DECONNEXION</a>
-                    </div>
-                {% else %}<a href="{{ path('app_login') }}">CONNEXION</a>{% endif %}
+                    {% if is_granted('ROLE_USER') %}<a href="{{ path('app_logout') }}">DECONNEXION</a>
+                    {% else %}<a href="{{ path('app_login') }}">CONNEXION</a>{% endif %}
             </li>
         </ul>
     </nav>

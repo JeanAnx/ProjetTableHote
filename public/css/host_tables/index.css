@@ -8,14 +8,11 @@ html, body {
     height: 100%;
 }
 
-body {
-    margin: 0;
-    background-color: ghostwhite;
-}
 
 header {
     top: 0;
     height: auto;
+    width: auto;
 }
 
 main {
@@ -23,6 +20,7 @@ main {
     justify-content: space-around;
     height: 73%;
     margin: 2%;
+    flex-grow: 1;
 }
 
 p {
@@ -106,7 +104,6 @@ iframe {
 #menu li:first-child {
     border-left: none;
 }
-
 #menu li a {
     display: block;
     width: 20em;
@@ -124,11 +121,9 @@ iframe {
     text-decoration: none;
     font-size: 1vw;
 }
-
 #menu ul li ul {
     display: none;
 }
-
 #menu li a:hover {
     background-color: #2dc19e;
     color: white;
@@ -147,7 +142,6 @@ iframe {
     margin-left: -2px;
     float: none;
 }
-
 #menu li ul {
     position: absolute;
 }
