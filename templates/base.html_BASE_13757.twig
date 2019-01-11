@@ -22,15 +22,11 @@
 
                     <datalist id="tables">
 
-                        {% if all_tables is defined %}
-
-                        {% for table in all_tables %}
+                        {% for table in host_tables %}
 
                             <option value="{{ table.name }}"></option>
 
                         {% endfor %}
-
-                        {% endif %}
 
 
                     </datalist>

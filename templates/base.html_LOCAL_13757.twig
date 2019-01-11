@@ -20,20 +20,6 @@
                     <input list="tables" autocomplete="off" type="text" class="recherche" name="table" id="" placeholder="Recherchez une table">
                     <button type="submit"><i class="fas fa-search-location"></i></button>
 
-                    <datalist id="tables">
-
-                        {% if all_tables is defined %}
-
-                        {% for table in all_tables %}
-
-                            <option value="{{ table.name }}"></option>
-
-                        {% endfor %}
-
-                        {% endif %}
-
-
-                    </datalist>
 
                 </form>
             </li>
