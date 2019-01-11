@@ -1,3 +1,38 @@
-#blocGeneral{
+#blocGeneral {
     margin: 3em 6em;
+    width: 100%;
+    display: flex;
+    justify-content: space-around;
+    flex-flow: row wrap;
+}
+
+#myAccount {
+    display: flex;
+    flex-flow: column;
+    width: 20%;
+}
+
+.mdp {
+    display: flex;
+    flex-flow: column;
+    width: 80%;
+}
+
+#myBookings {
+    display: flex;
+    flex-flow: column;
+    width: 30%;
+}
+#myBookings thead{
+    background-color: #33d9b2;
+    color: white;
+}
+#myBookings td {
+    border: #33d9b2 solid 0.2em;
+    padding: 0.5em;
+}
+
+#myTables {
+    display: flex;
+    width: 30%;
 }

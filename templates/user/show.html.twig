@@ -12,14 +12,16 @@
             <p>Adresse email : {{ user.email }}</p>
             {{ form_start(passForm) }}
 
+            <div class="mdp">
+                {{ form_errors(passForm.password.first) }}
 
-            {{ form_errors(passForm.password.first) }}
-
-            {{ form_label(passForm.password.first) }}
-            {{ form_widget(passForm.password.first, {'attr': {'placeholder': 'Mot de passe'}}) }}
-            {{ form_label(passForm.password.second) }}
-            {{ form_widget(passForm.password.second, {'attr': {'placeholder': 'Mot de passe'}}) }}
-
+                {{ form_label(passForm.password.first) }}
+                {{ form_widget(passForm.password.first, {'attr': {'placeholder': 'Mot de passe'}}) }}
+            </div>
+            <div class="mdp">
+                {{ form_label(passForm.password.second) }}
+                {{ form_widget(passForm.password.second, {'attr': {'placeholder': 'Mot de passe'}}) }}
+            </div>
             <input type="submit" value="Confirmer">
             {{ form_end(passForm) }}
 
@@ -31,22 +33,22 @@
             <h2>Mes réservations</h2>
             <table>
                 <thead>
-                    <tr>
-                        <td>Date de la réservation</td>
-                        <td>Nom de la table</td>
-                        <td>Nombre de personnes</td>
-                        <td>Action</td>
-                    </tr>
+                <tr>
+                    <td>Date de la réservation</td>
+                    <td>Nom de la table</td>
+                    <td>Nombre de personnes</td>
+                    <td>Action</td>
+                </tr>
                 </thead>
                 <tbody>
-                    {% for book in bookings %}
+                {% for book in bookings %}
                     <tr>
                         <td>{{ book.date | date("d-m-y") }}</td>
                         <td>{{ book.name }}</td>
                         <td>{{ book.seats }}</td>
                         <td><a href="{{ path("bookings_delete", {id: book.id}) }}">Supprimer</a></td>
                     </tr>
-                    {% endfor %}
+                {% endfor %}
                 </tbody>
             </table>
         </div>
@@ -55,23 +57,23 @@
             <button>Nouvelle table</button>
             <table>
                 <thead>
-                    <tr>
-                        <td>Date de la réservation</td>
-                        <td>Nom de la table</td>
-                        <td>Nombre de personnes</td>
-                        <td colspan="2">Actions</td>
-                    </tr>
+                <tr>
+                    <td>Date de la réservation</td>
+                    <td>Nom de la table</td>
+                    <td>Nombre de personnes</td>
+                    <td colspan="2">Actions</td>
+                </tr>
                 </thead>
                 <tbody>
-                    {% for hostTable in hostTables %}
-                        <tr>
-                            <td>{{ hostTable.name }}</td>
-                            <td>{{ hostTable.minPrice }}</td>
-                            <td>{{ hostTable.note }}</td>
-                            <td><a href="{{ path("host_tables_edit", {id: hostTable.id}) }}">Modifier</a></td>
-                            <td><a href="{{ path("host_tables_delete", {id: hostTable.id}) }}">Supprimer</a></td>
-                        </tr>
-                    {% endfor %}
+                {% for hostTable in hostTables %}
+                    <tr>
+                        <td>{{ hostTable.name }}</td>
+                        <td>{{ hostTable.minPrice }}</td>
+                        <td>{{ hostTable.note }}</td>
+                        <td><a href="{{ path("host_tables_edit", {id: hostTable.id}) }}">Modifier</a></td>
+                        <td><a href="{{ path("host_tables_delete", {id: hostTable.id}) }}">Supprimer</a></td>
+                    </tr>
+                {% endfor %}
                 </tbody>
             </table>
         </div>

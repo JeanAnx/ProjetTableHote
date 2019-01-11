@@ -67,6 +67,7 @@ class HostTablesController extends AbstractController
 
         dump($searchParams);
 
+
 // Si aucun champ n'a été renseigné, les params sont vides, et on balance tous les restaurants
 
         return $this->render(
@@ -198,6 +199,7 @@ class HostTablesController extends AbstractController
 
         $formData = $request->query->get('nb_convives');
         dump($formData);
+
 
         $suggest = $hostTablesRepository->findSuggest($hostTable);
 
