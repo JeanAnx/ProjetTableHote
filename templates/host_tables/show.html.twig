@@ -6,7 +6,6 @@
     <link rel="stylesheet" href="{{ asset('/css/host_tables/show.css') }}">
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
 {% endblock %}
-
 {% block body %}
 
     <main>
@@ -238,6 +237,7 @@
 {% block javascripts %}
 
     <script>
+
         function calculTotal() {
             price = document.getElementById("javaPrice").innerHTML;
             nbConvives = document.getElementById("bookings_form_nb_convives").value;
@@ -245,68 +245,85 @@
         }
 
         function alimenterSelect() {
-            document.getElementById("bookings_form_heure").options.length = 0;
+            /* Reinitialiser le select */
+            document.getElementById("bookings_form_heure").innerHTML = "";
             /* Récupération de la liste des horaires sous forme de tableau [0 => [12:00,14:00], 1 => [12:00, ... */
             hourList = JSON.parse(document.getElementById("hourData").value);
             /* Détection du jour sélectionné (de 0 à 6) */
             KelJour = new Date(document.getElementById("bookings_form_date").value);
             /* Select à alimenter */
             zone = document.getElementById("bookings_form_heure");
+            /* Création du groupe midi */
+            groupe = document.createElement('optgroup');
+            groupe.label = "MIDI";
+            zone.appendChild(groupe);
             /* Compteur de sécurité, si la boucle déconne, ce ne sera pas une boucle infini */
             ii = 0;
             /* Début du parcours en partant de l'heure de début du midi */
             heureEnCours = hourList[KelJour.getDay()][0];
             /* On continue tant que l'heure analysée est différente de l'heure de fin */
             while(heureEnCours != hourList[KelJour.getDay()][1]){
+                /* Dissociation de l'heure et des minutes */
                 AnaHeure = heureEnCours.substring(0,2);
                 AnaMin = heureEnCours.substring(3,5);
+                /* Incrémentation du compteur de sécurité */
                 ii++;
+                /* Création de l'option */
                 option = document.createElement("option");
                 option.text = heureEnCours;
-                zone.add(option);
+                groupe.appendChild(option);
 
+                /* Incrémentation de l'heure, on avance le temps d'une demie-heure */
                 if(AnaMin == "30"){
                     AnaMin = "00";
                     AnaHeure++;
-                    console.log(AnaHeure);
-                    console.log(AnaMin);
                 }
                 else{
                     AnaMin = "30";
-                    console.log(AnaHeure);
-                    console.log(AnaMin);
                 }
+                /* Reconsolidation de la nouvelle heure */
                 heureEnCours = AnaHeure + ":" + AnaMin;
+                /* Sortie de secours au cas où le compteur de sécurité explose */
                 if(ii == 50) return;
             }
+            /* Création du groupe soir */
+            groupe = document.createElement('optgroup');
+            groupe.label = "SOIR";
+            zone.appendChild(groupe);
             /* Début du parcours en partant de l'heure de début du soir */
             heureEnCours = hourList[KelJour.getDay()][2];
             /* On continue tant que l'heure analysée est différente de l'heure de fin */
             while(heureEnCours != hourList[KelJour.getDay()][3]){
+                /* Dissociation de l'heure et des minutes */
                 AnaHeure = heureEnCours.substring(0,2);
                 AnaMin = heureEnCours.substring(3,5);
+                /* Incrémentation du compteur de sécurité */
                 ii++;
+                /* Création de l'option */
                 option = document.createElement("option");
                 option.text = heureEnCours;
-                zone.add(option);
+                groupe.appendChild(option);
 
+                /* Incrémentation de l'heure, on avance le temps d'une demie-heure */
                 if(AnaMin == "30"){
                     AnaMin = "00";
                     AnaHeure++;
-                    console.log(AnaHeure);
-                    console.log(AnaMin);
                 }
                 else{
                     AnaMin = "30";
-                    console.log(AnaHeure);
-                    console.log(AnaMin);
                 }
+                /* Reconsolidation de la nouvelle heure */
                 heureEnCours = AnaHeure + ":" + AnaMin;
+                /* Sortie de secours au cas où le compteur de sécurité explose */
                 if(ii == 50) return;
             }
 
         }
 
+        /* Au lancement, on teste si une date est sauvegardée */
+        window.onload = function(){
+            if(document.getElementById("bookings_form_date").value != null) alimenterSelect();
+        };
 
         {# Script pour faire disparaître le message de confirmation de commande #}
 
@@ -323,11 +340,6 @@
                 $message.style.margin = "0";
             } , 3500)
         }
-
-
-
-
-
 
     </script>
 {% endblock %}
