@@ -8,6 +8,7 @@ use App\Form\NewPassType;
 use App\Form\UserType;
 use App\Repository\BookingsRepository;
 use App\Repository\HostTablesRepository;
+use App\Repository\HoursRepository;
 use App\Repository\UserRepository;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
@@ -123,7 +124,7 @@ class UserController extends AbstractController
      * @param User $user
      * @return Response
      */
-    public function delete(Request $request, User $user, HostTablesRepository $hostTablesRepository, BookingsRepository $bookingsRepository): Response
+    public function delete(Request $request, User $user, HoursRepository $hoursRepository, HostTablesRepository $hostTablesRepository, BookingsRepository $bookingsRepository): Response
     {
         if ($this->isCsrfTokenValid('delete'.$user->getId(), $request->request->get('_token'))) {
             $reservations = $bookingsRepository->findBy([
@@ -133,8 +134,18 @@ class UserController extends AbstractController
                 "creator" => $user
             ]);
             $entityManager = $this->getDoctrine()->getManager();
-            $entityManager->remove($reservations);
-            $entityManager->remove($tables);
+            foreach($reservations as $oneReserv){
+                $entityManager->remove($oneReserv);
+            }
+            foreach($tables as $oneTable){
+                $hours = $hoursRepository->findBy([
+                    "hostTable" => $oneTable
+                ]);
+                foreach ($hours as $hour){
+                    $entityManager->remove($hour);
+                }
+                $entityManager->remove($oneTable);
+            }
             $this->get('security.token_storage')->setToken(null);
             $entityManager->remove($user);
             $entityManager->flush();
