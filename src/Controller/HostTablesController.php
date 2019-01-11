@@ -17,6 +17,7 @@ use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
 use Symfony\Component\Security\Core\User\UserInterface;
+use Symfony\Component\Serializer\Encoder\JsonEncode;
 use Symfony\Component\Validator\Constraints\DateTime;
 
 class HostTablesController extends AbstractController
@@ -67,7 +68,6 @@ class HostTablesController extends AbstractController
 
         dump($searchParams);
 
-
 // Si aucun champ n'a été renseigné, les params sont vides, et on balance tous les restaurants
 
         return $this->render(
@@ -102,7 +102,7 @@ class HostTablesController extends AbstractController
 
 
     /**
-     * @Route("admin/tables/new", name="host_tables_new", methods={"GET","POST"})
+     * @Route("account/tables/new", name="host_tables_new", methods={"GET","POST"})
      */
     public function new(Request $request): Response
     {
@@ -134,10 +134,108 @@ class HostTablesController extends AbstractController
      */
     public function show(HostTables $hostTable, HoursRepository $hoursRepository, HostTablesRepository $hostTablesRepository, Request $request, EntityManagerInterface $entityManager)
     {
+        $hoursList = [];
+
+        for ($ii = 0; $ii <= 6; $ii++) {
+            switch($ii){
+                case 0: /*Dimanche*/
+                    $hours = $hoursRepository->findBy(
+                        [
+                            'hostTable' => $hostTable,
+                            'day' => 'Dimanche'
+                        ]);
+
+                    $hoursList[0] = [
+                        $hours[0]->getMorningStart()->format("H:i"),
+                        $hours[0]->getMorningEnd()->format("H:i"),
+                        $hours[0]->getEveningStart()->format("H:i"),
+                        $hours[0]->getEveningEnd()->format("H:i")
+                        ];
+                    break;
+                case 1: /*Lundi*/
+                    $hours = $hoursRepository->findBy(
+                        [
+                            'hostTable' => $hostTable,
+                            'day' => 'Lundi'
+                        ]);
+                    $hoursList[1] = [
+                        $hours[0]->getMorningStart()->format("H:i"),
+                        $hours[0]->getMorningEnd()->format("H:i"),
+                        $hours[0]->getEveningStart()->format("H:i"),
+                        $hours[0]->getEveningEnd()->format("H:i")
+                    ];
+                    break;
+                case 2: /*Mardi*/
+                    $hours = $hoursRepository->findBy(
+                        [
+                            'hostTable' => $hostTable,
+                            'day' => 'Mardi'
+                        ]);
+                    $hoursList[2] = [
+                        $hours[0]->getMorningStart()->format("H:i"),
+                        $hours[0]->getMorningEnd()->format("H:i"),
+                        $hours[0]->getEveningStart()->format("H:i"),
+                        $hours[0]->getEveningEnd()->format("H:i")
+                    ];
+                    break;
+                case 3: /*Mercredi*/
+                    $hours = $hoursRepository->findBy(
+                        [
+                            'hostTable' => $hostTable,
+                            'day' => 'Mercredi'
+                        ]);
+                    $hoursList[3] = [
+                        $hours[0]->getMorningStart()->format("H:i"),
+                        $hours[0]->getMorningEnd()->format("H:i"),
+                        $hours[0]->getEveningStart()->format("H:i"),
+                        $hours[0]->getEveningEnd()->format("H:i")
+                    ];
+                    break;
+                case 4: /*Jeudi*/
+                    $hours = $hoursRepository->findBy(
+                        [
+                            'hostTable' => $hostTable,
+                            'day' => 'Jeudi'
+                        ]);
+                    $hoursList[4] = [
+                        $hours[0]->getMorningStart()->format("H:i"),
+                        $hours[0]->getMorningEnd()->format("H:i"),
+                        $hours[0]->getEveningStart()->format("H:i"),
+                        $hours[0]->getEveningEnd()->format("H:i")
+                    ];
+                    break;
+                case 5: /*Vendredi*/
+                    $hours = $hoursRepository->findBy(
+                        [
+                            'hostTable' => $hostTable,
+                            'day' => 'Vendredi'
+                        ]);
+                    $hoursList[5] = [
+                        $hours[0]->getMorningStart()->format("H:i"),
+                        $hours[0]->getMorningEnd()->format("H:i"),
+                        $hours[0]->getEveningStart()->format("H:i"),
+                        $hours[0]->getEveningEnd()->format("H:i")
+                    ];
+                    break;
+                default: /*Samedi*/
+                    $hours = $hoursRepository->findBy(
+                        [
+                            'hostTable' => $hostTable,
+                            'day' => 'Samedi'
+                        ]);
+                    $hoursList[6] = [
+                        $hours[0]->getMorningStart()->format("H:i"),
+                        $hours[0]->getMorningEnd()->format("H:i"),
+                        $hours[0]->getEveningStart()->format("H:i"),
+                        $hours[0]->getEveningEnd()->format("H:i")
+                    ];
+                    break;
+            }
+        }
+
         $hours = $hoursRepository->findBy(
             ['hostTable' => $hostTable]
         );
-
 
         $bookingForm = $this->createForm(BookingsFormType::class);
         $bookingForm->handleRequest($request);
@@ -207,7 +305,6 @@ class HostTablesController extends AbstractController
         $formData = $request->query->get('nb_convives');
         dump($formData);
 
-
         $suggest = $hostTablesRepository->findSuggest($hostTable);
 
         return $this->render(
@@ -219,14 +316,15 @@ class HostTablesController extends AbstractController
                 'bookingForm' => $bookingForm->createView(),
                 'total' => $total,
                 'all_tables' => $hostTablesRepository->findAll(),
-            ]
+                'hoursList' => json_encode($hoursList)
+                ]
         );
 
         }
 
 
     /**
-     * @Route("admin/tables/{id}/edit", name="host_tables_edit", methods={"GET","POST"})
+     * @Route("account/tables/{id}/edit", name="host_tables_edit", methods={"GET","POST"})
      */
     public function edit(Request $request, HostTables $hostTable): Response
     {
@@ -248,7 +346,7 @@ class HostTablesController extends AbstractController
     }
 
     /**
-     * @Route("admin/tables/{id}", name="host_tables_delete", methods={"DELETE"})
+     * @Route("account/tables/{id}", name="host_tables_delete", methods={"DELETE"})
      */
     public function delete(Request $request, HostTables $hostTable): Response
     {
