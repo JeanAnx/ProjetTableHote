@@ -22,7 +22,7 @@
                 {{ form_label(passForm.password.second) }}
                 {{ form_widget(passForm.password.second, {'attr': {'placeholder': 'Mot de passe'}}) }}
             </div>
-            <input type="submit" value="Confirmer">
+            <input type="submit" class="confirmer" value="Confirmer">
             {{ form_end(passForm) }}
 
             {{ include('user/_delete_form.html.twig') }}
@@ -53,8 +53,10 @@
             </table>
         </div>
         <div id="myTables">
-            <h2>Mes tables</h2>
-            <button>Nouvelle table</button>
+            <div id="titleCreate">
+                <h2>Mes tables</h2>
+                <button>Nouvelle table</button>
+            </div>
             <table>
                 <thead>
                 <tr>
