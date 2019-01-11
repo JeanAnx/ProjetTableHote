@@ -155,6 +155,9 @@
                         {{ form_start(bookingForm) }}
                         <div id="date_heure">
                             <div class="date">
+                                <datalist>
+                                    <option id="hourData" value="{{ hoursList }}"/>
+                                </datalist>
                                 {{ form_label(bookingForm.date) }}
                                 {{ form_widget(bookingForm.date) }}
                             </div>
@@ -230,6 +233,7 @@
         </div>
     </main>
 
+
 {% endblock %}
 {% block javascripts %}
 
@@ -239,6 +243,40 @@
             nbConvives = document.getElementById("bookings_form_nb_convives").value;
             document.getElementById("javaTotal").innerHTML = price * nbConvives;
         }
+
+        function alimenterSelect() {
+
+            hourList = JSON.parse(document.getElementById("hourData").value);
+            KelJour = new Date(document.getElementById("bookings_form_date").value);
+
+            zone = document.getElementById("bookings_form_heure");
+            ii = 0;
+            heureEnCours = hourList[KelJour.getDay()][0];
+            while(heureEnCours != hourList[KelJour.getDay()][1]){
+                AnaHeure = heureEnCours.substring(0,2);
+                AnaMin = heureEnCours.substring(3,5);
+                ii++;
+                option = document.createElement("option");
+                option.text = heureEnCours;
+                zone.add(option);
+
+                if(AnaMin == "30"){
+                    AnaMin = "00";
+                    AnaHeure++;
+                    console.log(AnaHeure);
+                    console.log(AnaMin);
+                }
+                else{
+                    AnaMin = "30";
+                    console.log(AnaHeure);
+                    console.log(AnaMin);
+                }
+                heureEnCours = AnaHeure + ":" + AnaMin;
+                if(ii == 20) return;
+            }
+
+        }
+
 
         {# Script pour faire disparaître le message de confirmation de commande #}
 
