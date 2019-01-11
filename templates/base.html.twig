@@ -16,9 +16,21 @@
         <ul>
             <li><a href="{{ path('home') }}">La Table du Milieu</a></li>
             <li>
-                <form id="TopBarForm" action="" method="get">
-                    <input type="text" class="recherche" name="city" id="" placeholder="Recherchez une table">
+                <form id="TopBarForm" action="{{ path('host_tables_search') }}" method="get">
+                    <input list="tables" autocomplete="off" type="text" class="recherche" name="table" id="" placeholder="Recherchez une table">
                     <button type="submit"><i class="fas fa-search-location"></i></button>
+
+                    <datalist id="tables">
+
+                        {% for table in host_tables %}
+
+                            <option value="{{ table.name }}"></option>
+
+                        {% endfor %}
+
+
+                    </datalist>
+
                 </form>
             </li>
             <li>
