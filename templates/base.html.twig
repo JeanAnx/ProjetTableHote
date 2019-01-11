@@ -16,7 +16,10 @@
         <ul>
             <li><a href="{{ path('home') }}">La Table du Milieu</a></li>
             <li>
-                <input type="text" class="recherche" placeholder="Recherchez une table d'hôte">
+                <form id="TopBarInput" action="" method="get">
+                    <input type="text" class="recherche" name="city" id="" placeholder="Recherchez une table d'hôte">
+                    <button type="submit"></button>
+                </form>
             </li>
             <li>
                     {% if is_granted('ROLE_USER') %}<a href="{{ path('app_logout') }}">DECONNEXION</a>
