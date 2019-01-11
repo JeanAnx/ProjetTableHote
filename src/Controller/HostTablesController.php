@@ -111,7 +111,6 @@ class HostTablesController extends AbstractController
         $form->handleRequest($request);
         $user = $this->getUser();
 
-
         if ($form->isSubmitted() && $form->isValid()) {
             $hostTable->setCreator($user);
             $entityManager = $this->getDoctrine()->getManager();
