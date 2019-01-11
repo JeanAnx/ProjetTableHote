@@ -3,7 +3,9 @@
 namespace App\Form;
 
 use App\Entity\HostTables;
+use App\Entity\User;
 use Symfony\Component\Form\AbstractType;
+use Symfony\Component\Form\Extension\Core\Type\NumberType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
 
@@ -26,6 +28,9 @@ class HostTablesType extends AbstractType
             ->add('img')
             ->add('zipCode')
             ->add('cookStyle')
+            ->add('vege')
+            ->add('vegan')
+            ->add('gluten')
         ;
     }
 

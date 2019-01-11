@@ -109,8 +109,11 @@ class HostTablesController extends AbstractController
         $hostTable = new HostTables();
         $form = $this->createForm(HostTablesType::class, $hostTable);
         $form->handleRequest($request);
+        $user = $this->getUser();
+
 
         if ($form->isSubmitted() && $form->isValid()) {
+            $hostTable->setCreator($user);
             $entityManager = $this->getDoctrine()->getManager();
             $entityManager->persist($hostTable);
             $entityManager->flush();
@@ -121,6 +124,7 @@ class HostTablesController extends AbstractController
         return $this->render('host_tables/new.html.twig', [
             'host_table' => $hostTable,
             'form' => $form->createView(),
+            'user' => $this->getUser(),
         ]);
     }
 
