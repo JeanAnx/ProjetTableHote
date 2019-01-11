@@ -16,7 +16,7 @@
         <ul>
             <li><a href="{{ path('home') }}">La Table du Milieu</a></li>
             <li>
-                <input type="text" class="recherche" placeholder="Recherchez une table d'hôte">
+                {#<input type="text" class="recherche" placeholder="Recherchez une table d'hôte">#}
             </li>
             <li>
                     {% if is_granted('ROLE_USER') %}<a href="{{ path('app_logout') }}">DECONNEXION</a>

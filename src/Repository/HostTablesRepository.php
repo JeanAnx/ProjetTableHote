@@ -30,6 +30,17 @@ class HostTablesRepository extends ServiceEntityRepository
             ;
     }
 
+
+    public function searchbar(string $request)
+    {
+        return $this->createQueryBuilder('hostTable')
+            ->andWhere('hostTable.name LIKE "%" + :request + "%"')
+            ->setParameter('request', $request)
+            ->getQuery()
+            ->getResult()
+            ;
+    }
+
     // /**
     //  * @return HostTables[] Returns an array of HostTables objects
     //  */
