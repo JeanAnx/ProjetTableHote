@@ -245,6 +245,7 @@
         }
 
         function alimenterSelect() {
+            /* Reinitialiser le select */
             document.getElementById("bookings_form_heure").options.length = 0;
             /* Récupération de la liste des horaires sous forme de tableau [0 => [12:00,14:00], 1 => [12:00, ... */
             hourList = JSON.parse(document.getElementById("hourData").value);
@@ -258,50 +259,54 @@
             heureEnCours = hourList[KelJour.getDay()][0];
             /* On continue tant que l'heure analysée est différente de l'heure de fin */
             while(heureEnCours != hourList[KelJour.getDay()][1]){
+                /* Dissociation de l'heure et des minutes */
                 AnaHeure = heureEnCours.substring(0,2);
                 AnaMin = heureEnCours.substring(3,5);
+                /* Incrémentation du compteur de sécurité */
                 ii++;
+                /* Création de l'option */
                 option = document.createElement("option");
                 option.text = heureEnCours;
                 zone.add(option);
 
+                /* Incrémentation de l'heure, on avance le temps d'une demie-heure */
                 if(AnaMin == "30"){
                     AnaMin = "00";
                     AnaHeure++;
-                    console.log(AnaHeure);
-                    console.log(AnaMin);
                 }
                 else{
                     AnaMin = "30";
-                    console.log(AnaHeure);
-                    console.log(AnaMin);
                 }
+                /* Reconsolidation de la nouvelle heure */
                 heureEnCours = AnaHeure + ":" + AnaMin;
+                /* Sortie de secours au cas où le compteur de sécurité explose */
                 if(ii == 50) return;
             }
             /* Début du parcours en partant de l'heure de début du soir */
             heureEnCours = hourList[KelJour.getDay()][2];
             /* On continue tant que l'heure analysée est différente de l'heure de fin */
             while(heureEnCours != hourList[KelJour.getDay()][3]){
+                /* Dissociation de l'heure et des minutes */
                 AnaHeure = heureEnCours.substring(0,2);
                 AnaMin = heureEnCours.substring(3,5);
+                /* Incrémentation du compteur de sécurité */
                 ii++;
+                /* Création de l'option */
                 option = document.createElement("option");
                 option.text = heureEnCours;
                 zone.add(option);
 
+                /* Incrémentation de l'heure, on avance le temps d'une demie-heure */
                 if(AnaMin == "30"){
                     AnaMin = "00";
                     AnaHeure++;
-                    console.log(AnaHeure);
-                    console.log(AnaMin);
                 }
                 else{
                     AnaMin = "30";
-                    console.log(AnaHeure);
-                    console.log(AnaMin);
                 }
+                /* Reconsolidation de la nouvelle heure */
                 heureEnCours = AnaHeure + ":" + AnaMin;
+                /* Sortie de secours au cas où le compteur de sécurité explose */
                 if(ii == 50) return;
             }
 
