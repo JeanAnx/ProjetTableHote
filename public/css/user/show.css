@@ -1,21 +1,46 @@
+body{
+    display: flex;
+    min-height: 100vh;
+    flex-direction: column;
+}
+
 #blocGeneral {
-    margin: 3em 6em;
+    padding: 3%;
     width: 100%;
     display: flex;
     justify-content: space-around;
     flex-flow: row wrap;
+    flex-grow: 1;
 }
 
-#myAccount {
+#myAccount button {
     display: flex;
     flex-flow: column;
-    width: 20%;
+    margin: 1em 0em;
+    padding: .3em;
+    border-radius: .25rem;
+    color: white;
+    background-color: #de6370;
+    border: none;
+}
+
+.confirmer {
+    display: flex;
+    flex-flow: column;
+    margin: 1em 0;
+    padding: .3em;
+    border-radius: .25rem;
+    color: white;
+    background-color: #33d9b2;
+    border: none;
+    font-weight: bold;
 }
 
 .mdp {
     display: flex;
     flex-flow: column;
     width: 80%;
+    padding: 0.5em 0;
 }
 
 #myBookings {
@@ -23,16 +48,47 @@
     flex-flow: column;
     width: 30%;
 }
-#myBookings thead{
+
+#myBookings thead {
     background-color: #33d9b2;
     color: white;
 }
+
 #myBookings td {
     border: #33d9b2 solid 0.2em;
     padding: 0.5em;
+    text-align: center;
 }
+
 
 #myTables {
     display: flex;
-    width: 30%;
+    flex-flow: column;
+    width: 45%;
+}
+#titleCreate{
+    display: flex;
+    flex-flow: row;
+    justify-content: space-between;
+    width: 100%;
+}
+#myTables table{
+    width: 100%;
+}
+#myTables thead {
+    background-color: #33d9b2;
+    color: white;
+}
+
+#myTables td {
+    border: #33d9b2 solid 0.2em;
+    padding: 0.5em;
+    text-align: center;
+}
+#titleCreate button{
+    color: white;
+    background-color: #33d9b2;
+    border: none;
+    margin: 1em;
+    border-radius: .25rem;
 }

@@ -8,14 +8,11 @@ html, body {
     height: 100%;
 }
 
-body {
-    margin: 0;
-    background-color: ghostwhite;
-}
 
 header {
     top: 0;
     height: auto;
+    width: auto;
 }
 
 main {
@@ -23,6 +20,7 @@ main {
     justify-content: space-around;
     height: 73%;
     margin: 2%;
+    flex-grow: 1;
 }
 
 p {
