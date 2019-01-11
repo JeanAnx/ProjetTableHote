@@ -6,7 +6,6 @@
     <link rel="stylesheet" href="{{ asset('/css/host_tables/show.css') }}">
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
 {% endblock %}
-
 {% block body %}
 
     <main>
@@ -238,11 +237,17 @@
 {% block javascripts %}
 
     <script>
+
+
+
         function calculTotal() {
             price = document.getElementById("javaPrice").innerHTML;
             nbConvives = document.getElementById("bookings_form_nb_convives").value;
             document.getElementById("javaTotal").innerHTML = price * nbConvives;
         }
+
+
+
 
         function alimenterSelect() {
             /* Reinitialiser le select */
@@ -312,6 +317,10 @@
 
         }
 
+        /* Au lancement, on teste si une date est sauvegardée */
+        window.onload = function(){
+            if(document.getElementById("bookings_form_date").value != null) alimenterSelect();
+        };
 
         {# Script pour faire disparaître le message de confirmation de commande #}
 
@@ -328,11 +337,6 @@
                 $message.style.margin = "0";
             } , 3500)
         }
-
-
-
-
-
 
     </script>
 {% endblock %}
