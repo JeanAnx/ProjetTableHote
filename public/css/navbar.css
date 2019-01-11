@@ -40,3 +40,22 @@
     margin: 0.6vw;
     padding: 1vw;
 }
+
+/* Form searchBar */
+
+#TopBarForm {
+    background-color: white;
+    border-radius: 2em;
+}
+
+#TopBarForm input {
+    width: 70%;
+    text-align: center;
+}
+
+#TopBarForm button {
+    font-size: 1.5em;
+    background-color: transparent;
+    color: #33D9B2;
+    border-style: none;
+}

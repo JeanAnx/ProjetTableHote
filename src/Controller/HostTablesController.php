@@ -76,7 +76,6 @@ class HostTablesController extends AbstractController
                     'cookStyle' => $cookStyle
                 ]);
 
-
     }
 
 
