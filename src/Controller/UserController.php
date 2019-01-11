@@ -35,7 +35,7 @@ class UserController extends AbstractController
     }
 
     /**
-     * @Route("/newAccount", name="user_new", methods={"GET","POST"})
+     * @Route("/signup", name="sign_up", methods={"GET","POST"})
      */
     public function new(Request $request): Response
     {
@@ -58,14 +58,16 @@ class UserController extends AbstractController
     }
 
     /**
-     * @Route("/account/{id}", name="user_show", methods={"GET","POST"})
-     * @param User $user
+     * @Route("/account", name="user_show", methods={"GET","POST"})
      * @param BookingsRepository $bookingsRepository
      * @param HostTablesRepository $hostTablesRepository
+     * @param Request $request
      * @return Response
      */
-    public function show(User $user, BookingsRepository $bookingsRepository, HostTablesRepository $hostTablesRepository, Request $request): Response
+    public function show(BookingsRepository $bookingsRepository, HostTablesRepository $hostTablesRepository, Request $request): Response
     {
+        $user = $this->getUser();
+
         $tables = $hostTablesRepository->findBy([
             "creator" => $user
         ]);
@@ -82,10 +84,7 @@ class UserController extends AbstractController
             $user->setPassword($this->encrypt->encodePassword($user,$newPass["password"]));
             $this->getDoctrine()->getManager()->flush();
 
-            return $this->redirectToRoute('user_show' , [
-                'id' => $user->getId()
-            ]);
-
+            return $this->redirectToRoute('user_show');
         }
 
         return $this->render('user/show.html.twig', [

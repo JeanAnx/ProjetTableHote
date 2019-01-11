@@ -35,3 +35,15 @@ footer a {
     color: white;
 }
 
+#imgAccount{
+    border-radius: 50%;
+    width: 30px;
+    height: 30px;
+}
+#RightNavBar{
+    display: flex;
+    flex-wrap: wrap;
+    width: auto;
+    align-items: center;
+}
+
