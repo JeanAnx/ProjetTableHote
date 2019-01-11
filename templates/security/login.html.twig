@@ -7,6 +7,13 @@
 {% endblock %}
 {% block navbar %}{% endblock %}
 {% block body %}
+
+    {% for message in app.flashes('notice') %}
+
+    <h4 style="text-align: center; color: grey; margin: 3em; ">{{ message }}</h4>
+
+    {% endfor %}
+
 <form method="post" class="loginForm">
     {% if error %}
         <div class="alert alert-danger">{{ error.messageKey|trans(error.messageData, 'security') }}</div>

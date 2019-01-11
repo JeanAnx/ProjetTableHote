@@ -12,7 +12,7 @@ use Symfony\Component\Form\Extension\Core\Type\FormType;
 class HomeController extends AbstractController
 {
     /**
-     * @Route("/home", name="home" , methods={"GET" , "POST"})
+     * @Route("/", name="home" , methods={"GET" , "POST"})
      */
     public function homeSearch(Request $request)
     {

@@ -18,6 +18,17 @@
             <!--MAP-->
 
         </div>
+
+        {% for message in app.flashes('success') %}
+
+            <h2 id="successMessage" style="text-align: center; color: #33d9b2 ">
+                <i class="fas fa-check" style="color:limegreen;"></i>
+            {{ message }}
+
+            </h2>
+
+        {% endfor %}
+
         <div class="presentation_reco">
             <div class="presentation">
                 <div id="content">
@@ -221,11 +232,34 @@
 
 {% endblock %}
 {% block javascripts %}
+
     <script>
         function calculTotal() {
             price = document.getElementById("javaPrice").innerHTML;
             nbConvives = document.getElementById("bookings_form_nb_convives").value;
             document.getElementById("javaTotal").innerHTML = price * nbConvives;
         }
+
+        {# Script pour faire disparaître le message de confirmation de commande #}
+
+        if (document.getElementById('successMessage') != null) {
+            $message = document.getElementById('successMessage');
+            $message.style.transition = "all 0.5s ease";
+            setTimeout(function () {
+                $message.style.opacity = "0";
+            } , 3000)
+
+            setTimeout(function () {
+                $message = document.getElementById('successMessage');
+                $message.style.transform = "scale(0)";
+                $message.style.margin = "0";
+            } , 3500)
+        }
+
+
+
+
+
+
     </script>
 {% endblock %}
