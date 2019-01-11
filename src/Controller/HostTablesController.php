@@ -217,8 +217,9 @@ class HostTablesController extends AbstractController
                 'hours' => $hours,
                 'suggests' => $suggest,
                 'bookingForm' => $bookingForm->createView(),
-                'total' => $total
-                ]
+                'total' => $total,
+                'all_tables' => $hostTablesRepository->findAll(),
+            ]
         );
 
         }

@@ -22,16 +22,21 @@
 
                     <datalist id="tables">
 
+                        <!--  -->
+
                         {% if all_tables is defined %}
 
-                        {% for table in all_tables %}
+                                {% for table in all_tables %}
 
-                            <option value="{{ table.name }}"></option>
+                                    {% if loop.index < 6 %}
 
-                        {% endfor %}
+                                        <option value="{{ table.name }}"></option>
+
+                                    {% endif %}
+
+                                {% endfor %}
 
                         {% endif %}
-
 
                     </datalist>
 

@@ -85,7 +85,10 @@ body{
     padding: 0.5em;
     text-align: center;
 }
-#titleCreate button{
+#titleCreate a {
+    text-align: center;
+    width: 100px;
+    padding: .5em;
     color: white;
     background-color: #33d9b2;
     border: none;
